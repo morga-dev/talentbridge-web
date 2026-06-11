@@ -1,1 +1,12 @@
 @import "tailwindcss";
+
+/* Global theme */
+@theme {
+    --color-talent-primary: #E63152;
+    --color-talent-secondary: #000000;
+    --color-talent-bg: #FFFAF2;
+}
+
+body {
+    background-color: var(--color-talent-bg);
+}
