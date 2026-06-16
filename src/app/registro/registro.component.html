@@ -1,0 +1,32 @@
+<div class="min-h-screen flex items-center justify-center p-8 bg-[#FFFAF2]">
+  <div class="w-full max-w-3xl bg-white rounded-2xl p-8" style="border:1.5px solid #E63152;">
+
+    <!-- Título registro -->
+    <div class="flex items-center gap-2 mb-6">
+      <div class="w-1.5 h-7 rounded-full bg-[#E63152]"></div>
+      <h2 class="text-lg font-bold text-gray-900">Registro de Usuarios</h2>
+    </div>
+
+    <!-- Formulario -->
+    <form (submit)="$event.preventDefault(); agregar()"
+          class="flex flex-col sm:flex-row gap-3 mb-8 items-center">
+
+      <mat-form-field appearance="outline" class="flex-1 w-full">
+        <input matInput [(ngModel)]="nombre" name="nombre"
+               placeholder="Ingresa el nombre"/>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="flex-1 w-full">
+        <input matInput [(ngModel)]="correo" name="correo"
+               placeholder="Ingresa el correo electrónico"/>
+      </mat-form-field>
+
+      <button type="submit"
+              class="px-6 py-3 bg-[#E63152] hover:bg-[#c0273f] text-white text-sm font-semibold rounded-lg mb-5 transition-colors">
+        Agregar
+      </button>
+
+    </form>
+
+  </div>
+</div>

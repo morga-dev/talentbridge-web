@@ -1,38 +1,68 @@
-<div class="bg-white rounded-2xl p-6 w-full max-w-md">
+<div class="min-h-screen bg-gray-100 flex items-center justify-center p-8">
+  <div class="bg-white border border-gray-200 rounded-2xl p-10 w-full max-w-md">
 
-  <h2 class="text-2xl font-bold text-blue-600 text-center mb-6">
-    Iniciar Sesión
-  </h2>
+    <!-- Ícono -->
+    <div class="w-13 h-13 bg-blue-50 rounded-xl flex items-center justify-center mx-auto mb-5"
+         style="width:52px; height:52px;">
+      <mat-icon style="color:#185FA5; font-size:26px; width:26px; height:26px;">work</mat-icon>
+    </div>
 
-  <form (ngSubmit)="login()" class="space-y-4">
+    <!-- Título -->
+    <h2 class="text-xl font-medium text-center text-gray-900 mb-1">Login</h2>
+    <p class="text-sm text-center text-gray-500 mb-8">Inicia sesión en tu cuenta</p>
 
-    <!-- Email -->
-    <mat-form-field appearance="outline" class="w-full">
-      <mat-label>Email</mat-label>
-      <input matInput type="email" [(ngModel)]="email" name="email" required>
-    </mat-form-field>
+    <form (ngSubmit)="login()">
 
-    <!-- Password -->
-    <mat-form-field appearance="outline" class="w-full">
-      <mat-label>Contraseña</mat-label>
-      <input matInput type="password" [(ngModel)]="password" name="password" required>
-    </mat-form-field>
+      <!-- Email -->
+      <label class="block text-xs font-medium text-gray-500 mb-1.5">Correo electrónico</label>
+      <div class="relative mb-5">
+        <mat-icon class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"
+                  style="font-size:18px; width:18px; height:18px;">mail</mat-icon>
+        <input
+          matInput
+          type="email"
+          [(ngModel)]="email"
+          name="email"
+          placeholder="tucorreo@ejemplo.com"
+          class="w-full pl-10 pr-3 py-2.5 text-sm border border-gray-300 rounded-lg bg-gray-50 text-gray-900 outline-none focus:border-blue-600 focus:ring-2 focus:ring-blue-100"
+          required
+        >
+      </div>
 
-    <!-- Botón login -->
-    <button
-      mat-flat-button
-      color="primary"
-      class="w-full bg-blue-600 hover:bg-blue-700 text-white py-2 rounded-lg"
-      type="submit"
-    >
-      Entrar
-    </button>
+      <!-- Contraseña -->
+      <label class="block text-xs font-medium text-gray-500 mb-1.5">Contraseña</label>
+      <div class="relative mb-5">
+        <mat-icon class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"
+                  style="font-size:18px; width:18px; height:18px;">lock</mat-icon>
+        <input
+          matInput
+          type="password"
+          [(ngModel)]="password"
+          name="password"
+          placeholder="••••••••"
+          class="w-full pl-10 pr-3 py-2.5 text-sm border border-gray-300 rounded-lg bg-gray-50 text-gray-900 outline-none focus:border-blue-600 focus:ring-2 focus:ring-blue-100"
+          required
+        >
+      </div>
 
-  </form>
+        <!-- Olvidaste tu contraseña -->
+       <a (click)="irARegistro()" class="block text-right text-sm text-blue-400 hover:underline cursor-pointer mb-5">
+  ¿No tienes cuenta? Registrate 
+</a>
 
-  <!-- Footer -->
-  <p class="text-center text-sm text-gray-500 mt-4">
-    © Sistema de Login
-  </p>
+      <!-- Botón -->
+      <button
+        type="submit"
+        class="w-full py-2.5 bg-blue-700 hover:bg-blue-900 text-white text-sm font-medium rounded-lg transition-colors mt-1"
+      >
+        Iniciar sesión
+      </button>
 
+    </form>
+
+    <p class="text-center text-xs text-gray-400 mt-6">
+      · Todos los derechos reservados
+    </p>
+
+  </div>
 </div>

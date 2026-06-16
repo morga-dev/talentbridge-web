@@ -1,11 +1,9 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-
-import { MatDialogRef } from '@angular/material/dialog';
-import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -13,27 +11,22 @@ import { MatButtonModule } from '@angular/material/button';
   imports: [
     CommonModule,
     FormsModule,
-    MatFormFieldModule,
     MatInputModule,
-    MatButtonModule
+    MatIconModule
   ],
   templateUrl: './login.component.html',
 })
 export class LoginComponent {
-
   email = '';
   password = '';
 
-  constructor(private dialogRef: MatDialogRef<LoginComponent>) {}
+  constructor(private router: Router) {}
 
   login() {
-    this.dialogRef.close({
-      email: this.email,
-      password: this.password
-    });
+    console.log('Login:', this.email, this.password);
   }
 
-  close() {
-    this.dialogRef.close();
+  irARegistro() {
+    this.router.navigate(['/registro']);
   }
 }
