@@ -1,3 +1,17 @@
 @import "tailwindcss";
+<<<<<<< HEAD
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+=======
+
+/* Global theme */
+@theme {
+    --color-talent-primary: #E63152;
+    --color-talent-secondary: #000000;
+    --color-talent-bg: #FFFAF2;
+}
+
+body {
+    background-color: var(--color-talent-bg);
+}
+>>>>>>> be4b98ce0f4fc580e0f7a0ff911ec50c67f5ead7
