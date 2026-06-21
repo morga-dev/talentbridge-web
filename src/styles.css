@@ -2,11 +2,42 @@
 
 /* Global theme */
 @theme {
-    --color-talent-primary: #E63152;
-    --color-talent-secondary: #000000;
-    --color-talent-bg: #FFFAF2;
+    --color-talent-bg: var(--app-bg);
+    --color-talent-minim: var(--app-minim);
+    --color-talent-text: var(--app-text);
+    --color-talent-text-secondary: var(--app-text-secondary);
+    --color-talent-primary: #206A79;
+    --color-talent-secondary: #5EC0D4;
+}
+
+/* Light mode */
+:root {
+  --app-bg: #FFFAF3;
+  --app-minim: #D7EFF4;
+  --app-text: #000000;
+  --app-text-secondary: #60646C;
+}
+
+/* Dark mode */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --app-bg: #212225;
+    --app-minim: #2c2d31;
+    --app-text: #FFFFFF;
+    --app-text-secondary: #B0B4BA;
+  }
+}
+
+/* Dark mode support */
+.dark {
+  --app-bg: #212225;
+  --app-minim: #2c2d31;
+  --app-text: #FFFFFF;
+  --app-text-secondary: #B0B4BA;
 }
 
 body {
-    background-color: var(--color-talent-bg);
+  background-color: var(--color-talent-bg);
+  color: var(--color-talent-text);
+  transition: background-color 0.25s ease, color 0.25s ease;
 }
