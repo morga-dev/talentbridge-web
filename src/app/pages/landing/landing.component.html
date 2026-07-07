@@ -1,7 +1,7 @@
 <main class="bg-talent-bg p-6 font-sans">
   <section class="mx-auto flex flex-col justify-between gap-8" aria-labelledby="landing-title">
     <header class="space-y-3 pt-4 text-center">
-      <h1 id="landing-title" class="text-4xl font-bold text-talent-primary">
+      <h1 id="landing-title" class="text-4xl font-bold text-talent-secondary">
         Tu próxima oportunidad<br>empieza aquí
       </h1>
 
@@ -18,35 +18,35 @@
       </p>
     </header>
 
-    <section class="rounded-4xl bg-white p-10 shadow-sm" aria-labelledby="features-title">
+    <section class="app-surface rounded-4xl p-10" aria-labelledby="features-title">
 
       <div class="grid grid-cols-1 gap-8 md:grid-cols-3">
         <article class="flex flex-col items-center text-center">
-          <div class="mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-talent-minim">
-            <mat-icon class="text-talent-secondary" aria-hidden="true">search</mat-icon>
+          <div class="app-icon-badge mb-4 flex h-14 w-14 items-center justify-center rounded-full">
+            <mat-icon aria-hidden="true">search</mat-icon>
           </div>
-          <h3 class="mb-2 text-xl font-bold text-talent-primary">Descubre</h3>
-          <p class="text-base font-medium text-gray-500">
+          <h3 class="mb-2 text-xl font-bold text-talent-secondary">Descubre</h3>
+          <p class="text-base font-medium text-gray-400">
             Encuentra becas y oportunidades que se adaptan a ti.
           </p>
         </article>
 
         <article class="flex flex-col items-center text-center">
-          <div class="mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-talent-minim">
-            <mat-icon class="text-talent-secondary" aria-hidden="true">groups</mat-icon>
+          <div class="app-icon-badge mb-4 flex h-14 w-14 items-center justify-center rounded-full">
+            <mat-icon aria-hidden="true">groups</mat-icon>
           </div>
-          <h3 class="mb-2 text-xl font-bold text-talent-primary">Conecta</h3>
-          <p class="text-base font-medium text-gray-500">
+          <h3 class="mb-2 text-xl font-bold text-talent-secondary">Conecta</h3>
+          <p class="text-base font-medium text-gray-400">
             Construye tu red con profesionales y otros becarios.
           </p>
         </article>
 
         <article class="flex flex-col items-center text-center">
-          <div class="mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-talent-minim">
-            <mat-icon class="text-talent-secondary" aria-hidden="true">trending_up</mat-icon>
+          <div class="app-icon-badge mb-4 flex h-14 w-14 items-center justify-center rounded-full">
+            <mat-icon aria-hidden="true">trending_up</mat-icon>
           </div>
-          <h3 class="mb-2 text-xl font-bold text-talent-primary">Impulsa</h3>
-          <p class="text-base font-medium text-gray-500">
+          <h3 class="mb-2 text-xl font-bold text-talent-secondary">Impulsa</h3>
+          <p class="text-base font-medium text-gray-400">
             Aprende, comparte y haz crecer tu futuro profesional.
           </p>
         </article>
@@ -62,7 +62,7 @@
     <div class="pb-4">
       <button
         type="button"
-        class="h-12 w-full rounded-full bg-talent-primary text-xl font-bold text-white shadow-md hover:brightness-125 hover:shadow-lg transition-all duration-200 cursor-pointer"
+        class="app-button-primary h-12 w-full rounded-full text-xl font-bold hover:brightness-125 hover:shadow-lg transition-all duration-200 cursor-pointer"
         (click)="navigateToLogin()"
       >
         Comenzar

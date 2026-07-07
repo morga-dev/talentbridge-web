@@ -140,7 +140,7 @@ body {
 .app-icon-badge {
   background-color: var(--app-minim);
   border: 1px solid var(--app-border);
-  color: var(--color-talent-primary);
+  color: var(--color-talent-secondary);
 }
 
 .app-pill {

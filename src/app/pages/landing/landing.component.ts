@@ -20,7 +20,7 @@ export class LandingComponent {
   ) {}
 
   navigateToLogin(): void {
-    this.router.navigate(['/']);
+    this.router.navigate(['/login']);
   }
 
 }
