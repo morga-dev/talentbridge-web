@@ -1,5 +1,5 @@
 <main class="bg-talent-bg p-6 font-sans">
-  <section class="mx-auto flex min-h-screen max-w-6xl flex-col justify-between gap-8" aria-labelledby="landing-title">
+  <section class="mx-auto flex flex-col justify-between gap-8" aria-labelledby="landing-title">
     <header class="space-y-3 pt-4 text-center">
       <h1 id="landing-title" class="text-4xl font-bold text-talent-primary">
         Tu próxima oportunidad<br>empieza aquí
@@ -23,7 +23,7 @@
       <div class="grid grid-cols-1 gap-8 md:grid-cols-3">
         <article class="flex flex-col items-center text-center">
           <div class="mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-talent-minim">
-            <mat-icon class="text-talent-secondary!" aria-hidden="true">search</mat-icon>
+            <mat-icon class="text-talent-secondary" aria-hidden="true">search</mat-icon>
           </div>
           <h3 class="mb-2 text-xl font-bold text-talent-primary">Descubre</h3>
           <p class="text-base font-medium text-gray-500">
@@ -33,7 +33,7 @@
 
         <article class="flex flex-col items-center text-center">
           <div class="mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-talent-minim">
-            <mat-icon class="text-talent-secondary!" aria-hidden="true">groups</mat-icon>
+            <mat-icon class="text-talent-secondary" aria-hidden="true">groups</mat-icon>
           </div>
           <h3 class="mb-2 text-xl font-bold text-talent-primary">Conecta</h3>
           <p class="text-base font-medium text-gray-500">
@@ -43,7 +43,7 @@
 
         <article class="flex flex-col items-center text-center">
           <div class="mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-talent-minim">
-            <mat-icon class="text-talent-secondary!" aria-hidden="true">trending_up</mat-icon>
+            <mat-icon class="text-talent-secondary" aria-hidden="true">trending_up</mat-icon>
           </div>
           <h3 class="mb-2 text-xl font-bold text-talent-primary">Impulsa</h3>
           <p class="text-base font-medium text-gray-500">
@@ -61,9 +61,8 @@
 
     <div class="pb-4">
       <button
-        mat-flat-button
         type="button"
-        class="h-14! w-full rounded-full! bg-talent-primary! text-2xl! font-bold! text-white! shadow-lg transition-all active:scale-[0.98]"
+        class="h-12 w-full rounded-full bg-talent-primary text-xl font-bold text-white shadow-md hover:brightness-125 hover:shadow-lg transition-all duration-200 cursor-pointer"
         (click)="navigateToLogin()"
       >
         Comenzar
