@@ -1,7 +1,8 @@
-<main class="bg-talent-bg p-6 font-sans">
-  <section class="mx-auto flex flex-col justify-between gap-8" aria-labelledby="landing-title">
+<main class="bg-talent-bg p-6 font-sans min-h-screen transition-colors duration-300">
+  <section class="mx-auto flex flex-col justify-between gap-8 max-w-6xl" aria-labelledby="landing-title">
+    
     <header class="space-y-3 pt-4 text-center">
-      <h1 id="landing-title" class="text-4xl font-bold text-talent-secondary">
+      <h1 id="landing-title" class="text-4xl font-bold text-primary tracking-tight">
         Tu próxima oportunidad<br>empieza aquí
       </h1>
 
@@ -11,58 +12,59 @@
           alt="Imagen de TalentBridge"
           class="h-auto w-full max-w-80 object-contain"
         >
-    </figure>
+      </figure>
 
-      <p class="mx-auto max-w-md text-lg text-talent-text-secondary">
-        TalentBridge es la red profesional disenada para becarios y estudiantes que quieren impulsar su carrera.
+      <p class="mx-auto max-w-md text-lg text-secondary">
+        TalentBridge es la red profesional diseñada para becarios y estudiantes que quieren impulsar su carrera.
       </p>
     </header>
 
-    <section class="app-surface rounded-4xl p-10" aria-labelledby="features-title">
+    <section class="app-card rounded-4xl p-10 shadow-md transition-colors duration-300" aria-labelledby="features-title">
+      <h2 id="features-title" class="sr-only">Características de TalentBridge</h2>
 
       <div class="grid grid-cols-1 gap-8 md:grid-cols-3">
         <article class="flex flex-col items-center text-center">
-          <div class="app-icon-badge mb-4 flex h-14 w-14 items-center justify-center rounded-full">
+          <div class="mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-primary/10 text-primary">
             <mat-icon aria-hidden="true">search</mat-icon>
           </div>
           <h3 class="mb-2 text-xl font-bold text-talent-secondary">Descubre</h3>
-          <p class="text-base font-medium text-gray-400">
+          <p class="text-base font-medium text-secondary">
             Encuentra becas y oportunidades que se adaptan a ti.
           </p>
         </article>
 
         <article class="flex flex-col items-center text-center">
-          <div class="app-icon-badge mb-4 flex h-14 w-14 items-center justify-center rounded-full">
+          <div class="mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-primary/10 text-primary">
             <mat-icon aria-hidden="true">groups</mat-icon>
           </div>
           <h3 class="mb-2 text-xl font-bold text-talent-secondary">Conecta</h3>
-          <p class="text-base font-medium text-gray-400">
+          <p class="text-base font-medium text-secondary">
             Construye tu red con profesionales y otros becarios.
           </p>
         </article>
 
         <article class="flex flex-col items-center text-center">
-          <div class="app-icon-badge mb-4 flex h-14 w-14 items-center justify-center rounded-full">
+          <div class="mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-primary/10 text-primary">
             <mat-icon aria-hidden="true">trending_up</mat-icon>
           </div>
           <h3 class="mb-2 text-xl font-bold text-talent-secondary">Impulsa</h3>
-          <p class="text-base font-medium text-gray-400">
+          <p class="text-base font-medium text-secondary">
             Aprende, comparte y haz crecer tu futuro profesional.
           </p>
         </article>
       </div>
 
       <div class="mt-6 flex items-center justify-center gap-3 pt-6" aria-hidden="true">
-        <span class="h-2.5 w-2.5 rounded-full bg-talent-text-secondary/30"></span>
+        <span class="h-2.5 w-2.5 rounded-full bg-secondary/30"></span>
         <span class="h-3 w-3 rounded-full bg-talent-secondary"></span>
-        <span class="h-2.5 w-2.5 rounded-full bg-talent-text-secondary/30"></span>
+        <span class="h-2.5 w-2.5 rounded-full bg-secondary/30"></span>
       </div>
     </section>
 
-    <div class="pb-4">
+    <div class="pb-4 mx-auto w-full">
       <button
         type="button"
-        class="app-button-primary h-12 w-full rounded-full text-xl font-bold hover:brightness-125 hover:shadow-lg transition-all duration-200 cursor-pointer"
+        class="app-button-primary h-12 w-full rounded-full text-white text-xl font-bold hover:brightness-110 hover:shadow-lg transition-all duration-200 cursor-pointer"
         (click)="navigateToLogin()"
       >
         Comenzar
