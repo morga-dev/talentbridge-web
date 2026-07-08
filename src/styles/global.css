@@ -1,0 +1,123 @@
+/* App-level utility classes built on design tokens */
+
+body {
+  background-color: var(--color-talent-bg);
+  color: var(--color-talent-text);
+  font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-size: 0.875rem;
+  transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+html,
+body {
+  min-height: 100%;
+}
+
+.app-card,
+.app-surface {
+  background-color: var(--app-surface);
+  border: 1px solid var(--app-border);
+  box-shadow: var(--app-shadow-sm);
+}
+
+.app-surface-soft {
+  background-color: var(--app-surface-soft);
+  border: 1px solid var(--app-border);
+}
+
+.app-surface-muted {
+  background-color: var(--app-surface-muted);
+  border: 1px solid var(--app-border);
+}
+
+.app-surface-strong {
+  background-color: var(--app-surface-strong);
+  border: 1px solid var(--app-border-strong);
+  box-shadow: var(--app-shadow-md);
+}
+
+.app-input {
+  background-color: var(--app-surface);
+  border: 1px solid var(--app-border);
+  color: var(--app-text);
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.03);
+}
+
+.app-input::placeholder {
+  color: var(--app-text-secondary);
+  opacity: 0.72;
+}
+
+.app-input-hero {
+  background-color: var(--app-overlay);
+  border: 1px solid var(--app-overlay-strong);
+  color: var(--app-text);
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.04);
+}
+
+.app-input-hero::placeholder {
+  color: rgba(255, 255, 255, 0.72);
+}
+
+.app-icon-badge {
+  background-color: var(--app-minim);
+  border: 1px solid var(--app-border);
+  color: var(--color-talent-secondary);
+}
+
+.app-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9999px;
+  border: 1px solid var(--app-border);
+  padding: 0.5rem 1.25rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+
+.app-pill-active {
+  background-color: var(--color-talent-primary);
+  border-color: transparent;
+  color: #ffffff;
+  box-shadow: var(--app-shadow-sm);
+}
+
+.app-pill-soft {
+  background-color: var(--app-minim);
+  border-color: transparent;
+  color: var(--color-talent-primary);
+}
+
+.app-empty-state {
+  background-color: var(--app-surface-soft);
+  border: 1px dashed var(--app-border);
+  color: var(--app-text-secondary);
+}
+
+.app-button-primary {
+  background-color: var(--color-talent-primary);
+  color: #ffffff;
+  box-shadow: var(--app-shadow-sm);
+}
+
+.app-nav {
+  background-color: var(--app-surface);
+  border-top: 1px solid var(--app-border);
+}
+
+/* TalentBridge / Fuse-compatible typography helpers */
+.tb-title {
+  font-size: 1.125rem;
+  font-weight: 500;
+  color: var(--tb-primary);
+  letter-spacing: 0.025em;
+}
+
+.tb-subtitle {
+  font-size: 1rem;
+  font-weight: 400;
+  color: var(--tb-accent);
+  letter-spacing: 0.025em;
+}

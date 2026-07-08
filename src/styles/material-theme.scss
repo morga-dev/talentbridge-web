@@ -1,0 +1,183 @@
+@use 'sass:map';
+@use '@angular/material' as mat;
+@use 'user-themes' as userThemes;
+
+$light-base: (
+  foreground: (
+    base: #000000,
+    divider: rgba(96, 100, 108, 0.14),
+    dividers: rgba(96, 100, 108, 0.14),
+    disabled: rgba(96, 100, 108, 0.5),
+    disabled-button: rgba(96, 100, 108, 0.38),
+    disabled-text: rgba(96, 100, 108, 0.5),
+    elevation: #000000,
+    hint-text: #60646c,
+    secondary-text: #60646c,
+    icon: #60646c,
+    icons: #60646c,
+    mat-icon: #60646c,
+    text: #000000,
+    slider-min: #000000,
+    slider-off: rgba(96, 100, 108, 0.24),
+    slider-off-active: rgba(96, 100, 108, 0.38),
+  ),
+  background: (
+    status-bar: #d7eff4,
+    app-bar: #ffffff,
+    background: #fffaf3,
+    hover: rgba(32, 106, 121, 0.06),
+    card: #ffffff,
+    dialog: #ffffff,
+    disabled-button: rgba(96, 100, 108, 0.12),
+    raised-button: #ffffff,
+    focused-button: #60646c,
+    selected-button: #d7eff4,
+    selected-disabled-button: rgba(96, 100, 108, 0.12),
+    disabled-button-toggle: rgba(96, 100, 108, 0.12),
+    unselected-chip: #f7f8fa,
+    disabled-list-option: rgba(96, 100, 108, 0.12),
+    tooltip: #164a55,
+  ),
+);
+
+$dark-base: (
+  foreground: (
+    base: #ffffff,
+    divider: rgba(176, 180, 186, 0.16),
+    dividers: rgba(176, 180, 186, 0.16),
+    disabled: rgba(176, 180, 186, 0.38),
+    disabled-button: rgba(176, 180, 186, 0.24),
+    disabled-text: rgba(176, 180, 186, 0.38),
+    elevation: #000000,
+    hint-text: #b0b4ba,
+    secondary-text: #b0b4ba,
+    icon: #b0b4ba,
+    icons: #b0b4ba,
+    mat-icon: #b0b4ba,
+    text: #ffffff,
+    slider-min: #ffffff,
+    slider-off: rgba(176, 180, 186, 0.24),
+    slider-off-active: rgba(176, 180, 186, 0.38),
+  ),
+  background: (
+    status-bar: #212225,
+    app-bar: #26282d,
+    background: #212225,
+    hover: rgba(255, 255, 255, 0.05),
+    card: #26282d,
+    dialog: #26282d,
+    disabled-button: rgba(255, 255, 255, 0.08),
+    raised-button: #26282d,
+    focused-button: #b0b4ba,
+    selected-button: rgba(255, 255, 255, 0.08),
+    selected-disabled-button: rgba(255, 255, 255, 0.08),
+    disabled-button-toggle: rgba(255, 255, 255, 0.08),
+    unselected-chip: #2c2d31,
+    disabled-list-option: rgba(255, 255, 255, 0.08),
+    tooltip: #b0b4ba,
+  ),
+);
+
+@include mat.elevation-classes();
+@include mat.app-background();
+
+@include mat.all-component-themes(
+  (
+    color: null,
+    density: 0,
+    typography:
+      mat.m2-define-typography-config(
+        $font-family: 'Inter, system-ui, sans-serif',
+        $headline-1:
+          mat.m2-define-typography-level(1.875rem, 2.25rem, 800, 'Inter, system-ui, sans-serif'),
+        $headline-2:
+          mat.m2-define-typography-level(1.25rem, 1.75rem, 700, 'Inter, system-ui, sans-serif'),
+        $headline-3:
+          mat.m2-define-typography-level(1.125rem, 1.75rem, 600, 'Inter, system-ui, sans-serif'),
+        $headline-4:
+          mat.m2-define-typography-level(0.875rem, 1.25rem, 600, 'Inter, system-ui, sans-serif'),
+        $headline-5:
+          mat.m2-define-typography-level(0.875rem, 1.5rem, 400, 'Inter, system-ui, sans-serif'),
+        $headline-6:
+          mat.m2-define-typography-level(0.875rem, 1.5rem, 400, 'Inter, system-ui, sans-serif'),
+        $subtitle-1:
+          mat.m2-define-typography-level(1rem, 1.75rem, 400, 'Inter, system-ui, sans-serif'),
+        $subtitle-2:
+          mat.m2-define-typography-level(0.875rem, 1.25rem, 600, 'Inter, system-ui, sans-serif'),
+        $body-1:
+          mat.m2-define-typography-level(0.875rem, 1.5rem, 400, 'Inter, system-ui, sans-serif'),
+        $body-2:
+          mat.m2-define-typography-level(0.875rem, 1.5rem, 400, 'Inter, system-ui, sans-serif'),
+        $caption:
+          mat.m2-define-typography-level(0.75rem, 1rem, 400, 'Inter, system-ui, sans-serif'),
+        $button:
+          mat.m2-define-typography-level(0.875rem, 0.875rem, 500, 'Inter, system-ui, sans-serif'),
+        $overline:
+          mat.m2-define-typography-level(0.75rem, 2rem, 500, 'Inter, system-ui, sans-serif'),
+      ),
+  )
+);
+
+@each $name, $theme in userThemes.$user-themes {
+  $palettes: ();
+
+  @each $paletteName in (primary, accent, warn) {
+    $palette: mat.m2-define-palette(map.get($theme, $paletteName));
+
+    $palette: map.merge(
+      $palette,
+      (
+        default: map.get(map.get($theme, $paletteName), DEFAULT),
+        lighter: map.get(map.get($theme, $paletteName), 100),
+        darker: map.get(map.get($theme, $paletteName), 700),
+        text: map.get(map.get($theme, $paletteName), DEFAULT),
+        default-contrast:
+          map.get(map.get(map.get($theme, $paletteName), contrast), DEFAULT),
+        lighter-contrast:
+          map.get(map.get(map.get($theme, $paletteName), contrast), 100),
+        darker-contrast:
+          map.get(map.get(map.get($theme, $paletteName), contrast), 700),
+      )
+    );
+
+    $palettes: map.merge($palettes, (#{$paletteName}: $palette));
+  }
+
+  $light-theme: mat.m2-define-light-theme(
+    (
+      color: $palettes,
+    )
+  );
+
+  $dark-theme: mat.m2-define-dark-theme(
+    (
+      color: $palettes,
+    )
+  );
+
+  $light-theme-colors: map.merge(map.get($light-theme, color), $light-base);
+  $light-theme: map.merge(
+    (
+      color: $light-theme-colors,
+    ),
+    $light-theme-colors
+  );
+
+  $dark-theme-colors: map.merge(map.get($dark-theme, color), $dark-base);
+  $dark-theme: map.merge(
+    (
+      color: $dark-theme-colors,
+    ),
+    $dark-theme-colors
+  );
+
+  #{map.get($theme, selector)} .light,
+  #{map.get($theme, selector)}.light {
+    @include mat.all-component-colors($light-theme);
+  }
+
+  #{map.get($theme, selector)} .dark,
+  #{map.get($theme, selector)}.dark {
+    @include mat.all-component-colors($dark-theme);
+  }
+}

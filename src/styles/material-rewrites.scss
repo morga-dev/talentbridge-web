@@ -1,0 +1,69 @@
+.theme-talentbridge.light,
+.theme-talentbridge .light {
+  --mat-table-header-container-height: 3rem;
+  --mat-table-row-item-container-height: 3rem;
+  --mat-table-footer-container-height: 3rem;
+
+  --mat-sys-primary: var(--tb-primary);
+  --mat-sys-on-primary: #ffffff;
+  --mat-sys-primary-container: var(--tb-primary-100);
+  --mat-sys-on-primary-container: var(--tb-primary-900);
+
+  --mat-sys-secondary: var(--tb-accent);
+  --mat-sys-on-secondary: var(--tb-primary-900);
+  --mat-sys-secondary-container: var(--tb-accent-100);
+  --mat-sys-on-secondary-container: var(--tb-accent-900);
+
+  --mat-sys-error: var(--tb-warn);
+  --mat-sys-on-error: #ffffff;
+
+  --mat-sys-surface: var(--app-surface);
+  --mat-sys-on-surface: var(--app-text);
+  --mat-sys-surface-variant: var(--app-surface-muted);
+  --mat-sys-on-surface-variant: var(--app-text-secondary);
+  --mat-sys-background: var(--app-bg);
+  --mat-sys-on-background: var(--app-text);
+  --mat-sys-outline: var(--app-border);
+  --mat-sys-outline-variant: var(--app-border-strong);
+
+  --mdc-outlined-text-field-outline-color: var(--app-border);
+  --mdc-outlined-text-field-hover-outline-color: var(--tb-primary-400);
+  --mdc-outlined-text-field-focus-outline-color: var(--tb-primary);
+  --mdc-outlined-text-field-label-text-color: var(--app-text-secondary);
+  --mdc-outlined-text-field-input-text-color: var(--app-text);
+  --mdc-outlined-text-field-caret-color: var(--tb-primary);
+  --mdc-outlined-text-field-container-shape: 16px;
+
+  --mdc-filled-text-field-container-color: var(--app-surface);
+  --mdc-filled-text-field-label-text-color: var(--app-text-secondary);
+  --mdc-filled-text-field-input-text-color: var(--app-text);
+  --mdc-filled-text-field-active-indicator-color: var(--app-border);
+  --mdc-filled-text-field-focus-active-indicator-color: var(--tb-primary);
+  --mdc-filled-text-field-container-shape: 12px;
+
+  --mat-form-field-container-height: 52px;
+  --mat-form-field-container-vertical-padding: 12px;
+}
+
+.theme-talentbridge.dark,
+.theme-talentbridge .dark {
+  --mat-sys-primary: var(--tb-accent);
+  --mat-sys-on-primary: var(--tb-primary-900);
+  --mat-sys-primary-container: var(--tb-primary-800);
+  --mat-sys-on-primary-container: #ffffff;
+
+  --mat-sys-secondary: var(--tb-accent-300);
+  --mat-sys-on-secondary: var(--tb-primary-900);
+
+  --mat-sys-surface: var(--app-surface);
+  --mat-sys-on-surface: var(--app-text);
+  --mat-sys-background: var(--app-bg);
+  --mat-sys-on-background: var(--app-text);
+  --mat-sys-outline: var(--app-border);
+
+  --mdc-outlined-text-field-outline-color: var(--app-border);
+  --mdc-outlined-text-field-hover-outline-color: var(--tb-accent-400);
+  --mdc-outlined-text-field-focus-outline-color: var(--tb-accent);
+  --mdc-outlined-text-field-label-text-color: var(--app-text-secondary);
+  --mdc-outlined-text-field-input-text-color: var(--app-text);
+}

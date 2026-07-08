@@ -1,0 +1,142 @@
+/* Design tokens — single source of truth for TalentBridge palette */
+
+:root,
+.theme-talentbridge {
+  --tb-primary-50: #eaf4f6;
+  --tb-primary-100: #d7eff4;
+  --tb-primary-200: #b8e0e8;
+  --tb-primary-300: #8fcad6;
+  --tb-primary-400: #5faab8;
+  --tb-primary-500: #206a79;
+  --tb-primary-600: #1b5a67;
+  --tb-primary-700: #164a55;
+  --tb-primary-800: #123a44;
+  --tb-primary-900: #0d2a32;
+  --tb-primary: #206a79;
+  --tb-primary-rgb: 32, 106, 121;
+
+  --tb-accent-50: #edfafc;
+  --tb-accent-100: #d7f2f7;
+  --tb-accent-200: #b9e8f0;
+  --tb-accent-300: #95dce9;
+  --tb-accent-400: #79d0df;
+  --tb-accent-500: #5ec0d4;
+  --tb-accent-600: #3fa3b8;
+  --tb-accent-700: #2e8496;
+  --tb-accent-800: #246678;
+  --tb-accent-900: #1a485a;
+  --tb-accent: #5ec0d4;
+  --tb-accent-rgb: 94, 192, 212;
+
+  --tb-warn-50: #fef2f2;
+  --tb-warn-100: #fee2e2;
+  --tb-warn-200: #fecaca;
+  --tb-warn-300: #fca5a5;
+  --tb-warn-400: #f87171;
+  --tb-warn-500: #ef4444;
+  --tb-warn-600: #dc2626;
+  --tb-warn-700: #b91c1c;
+  --tb-warn-800: #991b1b;
+  --tb-warn-900: #7f1d1d;
+  --tb-warn: #dc2626;
+  --tb-warn-rgb: 220, 38, 38;
+
+  --color-talent-primary: var(--tb-primary);
+  --color-talent-secondary: var(--tb-accent);
+}
+
+/* Light scheme */
+:root,
+.theme-talentbridge.light,
+.theme-talentbridge .light {
+  --app-bg: #fffaf3;
+  --app-minim: #d7eff4;
+  --app-text: #000000;
+  --app-text-secondary: #60646c;
+  --app-surface: #ffffff;
+  --app-surface-soft: #fcfcfc;
+  --app-surface-muted: #f7f8fa;
+  --app-surface-strong: rgba(255, 255, 255, 0.96);
+  --app-border: rgba(96, 100, 108, 0.14);
+  --app-border-strong: rgba(96, 100, 108, 0.24);
+  --app-overlay: rgba(255, 255, 255, 0.1);
+  --app-overlay-strong: rgba(255, 255, 255, 0.18);
+  --app-shadow-sm: 0 6px 20px rgba(32, 106, 121, 0.08);
+  --app-shadow-md: 0 12px 32px rgba(32, 106, 121, 0.12);
+
+  /* Fuse-compatible aliases for Material overrides and shared utilities */
+  --fuse-primary: var(--tb-primary);
+  --fuse-primary-500: var(--tb-primary-500);
+  --fuse-primary-rgb: var(--tb-primary-rgb);
+  --fuse-accent: var(--tb-accent);
+  --fuse-accent-500: var(--tb-accent-500);
+  --fuse-accent-rgb: var(--tb-accent-rgb);
+  --fuse-warn: var(--tb-warn);
+  --fuse-warn-500: var(--tb-warn-500);
+  --fuse-warn-rgb: var(--tb-warn-rgb);
+  --fuse-text-default: var(--app-text);
+  --fuse-text-secondary: var(--app-text-secondary);
+  --fuse-text-hint: var(--app-text-secondary);
+  --fuse-text-disabled: rgba(96, 100, 108, 0.5);
+  --fuse-border: var(--app-border);
+  --fuse-border-rgb: 96, 100, 108;
+  --fuse-bg-default: var(--app-bg);
+  --fuse-bg-card: var(--app-surface);
+  --fuse-bg-hover: rgba(32, 106, 121, 0.06);
+  --fuse-mat-icon-rgb: var(--tb-primary-rgb);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not(.light):not(.theme-talentbridge.light) {
+    color-scheme: dark;
+  }
+}
+
+.dark,
+.theme-talentbridge.dark,
+.theme-talentbridge .dark {
+  --app-bg: #212225;
+  --app-minim: #2c2d31;
+  --app-text: #ffffff;
+  --app-text-secondary: #b0b4ba;
+  --app-surface: #26282d;
+  --app-surface-soft: #1f2125;
+  --app-surface-muted: #202226;
+  --app-surface-strong: rgba(38, 40, 45, 0.96);
+  --app-border: rgba(176, 180, 186, 0.16);
+  --app-border-strong: rgba(176, 180, 186, 0.24);
+  --app-overlay: rgba(255, 255, 255, 0.06);
+  --app-overlay-strong: rgba(255, 255, 255, 0.12);
+  --app-shadow-sm: 0 8px 24px rgba(0, 0, 0, 0.24);
+  --app-shadow-md: 0 14px 38px rgba(0, 0, 0, 0.3);
+
+  --fuse-text-default: var(--app-text);
+  --fuse-text-secondary: var(--app-text-secondary);
+  --fuse-text-hint: var(--app-text-secondary);
+  --fuse-text-disabled: rgba(176, 180, 186, 0.5);
+  --fuse-border: var(--app-border);
+  --fuse-border-rgb: 176, 180, 186;
+  --fuse-bg-default: var(--app-bg);
+  --fuse-bg-card: var(--app-surface);
+  --fuse-bg-hover: rgba(255, 255, 255, 0.05);
+  --fuse-mat-icon-rgb: 176, 180, 186;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not(.light) {
+    --app-bg: #212225;
+    --app-minim: #2c2d31;
+    --app-text: #ffffff;
+    --app-text-secondary: #b0b4ba;
+    --app-surface: #26282d;
+    --app-surface-soft: #1f2125;
+    --app-surface-muted: #202226;
+    --app-surface-strong: rgba(38, 40, 45, 0.96);
+    --app-border: rgba(176, 180, 186, 0.16);
+    --app-border-strong: rgba(176, 180, 186, 0.24);
+    --app-overlay: rgba(255, 255, 255, 0.06);
+    --app-overlay-strong: rgba(255, 255, 255, 0.12);
+    --app-shadow-sm: 0 8px 24px rgba(0, 0, 0, 0.24);
+    --app-shadow-md: 0 14px 38px rgba(0, 0, 0, 0.3);
+  }
+}
