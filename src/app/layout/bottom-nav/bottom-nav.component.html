@@ -1,19 +1,18 @@
-<nav class="app-nav fixed bottom-0 left-0 z-50 w-full h-16 transition-colors">
+<nav class="fixed bottom-0 left-0 z-50 w-full h-16 transition-colors duration-200 bg-card border-t border-border shadow-md">
     <div class="grid h-full grid-cols-4 mx-auto">
         
         @for (item of navItems; track item.label) {
             <button 
                 type="button"
                 (click)="setActive(item.label)"
-                class="inline-flex flex-col items-center justify-center relative cursor-pointer transition-colors text-talent-text-secondary select-none focus:outline-hidden"
-                [class.text-talent-primary]="activeTab === item.label"
+                class="inline-flex flex-col items-center justify-center relative cursor-pointer transition-colors duration-200 text-secondary select-none focus:outline-none"
+                [class.text-primary]="activeTab === item.label"
             >
-                <!-- Línea indicadora -->
                 @if (activeTab === item.label) {
-                    <div class="absolute top-0 w-20 h-0.5 bg-talent-primary rounded-full animate-fade-in"></div>
+                    <div class="absolute top-0 w-20 h-0.5 bg-primary rounded-full"></div>
                 }
             
-                <mat-icon class="text-[24px] w-6 h-6">
+                <mat-icon>
                     {{ item.icon }}
                 </mat-icon>
 
