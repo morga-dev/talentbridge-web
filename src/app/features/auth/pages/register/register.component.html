@@ -1,0 +1,281 @@
+<main class="min-h-screen flex flex-col justify-between pb-12 bg-talent-bg transition-colors duration-200">
+  
+  <div class="relative w-full h-36 sm:h-44 md:h-48 bg-talent-primary rounded-b-[3.5rem] md:rounded-b-[5rem] flex items-start justify-center pt-6">
+    <span class="app-surface-strong inline-flex items-center rounded-full px-4 py-1.5 text-xs sm:text-sm font-semibold text-talent-text backdrop-blur-xs tracking-wide border border-white/20 shadow-xs">
+      Regístrate y comienza tu vida laboral con TalentBridge
+    </span>
+  </div>
+  
+  <div class="w-full max-w-4xl mx-auto px-4 sm:px-6 flex-1 flex flex-col items-center -mt-16 relative z-10">
+    
+    <div class="app-surface-strong h-24 w-24 md:h-28 md:w-28 rounded-full border-4 border-talent-bg overflow-hidden flex items-center justify-center p-4 shadow-md">
+      <img src="/assets/LogoTB.png" alt="Logo TalentBridge" class="w-full h-full object-contain">
+    </div>
+
+    <header class="text-center mt-4 mb-6">
+      <h1 class="text-2xl md:text-3xl font-black text-talent-text tracking-tight">
+        Crear cuenta en TalentBridge
+      </h1>
+      <p class="mt-1.5 text-sm md:text-base font-medium text-talent-text-secondary max-w-md mx-auto">
+        {{ isCompanyMode ? 'Registra tu empresa para reclutar el mejor talento universitario.' : 'Completa tu perfil académico para conectar con las mejores empresas.' }}
+      </p>
+    </header>
+
+    <div class="w-full max-w-md bg-talent-bg border border-talent-border p-1.5 rounded-2xl flex items-center mb-6 shadow-xs">
+      <button type="button" (click)="setRegisterMode(false)"
+              [class.bg-talent-primary]="!isCompanyMode" [class.text-white]="!isCompanyMode"
+              [class.text-talent-text-secondary]="isCompanyMode"
+              class="flex-1 py-2.5 text-center text-xs md:text-sm font-bold rounded-xl transition-all duration-200 cursor-pointer flex items-center justify-center gap-2">
+        <mat-icon class="text-lg w-5 h-5">school</mat-icon>
+        Estudiante
+      </button>
+      <button type="button" (click)="setRegisterMode(true)"
+              [class.bg-talent-primary]="isCompanyMode" [class.text-white]="isCompanyMode"
+              [class.text-talent-text-secondary]="!isCompanyMode"
+              class="flex-1 py-2.5 text-center text-xs md:text-sm font-bold rounded-xl transition-all duration-200 cursor-pointer flex items-center justify-center gap-2">
+        <mat-icon class="text-lg w-5 h-5">business</mat-icon>
+        Compañía / Empresa
+      </button>
+    </div>
+
+    <div class="w-full app-surface-soft border border-talent-border rounded-3xl p-6 sm:p-10 shadow-xs">
+      <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" class="w-full space-y-6">
+        
+        <div>
+          <h2 class="text-sm font-black text-talent-primary uppercase tracking-widest border-b border-talent-border pb-2 mb-4">
+            1. Credenciales de la Cuenta
+          </h2>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-x-4 gap-y-2">
+            
+            <mat-form-field appearance="outline" class="w-full">
+              <mat-label>Correo electrónico</mat-label>
+              <mat-icon matPrefix class="text-talent-text-secondary/60">mail_outline</mat-icon>
+              <input matInput type="email" formControlName="email" placeholder="ejemplo@correo.com">
+              @if (registerForm.get('email')?.hasError('required')) {
+                <mat-error>El correo electrónico es requerido</mat-error>
+              }
+              @if (registerForm.get('email')?.hasError('email')) {
+                <mat-error>Ingresa un formato de correo válido</mat-error>
+              }
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="w-full">
+              <mat-label>Teléfono de Contacto</mat-label>
+              <mat-icon matPrefix class="text-talent-text-secondary/60">phone_enabled</mat-icon>
+              <input matInput type="text" formControlName="phone" placeholder="Solo números">
+              @if (registerForm.get('phone')?.hasError('required')) {
+                <mat-error>El teléfono es requerido</mat-error>
+              }
+              @if (registerForm.get('phone')?.hasError('pattern')) {
+                <mat-error>El teléfono debe contener solo números</mat-error>
+              }
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="w-full">
+              <mat-label>Contraseña</mat-label>
+              <mat-icon matPrefix class="text-talent-text-secondary/60">lock_open</mat-icon>
+              <input matInput [type]="hidePassword ? 'password' : 'text'" formControlName="password" placeholder="Mínimo 6 caracteres">
+              <button type="button" matSuffix mat-icon-button (click)="togglePassword()" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hidePassword">
+                <mat-icon>{{ hidePassword ? 'visibility_off' : 'visibility' }}</mat-icon>
+              </button>
+              @if (registerForm.get('password')?.hasError('required')) {
+                <mat-error>La contraseña es requerida</mat-error>
+              }
+              @if (registerForm.get('password')?.hasError('minlength')) {
+                <mat-error>Mínimo debe contener 6 caracteres</mat-error>
+              }
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="w-full">
+              <mat-label>Confirmar Contraseña</mat-label>
+              <mat-icon matPrefix class="text-talent-text-secondary/60">lock</mat-icon>
+              <input matInput [type]="hidePassword ? 'password' : 'text'" formControlName="confirmPassword" placeholder="Repite tu contraseña">
+              @if (registerForm.get('confirmPassword')?.hasError('required')) {
+                <mat-error>Por favor confirma tu contraseña</mat-error>
+              }
+            </mat-form-field>
+
+          </div>
+        </div>
+
+        @if (!isCompanyMode) {
+          <div class="animate-fadeIn">
+            <h2 class="text-sm font-black text-talent-primary uppercase tracking-widest border-b border-talent-border pb-2 mb-4">
+              2. Información Académica y Personal
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-x-4 gap-y-2">
+              
+              <mat-form-field appearance="outline" class="w-full">
+                <mat-label>Nombre</mat-label>
+                <input matInput type="text" formControlName="firstName" placeholder="Tu nombre">
+                @if (registerForm.get('firstName')?.hasError('required')) {
+                  <mat-error>El nombre es requerido</mat-error>
+                }
+              </mat-form-field>
+
+              <mat-form-field appearance="outline" class="w-full">
+                <mat-label>Apellido(s)</mat-label>
+                <input matInput type="text" formControlName="lastName" placeholder="Tus apellidos">
+                @if (registerForm.get('lastName')?.hasError('required')) {
+                  <mat-error>Los apellidos son requeridos</mat-error>
+                }
+              </mat-form-field>
+
+              <mat-form-field appearance="outline" class="w-full">
+                <mat-label>Universidad</mat-label>
+                <input matInput type="text" formControlName="university" placeholder="Nombre de tu universidad">
+                @if (registerForm.get('university')?.hasError('required')) {
+                  <mat-error>La universidad es requerida</mat-error>
+                }
+              </mat-form-field>
+
+              <mat-form-field appearance="outline" class="w-full">
+                <mat-label>Carrera Profesional</mat-label>
+                <input matInput type="text" formControlName="career" placeholder="Ej. Ingeniería en Sistemas">
+                @if (registerForm.get('career')?.hasError('required')) {
+                  <mat-error>La carrera es requerida</mat-error>
+                }
+              </mat-form-field>
+
+              <mat-form-field appearance="outline" class="w-full">
+                <mat-label>Semestre Actual</mat-label>
+                <input matInput type="text" formControlName="semester" placeholder="Ej. 7mo">
+                @if (registerForm.get('semester')?.hasError('required')) {
+                  <mat-error>El semestre es requerido</mat-error>
+                }
+              </mat-form-field>
+
+              <mat-form-field appearance="outline" class="w-full">
+                <mat-label>Fecha Graduación</mat-label>
+                <input matInput [matDatepicker]="picker" formControlName="graduationYear">
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+              </mat-form-field>
+
+            </div>
+          </div>
+
+          <div class="animate-fadeIn">
+            <h2 class="text-sm font-black text-talent-primary uppercase tracking-widest border-b border-talent-border pb-2 mb-4">
+              3. Habilidades y Enlaces
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-x-4 gap-y-2">
+              
+              <mat-form-field appearance="outline" class="w-full md:col-span-2">
+                <mat-label>Habilidades (Skills)</mat-label>
+                <input matInput type="text" formControlName="skills" placeholder="Angular, SQL, TypeScript...">
+                @if (registerForm.get('skills')?.hasError('required')) {
+                  <mat-error>Indica al menos una habilidad</mat-error>
+                }
+              </mat-form-field>
+
+              <mat-form-field appearance="outline" class="w-full">
+                <mat-label>Enlace a tu CV (Drive / Dropbox)</mat-label>
+                <input matInput type="url" formControlName="cvUrl" placeholder="https://...">
+                @if (registerForm.get('cvUrl')?.hasError('required')) {
+                  <mat-error>El enlace al CV es requerido</mat-error>
+                }
+              </mat-form-field>
+
+              <mat-form-field appearance="outline" class="w-full">
+                <mat-label>Enlace a GitHub</mat-label>
+                <input matInput type="url" formControlName="githubUrl" placeholder="https://github.com/...">
+                @if (registerForm.get('githubUrl')?.hasError('required')) {
+                  <mat-error>El enlace a GitHub es requerido</mat-error>
+                }
+              </mat-form-field>
+
+              <mat-form-field appearance="outline" class="w-full md:col-span-2">
+                <mat-label>LinkedIn</mat-label>
+                <input matInput type="url" formControlName="linkedinUrl" placeholder="https://linkedin.com/in/...">
+              </mat-form-field>
+
+            </div>
+          </div>
+        }
+
+        @if (isCompanyMode) {
+          <div class="animate-fadeIn space-y-6">
+            <div>
+              <h2 class="text-sm font-black text-talent-primary uppercase tracking-widest border-b border-talent-border pb-2 mb-4">
+                2. Datos Corporativos de la Empresa
+              </h2>
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-x-4 gap-y-2">
+                
+                <mat-form-field appearance="outline" class="w-full md:col-span-2">
+                  <mat-label>Nombre de la Empresa / Compañía</mat-label>
+                  <input matInput type="text" formControlName="companyName" placeholder="Nombre comercial">
+                  @if (registerForm.get('companyName')?.hasError('required')) {
+                    <mat-error>El nombre de la empresa es requerido</mat-error>
+                  }
+                </mat-form-field>
+
+                <mat-form-field appearance="outline" class="w-full md:col-span-2">
+                  <mat-label>Descripción de la Empresa</mat-label>
+                  <textarea matInput formControlName="description" rows="3" placeholder="Breve descripción sobre el rubro y cultura corporativa..." class="resize-none"></textarea>
+                  @if (registerForm.get('description')?.hasError('required')) {
+                    <mat-error>La descripción es requerida</mat-error>
+                  }
+                </mat-form-field>
+
+                <mat-form-field appearance="outline" class="w-full">
+                  <mat-label>Sitio Web Oficial</mat-label>
+                  <input matInput type="url" formControlName="website" placeholder="https://miempresa.com">
+                  @if (registerForm.get('website')?.hasError('required')) {
+                    <mat-error>El sitio web es requerido</mat-error>
+                  }
+                </mat-form-field>
+
+                <mat-form-field appearance="outline" class="w-full">
+                  <mat-label>Industria / Sector</mat-label>
+                  <input matInput type="text" formControlName="industry" placeholder="Ej. Tecnología, Banca, Consultoría">
+                  @if (registerForm.get('industry')?.hasError('required')) {
+                    <mat-error>La industria es requerida</mat-error>
+                  }
+                </mat-form-field>
+
+                <mat-form-field appearance="outline" class="w-full">
+                  <mat-label>Tamaño de la Empresa</mat-label>
+                  <input matInput type="text" formControlName="companySize" placeholder="Ej: 11-50 empleados, 500+">
+                  @if (registerForm.get('companySize')?.hasError('required')) {
+                    <mat-error>El tamaño corporativo es requerido</mat-error>
+                  }
+                </mat-form-field>
+
+                <mat-form-field appearance="outline" class="w-full">
+                  <mat-label>Enlace URL del Logo</mat-label>
+                  <input matInput type="url" formControlName="logoUrl" placeholder="https://.../logo.png">
+                </mat-form-field>
+
+              </div>
+            </div>
+          </div>
+        }
+
+        <div class="pt-2 flex flex-col">
+          <mat-checkbox formControlName="acceptTerms" color="primary">
+            <span class="text-sm font-medium text-talent-text-secondary select-none leading-normal whitespace-normal">
+              Acepto los <a href="/" class="text-talent-primary hover:underline font-semibold">Términos y condiciones</a> y el <a href="/" class="text-talent-primary hover:underline font-semibold">Aviso de privacidad</a> de TalentBridge.
+            </span>
+          </mat-checkbox>
+          @if (registerForm.get('acceptTerms')?.touched && registerForm.get('acceptTerms')?.hasError('required')) {
+            <span class="text-sm text-red-600 mt-1 pl-2">Debes aceptar los términos para continuar</span>
+          }
+        </div>
+
+        <div class="pt-2">
+          <button type="submit" [disabled]="registerForm.invalid" class="w-full py-4 text-center text-sm font-bold rounded-2xl app-button-primary transition-all cursor-pointer flex items-center justify-center gap-2 disabled:opacity-40 disabled:pointer-events-none shadow-xs">
+            {{ isCompanyMode ? 'Registrar Perfil de Compañía' : 'Registrar Perfil de Estudiante' }}
+            <mat-icon class="text-lg w-4 h-4 flex items-center justify-center">arrow_forward</mat-icon>
+          </button>
+        </div>
+
+        <div class="text-center pt-2 text-md font-semibold text-talent-text-secondary">
+          ¿Ya tienes cuenta? 
+          <a href="/login" class="text-talent-primary font-bold hover:underline ml-1">Iniciar Sesión</a>
+        </div>
+
+      </form>
+    </div>
+  </div>
+</main>
