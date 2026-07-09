@@ -1,0 +1,17 @@
+<section class="space-y-4">
+  <div class="flex items-center justify-between">
+    <h2 class="text-lg font-extrabold text-talent-text tracking-tight">Recomendadas para ti</h2>
+    <a href="#" class="text-base font-bold text-talent-primary hover:underline transition-colors">Ver todas</a>
+  </div>
+
+  <!-- Lista de tarjetas -->
+  <div class="grid gap-4 grid-cols-1">
+    @for (item of jobs; track item.title) {
+      <app-job-card [job]="item"></app-job-card>
+    } @empty {
+      <p class="app-empty-state rounded-2xl px-4 py-6 text-base text-center">
+        No hay vacantes disponibles en este momento.
+      </p>
+    }
+  </div>
+</section>

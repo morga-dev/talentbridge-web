@@ -1,0 +1,24 @@
+<div class="flex items-center gap-3 overflow-x-auto pb-2 scrollbar-none select-none">
+  @for (filter of filters; track filter) {
+    @if (selectedFilter === filter) {
+      <button
+        type="button"
+        mat-flat-button
+        color="primary"
+        class="whitespace-nowrap"
+        (click)="selectFilter(filter)"
+      >
+        {{ filter }}
+      </button>
+    } @else {
+      <button
+        type="button"
+        mat-flat-button
+        class="app-pill-soft whitespace-nowrap"
+        (click)="selectFilter(filter)"
+      >
+        {{ filter }}
+      </button>
+    }
+  }
+</div>
