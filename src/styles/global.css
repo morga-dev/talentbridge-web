@@ -125,3 +125,13 @@ body {
   color: var(--tb-accent);
   letter-spacing: 0.025em;
 }
+
+input.mat-mdc-input-element, 
+textarea.mat-mdc-input-element {
+  padding-left: 0.75rem !important;
+  padding-right: 0.75rem !important;
+}
+
+.mdc-text-field--outlined:not(.mdc-text-field--no-label) .mdc-floating-label {
+  left: 0.75rem !important;
+}
