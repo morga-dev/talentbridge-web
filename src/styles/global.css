@@ -23,6 +23,10 @@ body {
 .app-surface-soft {
   background-color: var(--app-surface-soft);
   border: 1px solid var(--app-border);
+  transition: background-color 0.15s ease-in-out;
+  &:hover {
+    background-color: color-mix(in srgb, var(--app-text) 5%, transparent);
+  }
 }
 
 .app-surface-muted {

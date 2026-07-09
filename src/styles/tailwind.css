@@ -36,3 +36,7 @@
   --text-9xl: 6rem;
   --text-10xl: 8rem;
 }
+
+@import "./material-rewrites.scss";
+@import "./material-overrides.scss";
+@import "./global.css";

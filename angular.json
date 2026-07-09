@@ -38,11 +38,7 @@
             ],
             "styles": [
               "src/styles/tokens.css",
-              "src/styles/tailwind.css",
-              "src/styles/material-theme.scss",
-              "src/styles/material-rewrites.scss",
-              "src/styles/material-overrides.scss",
-              "src/styles/global.css"
+              "src/styles/tailwind.css"
             ],
             "scripts": []
           },
