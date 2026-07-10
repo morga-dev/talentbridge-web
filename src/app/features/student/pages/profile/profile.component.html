@@ -1,0 +1,175 @@
+<main class="min-h-screen bg-talent-bg pb-24 transition-colors duration-200">
+
+    <!-- Header -->
+    <div
+        class="relative w-full h-40 sm:h-40 md:h-44 rounded-b-[3.5rem] md:rounded-b-[5rem] bg-talent-primary pt-8 pb-28 px-4 md:px-8 shadow-sm">
+        <div class="max-w-3xl mx-auto flex flex-col items-center text-center gap-1">
+
+            <!-- Avatar-Nombre-Carrera -->
+            <div class="relative">
+                <div
+                    class="app-surface-strong h-16 w-16 rounded-full border-4 border-white/20 flex items-center justify-center font-black text-2xl text-talent-primary select-none">
+                    {{ profile.initials }}
+                </div>
+                <button type="button" class="app-icon-badge rounded-full h-8 w-8 p-1 absolute -bottom-1 -right-1"
+                    aria-label="Cambiar foto de perfil">
+                    <mat-icon class="flex items-center justify-center !text-xl">photo_camera</mat-icon>
+                </button>
+            </div>
+
+            <h1 class="text-2xl font-extrabold text-white tracking-tight mt-1">{{ profile.fullName }}</h1>
+            <p class="text-base font-medium text-white/70">{{ profile.career }}</p>
+        </div>
+    </div>
+
+    <div class="max-w-3xl mx-auto px-4 -mt-8 space-y-6">
+
+        <!-- Cards de métricas -->
+        <div class="grid grid-cols-2 gap-3 md:gap-6 pt-16">
+            <div class="app-card rounded-xl p-4 text-center">
+                <span class="block text-2xl font-black text-talent-primary">{{ profile.applicationsCount }}</span>
+                <span class="block text-md font-semibold text-talent-text-secondary/70 mt-0.5">Postulaciones</span>
+            </div>
+            <div class="app-card rounded-xl p-4 text-center">
+                <span class="block text-2xl font-black text-talent-primary">{{ profile.interviewsCount }}</span>
+                <span class="block text-md font-semibold text-talent-text-secondary/70 mt-0.5">Entrevistas</span>
+            </div>
+        </div>
+
+        <!-- Mi información -->
+        <section class="app-card rounded-2xl p-5 space-y-4">
+
+            <div class="flex items-center justify-between">
+                <h2 class="text-xl font-extrabold text-talent-text tracking-tight">Mi información</h2>
+
+                <button type="button" mat-flat-button color="primary" class="px-6" (click)="onEditProfile()">
+                    <mat-icon>edit</mat-icon>
+                    Editar perfil
+                </button>
+            </div>
+            <div class="space-y-3">
+                <div class="flex items-center gap-3">
+                    <div class="app-icon-badge p-2 rounded-xl">
+                        <mat-icon class="flex items-center justify-center">mail</mat-icon>
+                    </div>
+                    <div class="min-w-0">
+                        <p class="text-sm font-semibold text-talent-text-secondary/70">Correo</p>
+                        <p class="text-md font-medium text-talent-text truncate">{{ profile.email }}</p>
+                    </div>
+                </div>
+
+                <mat-divider class="pt-2"></mat-divider>
+
+                <div class="flex items-center gap-3">
+                    <div class="app-icon-badge p-2 rounded-xl">
+                        <mat-icon class="flex items-center justify-center">call</mat-icon>
+                    </div>
+                    <div class="min-w-0">
+                        <p class="text-sm font-semibold text-talent-text-secondary/70">Celular</p>
+                        <p class="text-md font-medium text-talent-text">{{ profile.phone }}</p>
+                    </div>
+                </div>
+
+                <mat-divider class="pt-2"></mat-divider>
+
+                <div class="flex items-center gap-3">
+                    <div class="app-icon-badge p-2 rounded-xl">
+                        <mat-icon class="flex items-center justify-center">school</mat-icon>
+                    </div>
+                    <div class="min-w-0">
+                        <p class="text-sm font-semibold text-talent-text-secondary/70">Universidad</p>
+                        <p class="text-md font-medium text-talent-text">{{ profile.university }}</p>
+                    </div>
+                </div>
+
+                <mat-divider class="pt-2"></mat-divider>
+
+                <div class="grid grid-cols-2 gap-3">
+                    <div class="flex items-center gap-3">
+                        <div class="app-icon-badge p-2 rounded-xl">
+                            <mat-icon class="flex items-center justify-center">event</mat-icon>
+                        </div>
+                        <div class="min-w-0">
+                            <p class="text-sm font-semibold text-talent-text-secondary/70">Semestre</p>
+                            <p class="text-md font-medium text-talent-text">{{ profile.semester }}</p>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center gap-3">
+                        <div class="app-icon-badge p-2 rounded-xl">
+                            <mat-icon class="flex items-center justify-center">school</mat-icon>
+                        </div>
+                        <div class="min-w-0">
+                            <p class="text-sm font-semibold text-talent-text-secondary/70">Graduación</p>
+                            <p class="text-md font-medium text-talent-text">{{ profile.graduationYear }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <mat-divider class="pt-2"></mat-divider>
+
+            <!-- Skills -->
+            <div class="space-y-2">
+                <p class="text-sm font-semibold text-talent-text-secondary/70">Skills</p>
+                <mat-chip-set aria-label="Habilidades del estudiante">
+                    @for (skill of profile.skills; track skill) {
+                    <mat-chip color="primary" disableRipple>{{ skill }}</mat-chip>
+                    }
+                </mat-chip-set>
+            </div>
+
+            <mat-divider class="pt-2"></mat-divider>
+
+            <!-- Enlaces -->
+            <div class="space-y-2">
+                <p class="text-sm font-semibold text-talent-text-secondary/70">Enlaces</p>
+                <div class="flex flex-wrap gap-2">
+                    <a mat-stroked-button [href]="profile.cvUrl" target="_blank" rel="noopener">
+                        <mat-icon class="mr-1">description</mat-icon>
+                        CV
+                    </a>
+                    <a mat-stroked-button [href]="profile.githubUrl" target="_blank" rel="noopener">
+                        <mat-icon class="mr-1">code</mat-icon>
+                        GitHub
+                    </a>
+                    <a mat-stroked-button [href]="profile.linkedinUrl" target="_blank" rel="noopener">
+                        <mat-icon class="mr-1">work</mat-icon>
+                        LinkedIn
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Acciones de cuenta -->
+        <section class="app-card rounded-2xl overflow-hidden">
+            <mat-action-list>
+                <button type="button" mat-list-item (click)="onOpenSettings()">
+                    <mat-icon matListItemIcon>settings</mat-icon>
+                    <span matListItemTitle>Configuración</span>
+                    <span matListItemMeta class="flex items-center text-talent-text-secondary/50">
+                        <mat-icon>chevron_right</mat-icon>
+                    </span>
+                </button>
+
+                <mat-divider></mat-divider>
+
+                <button type="button" mat-list-item (click)="onOpenPrivacy()">
+                    <mat-icon matListItemIcon>lock</mat-icon>
+                    <span matListItemTitle>Privacidad</span>
+                    <span matListItemMeta class="flex items-center text-talent-text-secondary/50">
+                        <mat-icon>chevron_right</mat-icon>
+                    </span>
+                </button>
+
+                <mat-divider></mat-divider>
+
+                <button type="button" mat-list-item (click)="onLogout()">
+                    <mat-icon matListItemIcon class="text-warn">logout</mat-icon>
+                    <span matListItemTitle class="text-warn">Cerrar sesión</span>
+                </button>
+            </mat-action-list>
+        </section>
+
+    </div>
+</main>
