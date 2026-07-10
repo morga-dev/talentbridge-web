@@ -17,8 +17,14 @@ export const routes: Routes = [
         path : 'home',
         loadComponent : () => import('./features/home/pages/home/home.component').then(m => m.HomeComponent)
     },
+    // Student profile
     {
-        path : 'profile',
+        path : 'profile-student',
         loadComponent : () => import('./features/student/pages/profile/profile.component').then(m => m.ProfileComponent)
+    },
+    // Company profile
+    {
+        path : 'profile-company',
+        loadComponent : () => import('./features/company/pages/profile/profile.component').then(m => m.ProfileComponent)
     }
 ];
