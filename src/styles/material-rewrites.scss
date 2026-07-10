@@ -43,6 +43,8 @@
 
   --mat-form-field-container-height: 52px;
   --mat-form-field-container-vertical-padding: 12px;
+  --mat-ripple-color: rgba(var(--tb-primary-rgb), 0.12);
+
 }
 
 .theme-talentbridge.dark,
@@ -66,4 +68,5 @@
   --mdc-outlined-text-field-focus-outline-color: var(--tb-accent);
   --mdc-outlined-text-field-label-text-color: var(--app-text-secondary);
   --mdc-outlined-text-field-input-text-color: var(--app-text);
+  --mat-ripple-color: rgba(var(--tb-primary-rgb), 0.12);
 }

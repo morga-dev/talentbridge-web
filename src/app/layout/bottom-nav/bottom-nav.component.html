@@ -1,26 +1,21 @@
-<nav class="fixed bottom-0 left-0 z-50 w-full h-16 transition-colors duration-200 bg-card border-t border-border shadow-md">
-    <div class="grid h-full grid-cols-4 mx-auto">
-        
-        @for (item of navItems; track item.label) {
-            <button 
-                type="button"
-                (click)="setActive(item.label)"
-                class="inline-flex flex-col items-center justify-center relative cursor-pointer transition-colors duration-200 text-secondary select-none focus:outline-none"
-                [class.text-primary]="activeTab === item.label"
-            >
-                @if (activeTab === item.label) {
-                    <div class="absolute top-0 w-20 h-0.5 bg-primary rounded-full"></div>
-                }
-            
-                <mat-icon>
-                    {{ item.icon }}
-                </mat-icon>
-
-                <span class="text-xs mt-1 font-medium tracking-wide">
-                    {{ item.label }}
-                </span>
-
-            </button>
-        }
-    </div>
-</nav>
+@if (!isHidden()) {
+	<nav aria-label="Navegación principal" class="app-nav fixed bottom-0 inset-x-0 z-50 h-16">
+		<div class="grid h-full grid-cols-4 mx-auto">
+			@for (item of navItems; track item.label) {
+				<a
+					matRipple
+					[matRippleColor]="'rgba(var(--tb-primary-rgb), 0.12)'"
+					[routerLink]="item.route"
+					routerLinkActive="text-talent-primary"
+					#rla="routerLinkActive"
+					[attr.aria-current]="rla.isActive ? 'page' : null"
+					[routerLinkActiveOptions]="{ exact: item.route === '/home' }"
+					class="inline-flex flex-col items-center justify-center gap-0.5 cursor-pointer transition-colors duration-200 text-talent-text-secondary select-none focus-visible:outline-2 focus-visible:outline-talent-primary"
+				>
+					<mat-icon aria-hidden="true">{{ item.icon }}</mat-icon>
+					<span class="text-xs mt-0.5 font-medium tracking-wide">{{ item.label }}</span>
+				</a>
+			}
+		</div>
+	</nav>
+}
