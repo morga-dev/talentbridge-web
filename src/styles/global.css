@@ -135,3 +135,13 @@ textarea.mat-mdc-input-element {
 .mdc-text-field--outlined:not(.mdc-text-field--no-label) .mdc-floating-label {
   left: 0.75rem !important;
 }
+
+.app-card-active {
+  background-color: var(--app-minim);
+  border-color: var(--tb-primary);
+  box-shadow: var(--app-shadow-md);
+}
+
+.app-card-active .app-card-active-accent {
+  color: var(--tb-primary);
+}

@@ -26,5 +26,9 @@ export const routes: Routes = [
     {
         path : 'profile-company',
         loadComponent : () => import('./features/company/pages/profile/profile.component').then(m => m.ProfileComponent)
+    },
+    {
+        path : 'notifications',
+        loadComponent : () => import('./features/notifications/pages/notifications/notifications.component').then(m => m.NotificationsComponent)
     }
 ];

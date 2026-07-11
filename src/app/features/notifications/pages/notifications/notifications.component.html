@@ -1,0 +1,112 @@
+<main class="min-h-screen bg-talent-bg pb-24 transition-colors duration-200">
+
+  <div class="max-w-3xl mx-auto px-4 pt-8 space-y-6">
+
+    <div class="space-y-1">
+      <h1 class="text-2xl font-extrabold text-talent-text tracking-tight">Notificaciones</h1>
+      <p class="text-base font-medium text-talent-text-secondary">
+        Mantente informado sobre tus postulaciones, becas y actividades recientes.
+      </p>
+    </div>
+
+    <!-- Cards de filtro y conteo -->
+    <div class="grid grid-cols-3 gap-3 md:gap-6">
+
+      <button type="button" class="app-card rounded-xl p-4 text-center transition-all"
+        [class.app-card-active]="activeFilter() === 'todas'" (click)="setFilter('todas')">
+        <span class="block text-xl md:text-xl font-black text-talent-secondary">{{ totalCount() }}</span>
+        <span class="block text-base md:text-base font-semibold mt-0.5"
+          [class]="activeFilter() === 'todas' ? 'text-talent-primary' : 'text-talent-text-secondary/70'">
+          Totales
+        </span>
+      </button>
+
+      <button type="button" class="app-card rounded-xl p-4 text-center transition-all"
+        [class.app-card-active]="activeFilter() === 'noLeidas'" (click)="setFilter('noLeidas')">
+        <span class="block text-xl md:text-xl font-black text-talent-secondary">{{ unreadCount() }}</span>
+        <span class="block text-base md:text-base font-semibold mt-0.5"
+          [class]="activeFilter() === 'noLeidas' ? 'text-talent-primary' : 'text-talent-text-secondary/70'">
+          Sin leer
+        </span>
+      </button>
+
+      <button type="button" class="app-card rounded-xl p-4 text-center transition-all"
+        [class.app-card-active]="activeFilter() === 'leidas'" (click)="setFilter('leidas')">
+        <span class="block text-xl md:text-xl font-black text-talent-secondary">{{ readCount() }}</span>
+        <span class="block text-base md:text-base font-semibold mt-0.5"
+          [class]="activeFilter() === 'leidas' ? 'text-talent-primary' : 'text-talent-text-secondary/70'">
+          Leídas
+        </span>
+      </button>
+
+    </div>
+
+    <!-- Acciones globales -->
+    @if (totalCount() > 0) {
+    <div class="flex items-center justify-end gap-2">
+      <button type="button" mat-button color="primary" [disabled]="unreadCount() === 0" (click)="markAllAsRead()">
+        <mat-icon class="mr-1">done_all</mat-icon>
+        Marcar todas
+      </button>
+
+      <button type="button" mat-button color="warn" (click)="deleteAll()">
+        <mat-icon class="mr-1">delete_sweep</mat-icon>
+        Eliminar todas
+      </button>
+    </div>
+    }
+
+    <!-- Listado de notificaciones -->
+    <div class="space-y-3">
+      @for (notification of filteredNotifications(); track notification.id) {
+      <div class="app-card rounded-2xl p-4 flex items-start gap-3 transition-all hover:shadow-md">
+
+        <div class="app-icon-badge p-2.5 rounded-xl shrink-0">
+          <mat-icon class="flex items-center justify-center">{{ iconFor(notification.type) }}</mat-icon>
+        </div>
+
+        <div class="min-w-0 flex-1 space-y-1">
+          <div class="flex items-start justify-between gap-2">
+            <h3 class="text-base tracking-tight text-talent-text" [class.font-extrabold]="!notification.read"
+              [class.font-semibold]="notification.read">
+              {{ notification.title }}
+            </h3>
+
+            @if (!notification.read) {
+            <span class="h-3 w-3 rounded-full bg-talent-secondary shrink-0 mt-1.5" aria-hidden="true"></span>
+            }
+          </div>
+
+          <p class="text-md font-medium text-talent-text-secondary leading-relaxed">
+            {{ notification.message }}
+          </p>
+
+          <div class="flex items-center justify-between gap-2 pt-1">
+            <p class="text-sm font-semibold text-talent-text-secondary/50">
+              {{ notification.date }}
+            </p>
+
+            <div class="flex items-center gap-1">
+              @if (!notification.read) {
+              <button type="button" mat-button color="primary" class="text-xs" (click)="markAsRead(notification)">
+                Marcar como leída
+              </button>
+              }
+
+              <button type="button" mat-icon-button color="warn" aria-label="Eliminar notificación"
+                (click)="deleteNotification(notification)">
+                <mat-icon>delete</mat-icon>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      } @empty {
+      <p class="app-empty-state rounded-2xl px-4 py-6 text-sm text-center">
+        No tienes notificaciones en esta categoría.
+      </p>
+      }
+    </div>
+
+  </div>
+</main>
