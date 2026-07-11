@@ -268,3 +268,10 @@
   --mdc-chip-elevated-container-color: var(--app-minim);
   --mdc-chip-label-text-color: var(--tb-primary);
 }
+
+.mat-mdc-list-item.tb-list-item-warn {
+  .mdc-list-item__primary-text,
+  .mat-icon {
+    color: var(--tb-warn) !important;
+  }
+}
