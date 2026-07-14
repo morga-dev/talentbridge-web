@@ -27,9 +27,9 @@ export class BottomNavComponent {
 
 	readonly navItems = [
 		{ icon: 'home', label: 'Inicio', route: '/home' },
-		{ icon: 'work', label: 'Aplicaciones', route: '/profile-student' },
+		{ icon: 'work', label: 'Aplicaciones', route: '/applications' },
 		{ icon: 'notifications', label: 'Notificaciones', route: '/notifications' },
-		{ icon: 'person', label: 'Perfil', route: '/profile-company' },
+		{ icon: 'person', label: 'Perfil', route: '/profile-student' },
 	];
 
 	private getDeepestRouteData() {

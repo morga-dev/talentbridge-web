@@ -17,6 +17,10 @@ export const routes: Routes = [
         path : 'home',
         loadComponent : () => import('./features/home/pages/home/home.component').then(m => m.HomeComponent)
     },
+    {
+        path : 'applications',
+        loadComponent : () => import('./features/student/pages/applications/application-list/application-list.component').then(m => m.ApplicationListComponent)    
+    },
     // Student profile
     {
         path : 'profile-student',

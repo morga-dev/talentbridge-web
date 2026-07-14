@@ -14,3 +14,20 @@ export interface StudentProfile {
     applicationsCount: number;
     interviewsCount: number;
 }
+
+export type ApplicationType = 'Vacante' | 'Beca';
+
+export type ApplicationStatus = 'aplicado' | 'entrevista' | 'aceptada' | 'rechazada';
+
+export interface Application {
+    id: number;
+    type: ApplicationType;
+    title: string;
+    company: string;
+    requirements: string[];
+    modality: string;
+    date: string;
+    status: ApplicationStatus;
+}
+
+export type TypeFilter = 'Todas' | 'Vacantes' | 'Becas';
