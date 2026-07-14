@@ -31,3 +31,23 @@ export interface Application {
 }
 
 export type TypeFilter = 'Todas' | 'Vacantes' | 'Becas';
+
+export interface ApplicationStatusStep {
+    status: ApplicationStatus;
+    label: string;
+    date: string | null;
+}
+
+export interface ApplicationDetail extends Application {
+    description: string;
+    responsibilities: string[];
+    benefits: string[];
+    salaryRange: string | null;
+    publishedDate: string;
+    deadlineDate: string;
+    appliedDate: string;
+    companyInitials: string;
+    companyDescription: string;
+    companyWebsite: string;
+    statusHistory: ApplicationStatusStep[];
+}

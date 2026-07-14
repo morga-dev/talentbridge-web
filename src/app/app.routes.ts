@@ -21,6 +21,10 @@ export const routes: Routes = [
         path : 'applications',
         loadComponent : () => import('./features/student/pages/applications/application-list/application-list.component').then(m => m.ApplicationListComponent)    
     },
+    {
+        path : 'applications/:id',
+        loadComponent : () => import('./features/student/pages/applications/application-detail/application-detail.component').then(m => m.ApplicationDetailComponent)
+    },
     // Student profile
     {
         path : 'profile-student',

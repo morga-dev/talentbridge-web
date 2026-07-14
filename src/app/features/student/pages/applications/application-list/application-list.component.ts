@@ -5,6 +5,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatChipsModule } from '@angular/material/chips';
 import { FilterBarComponent } from '../../../../home/components/filter-bar/filter-bar.component';
 import { Application, ApplicationStatus, TypeFilter } from '../../../models/student.model';
+import { RouterLink } from '@angular/router';
+
 
 @Component({
   selector: 'app-application-list',
@@ -14,7 +16,9 @@ import { Application, ApplicationStatus, TypeFilter } from '../../../models/stud
     MatIconModule,
     MatButtonModule,
     MatChipsModule,
-    FilterBarComponent],
+    FilterBarComponent,
+    RouterLink
+  ],
   templateUrl: './application-list.component.html'
 })
 export class ApplicationListComponent {

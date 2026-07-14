@@ -1,0 +1,185 @@
+@if (application(); as app) {
+<main class="min-h-screen bg-talent-bg pb-16 transition-colors duration-200">
+
+    <div class="relative w-full h-28 sm:h-40 md:h-44 bg-talent-primary rounded-b-[3.5rem] md:rounded-b-[5rem] pt-6 pb-36 px-4 md:px-8 shadow-sm md:text-start text-center">
+        <div class="max-w-6xl mx-auto flex flex-col">
+
+            <button type="button" mat-icon-button (click)="goBack()" aria-label="Volver a mis postulaciones"
+                class="self-start text-white">
+                <mat-icon>arrow_back</mat-icon>
+            </button>
+
+            <div class="space-y-1">
+                <span class="inline-flex items-center gap-1 text-sm font-bold uppercase tracking-wider text-white/70">
+                    <mat-icon class="mat-icon-xl flex items-center justify-center">{{ typeIcon(app.type) }}</mat-icon>
+                    {{ app.type }}
+                </span>
+                <h1 class="text-xl font-extrabold text-white tracking-tight">{{ app.title }}</h1>
+                <p class="text-base font-medium text-white/70">{{ app.company }}</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="max-w-6xl mx-auto px-4 mt-6 space-y-6">
+
+        <!-- Estado actual -->
+        <div class="app-card rounded-2xl p-5 flex items-center justify-between gap-3">
+            <div>
+                <p class="text-base mb-2 font-semibold text-talent-text-secondary/70">Estado de tu postulación</p>
+                <mat-chip [color]="statusColor(app.status)" [highlighted]="!!statusColor(app.status)" disableRipple>
+                {{ statusLabel(app.status) }}
+            </mat-chip>
+            </div>
+        </div>
+
+        <!-- Timeline de estado -->
+        <section class="app-card rounded-2xl p-5 space-y-4">
+            <h2 class="text-lg font-extrabold text-talent-text tracking-tight">Seguimiento</h2>
+
+            <div class="space-y-0">
+                @for (step of app.statusHistory; track step.status; let last = $last) {
+                <div class="flex gap-3">
+                    <div class="flex flex-col items-center">
+                        <div class="h-3 w-3 rounded-full shrink-0" [class.bg-talent-primary]="step.date"
+                            [class.bg-talent-text-secondary]="!step.date" [class.opacity-30]="!step.date"></div>
+                        @if (!last) {
+                        <div class="w-px flex-1 bg-talent-border my-1" [class.opacity-30]="!step.date"></div>
+                        }
+                    </div>
+
+                    <div class="pb-4 min-w-0">
+                        <p class="text-base font-semibold text-talent-text" [class.opacity-50]="!step.date">
+                            {{ step.label }}
+                        </p>
+                        <p class="text-md font-medium text-talent-text-secondary/70">
+                            {{ step.date ?? 'Pendiente' }}
+                        </p>
+                    </div>
+                </div>
+                }
+            </div>
+        </section>
+
+        <!-- Fechas clave -->
+        <section class="app-card rounded-2xl p-5 space-y-3">
+            <h2 class="text-lg font-extrabold text-talent-text tracking-tight">Fechas clave</h2>
+
+            <div class="grid grid-cols-3 gap-2 text-center">
+                <div>
+                    <p class="text-base font-semibold text-talent-text-secondary/70">Publicación</p>
+                    <p class="text-md font-bold text-talent-text mt-0.5">{{ app.publishedDate }}</p>
+                </div>
+                <div>
+                    <p class="text-base font-semibold text-talent-text-secondary/70">Cierre</p>
+                    <p class="text-md font-bold text-talent-text mt-0.5">{{ app.deadlineDate }}</p>
+                </div>
+                <div>
+                    <p class="text-base font-semibold text-talent-text-secondary/70">Tu postulación</p>
+                    <p class="text-md font-bold text-talent-text mt-0.5">{{ app.appliedDate }}</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Descripción -->
+        <section class="app-card rounded-2xl p-5 space-y-2">
+            <h2 class="text-lg font-extrabold text-talent-text tracking-tight">Descripción</h2>
+            <p class="text-base font-medium text-talent-text-secondary leading-relaxed">
+                {{ app.description }}
+            </p>
+
+            <div class="flex items-center gap-4 font-medium text-talent-text-secondary/70 pt-2">
+                <span class="text-md inline-flex items-center gap-1">
+                    <mat-icon class="mat-icon-2xl flex items-center justify-center">place</mat-icon>
+                    {{ app.modality }}
+                </span>
+                @if (app.salaryRange) {
+                <span class="text-md inline-flex items-center gap-1">
+                    <mat-icon class="mat-icon-2xl flex items-center justify-center">payments</mat-icon>
+                    {{ app.salaryRange }}
+                </span>
+                }
+            </div>
+        </section>
+
+        <!-- Responsabilidades -->
+        <section class="app-card rounded-2xl p-5 space-y-2">
+            <h2 class="text-lg font-extrabold text-talent-text tracking-tight">Responsabilidades</h2>
+            <ul class="space-y-1.5">
+                @for (item of app.responsibilities; track item) {
+                <li class="flex items-start gap-2 text-base font-medium text-talent-text-secondary">
+                    <mat-icon
+                        class="mat-icon-xl text-talent-primary flex items-center justify-center mt-0.5">check</mat-icon>
+                    {{ item }}
+                </li>
+                }
+            </ul>
+        </section>
+
+        <!-- Requisitos -->
+        <section class="app-card rounded-2xl p-5 space-y-2">
+            <h2 class="text-lg font-extrabold text-talent-text tracking-tight">Requisitos</h2>
+            <mat-chip-set aria-label="Requisitos">
+                @for (req of app.requirements; track req) {
+                <mat-chip disableRipple>{{ req }}</mat-chip>
+                }
+            </mat-chip-set>
+        </section>
+
+        <!-- Beneficios -->
+        @if (app.benefits.length > 0) {
+        <section class="app-card rounded-2xl p-5 space-y-2">
+            <h2 class="text-lg font-extrabold text-talent-text tracking-tight">Beneficios</h2>
+            <mat-chip-set aria-label="Beneficios">
+                @for (benefit of app.benefits; track benefit) {
+                <mat-chip color="primary" disableRipple>{{ benefit }}</mat-chip>
+                }
+            </mat-chip-set>
+        </section>
+        }
+
+        <mat-divider class="pb-5"></mat-divider>
+
+        <!-- Sobre la empresa -->
+        <section class="app-card rounded-2xl p-5 space-y-3">
+            <div class="flex items-center gap-3">
+                <div
+                    class="app-icon-badge h-12 w-12 rounded-full flex items-center justify-center font-bold text-xl shrink-0">
+                    {{ app.companyInitials }}
+                </div>
+                <div class="min-w-0">
+                    <h2 class="text-lg font-extrabold text-talent-text tracking-tight">{{ app.company }}</h2>
+                    <p class="text-md font-medium text-talent-text-secondary truncate">{{ app.companyWebsite }}</p>
+                </div>
+            </div>
+
+            <p class="text-base font-medium text-talent-text-secondary leading-relaxed">
+                {{ app.companyDescription }}
+            </p>
+            <div class="flex justify-center">
+                <button type="button" mat-flat-button color="primary" (click)="onViewCompany()">
+                    Ver perfil de la empresa
+                </button>
+            </div>
+        </section>
+
+        @if (app.status === 'aplicado' || app.status === 'entrevista') {
+        <div class="flex justify-center">
+            <button type="button" mat-flat-button class="w-full" color="warn" (click)="onWithdraw()">
+                <mat-icon class="mr-1">cancel</mat-icon>
+                Retirar postulación
+            </button>
+        </div>
+        }
+
+    </div>
+</main>
+} @else {
+<main class="min-h-screen bg-talent-bg flex items-center justify-center px-4">
+    <div class="app-empty-state rounded-2xl px-6 py-8 text-center space-y-3 max-w-sm">
+        <p class="text-xl">No se encontró esta postulación.</p>
+        <button type="button" mat-stroked-button color="primary" (click)="goBack()">
+            Volver a mis postulaciones
+        </button>
+    </div>
+</main>
+}

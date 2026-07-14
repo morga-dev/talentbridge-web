@@ -92,7 +92,7 @@
                 </div>
 
                 <div class="flex justify-end pt-1">
-                    <button type="button" mat-stroked-button color="primary" (click)="onViewDetails(application)">
+                    <button type="button" mat-stroked-button color="primary" [routerLink]="['/applications', application.id]">
                         Ver detalles
                     </button>
                 </div>
