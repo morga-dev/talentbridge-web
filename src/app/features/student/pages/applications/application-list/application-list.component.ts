@@ -3,9 +3,9 @@ import { CommonModule } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatChipsModule } from '@angular/material/chips';
-import { FilterBarComponent } from '../../../../home/components/filter-bar/filter-bar.component';
 import { Application, ApplicationStatus, TypeFilter } from '../../../models/student.model';
 import { RouterLink } from '@angular/router';
+import { PageHeaderComponent, SearchInputComponent, MetricCardsComponent, FilterBarComponent, type MetricCard, } from '../../../../../shared/components';
 
 
 @Component({
@@ -17,7 +17,11 @@ import { RouterLink } from '@angular/router';
     MatButtonModule,
     MatChipsModule,
     FilterBarComponent,
-    RouterLink
+    RouterLink,
+	PageHeaderComponent,
+    SearchInputComponent,
+    MetricCardsComponent,
+	FilterBarComponent
   ],
   templateUrl: './application-list.component.html'
 })
@@ -69,13 +73,11 @@ export class ApplicationListComponent {
 
   readonly typeFilter = signal<TypeFilter>('Todas');
 
-  readonly postulacionesCount = computed(() => this.allApplications().length);
-  readonly entrevistaCount = computed(
-    () => this.allApplications().filter((a) => a.status === 'entrevista').length
-  );
-  readonly aceptadasCount = computed(
-    () => this.allApplications().filter((a) => a.status === 'aceptada').length
-  );
+  readonly metricItems = computed<MetricCard[]>(() => [
+	{ label: 'Postulaciones', value: this.allApplications().length },
+    { label: 'En entrevista', value: this.allApplications().filter((a) => a.status === 'entrevista').length },
+    { label: 'Aceptadas', value: this.allApplications().filter((a) => a.status === 'aceptada').length },
+  ]);
 
   readonly filteredApplications = computed(() => {
     const filter = this.typeFilter();
@@ -120,5 +122,9 @@ export class ApplicationListComponent {
       default:
         return undefined;
     }
+  }
+
+  onSearchChanged(query: string): void {
+	console.log('Buscando:', query);
   }
 }

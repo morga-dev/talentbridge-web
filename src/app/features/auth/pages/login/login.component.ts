@@ -4,11 +4,17 @@ import { ReactiveFormsModule, FormGroup, FormControl, Validators } from '@angula
 import { MatIconModule } from '@angular/material/icon';
 import { LoginRequest } from '../../models/auth.model';
 import { Router } from '@angular/router';
+import { PageHeaderComponent } from '../../../../shared/components';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, MatIconModule],
+  imports: [
+	CommonModule,
+	ReactiveFormsModule,
+	MatIconModule,
+	PageHeaderComponent
+],
   templateUrl: './login.component.html'
 })
 export class LoginComponent {

@@ -1,24 +1,20 @@
 @if (application(); as app) {
 <main class="min-h-screen bg-talent-bg pb-16 transition-colors duration-200">
 
-    <div class="relative w-full h-28 sm:h-40 md:h-44 bg-talent-primary rounded-b-[3.5rem] md:rounded-b-[5rem] pt-6 pb-36 px-4 md:px-8 shadow-sm md:text-start text-center">
-        <div class="max-w-6xl mx-auto flex flex-col">
-
-            <button type="button" mat-icon-button (click)="goBack()" aria-label="Volver a mis postulaciones"
-                class="self-start text-white">
-                <mat-icon>arrow_back</mat-icon>
-            </button>
-
-            <div class="space-y-1">
-                <span class="inline-flex items-center gap-1 text-sm font-bold uppercase tracking-wider text-white/70">
-                    <mat-icon class="mat-icon-xl flex items-center justify-center">{{ typeIcon(app.type) }}</mat-icon>
-                    {{ app.type }}
-                </span>
-                <h1 class="text-xl font-extrabold text-white tracking-tight">{{ app.title }}</h1>
-                <p class="text-base font-medium text-white/70">{{ app.company }}</p>
-            </div>
+    <app-page-header>
+        <button type="button" mat-icon-button (click)="goBack()" aria-label="Volver a mis postulaciones"
+            class="self-start text-white">
+            <mat-icon>arrow_back</mat-icon>
+        </button>
+        <div class="space-y-1">
+            <span class="inline-flex items-center gap-1 text-sm font-bold uppercase tracking-wider text-white/70">
+                <mat-icon class="mat-icon-xl flex items-center justify-center">{{ typeIcon(app.type) }}</mat-icon>
+                {{ app.type }}
+            </span>
+            <h1 class="text-xl font-extrabold text-white tracking-tight">{{ app.title }}</h1>
+            <p class="text-base font-medium text-white/70">{{ app.company }}</p>
         </div>
-    </div>
+    </app-page-header>
 
     <div class="max-w-6xl mx-auto px-4 mt-6 space-y-6">
 

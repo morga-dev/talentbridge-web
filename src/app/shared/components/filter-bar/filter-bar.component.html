@@ -1,0 +1,8 @@
+<div class="flex items-center gap-3 overflow-x-auto pb-2 scrollbar-none select-none">
+    @for (filter of filters(); track filter) {
+    <button type="button" mat-flat-button [color]="selected() === filter ? 'primary' : undefined"
+        [class.app-pill-soft]="selected() !== filter" class="whitespace-nowrap" (click)="selectFilter(filter)">
+        {{ filter }}
+    </button>
+    }
+</div>

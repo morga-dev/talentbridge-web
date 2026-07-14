@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { NotificationType, AppNotification, NotificationFilter } from '../../models/notifications.model';
+import { PageHeaderComponent, SearchInputComponent, MetricCardsComponent, type MetricCard, } from '../../../../shared/components';
 
 @Component({
   selector: 'app-notifications',
@@ -10,13 +11,16 @@ import { NotificationType, AppNotification, NotificationFilter } from '../../mod
   imports: [
     CommonModule,
     MatIconModule,
-    MatButtonModule
+    MatButtonModule,
+	PageHeaderComponent,
+	SearchInputComponent,
+	MetricCardsComponent
   ],
   templateUrl: './notifications.component.html'
 })
 export class NotificationsComponent {
   // Datos de prueba
-  private readonly allNotifications = signal<AppNotification[]>([
+  readonly allNotifications = signal<AppNotification[]>([
     {
       id: 1,
       type: 'postulacion',
@@ -56,6 +60,12 @@ export class NotificationsComponent {
   readonly totalCount = computed(() => this.allNotifications().length);
   readonly unreadCount = computed(() => this.allNotifications().filter((n) => !n.read).length);
   readonly readCount = computed(() => this.allNotifications().filter((n) => n.read).length);
+
+  readonly metricItems = computed<MetricCard[]>(() => [
+	{ label: 'Totales', value: this.totalCount() },
+	{ label: 'Sin leer', value: this.unreadCount() },
+    { label: 'Leídas', value: this.readCount() },
+  ]);
 
   readonly filteredNotifications = computed(() => {
     const filter = this.activeFilter();
@@ -102,5 +112,9 @@ export class NotificationsComponent {
       default:
         return 'info';
     }
+  }
+
+  onSearchChanged(query: string): void {
+	console.log('Buscando:', query);
   }
 }

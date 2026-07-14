@@ -6,6 +6,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatDividerModule } from '@angular/material/divider';
 import { ApplicationDetail, ApplicationStatus  } from '../../../models/student.model'; 
+import { PageHeaderComponent } from '../../../../../shared/components';
 
 @Component({
   selector: 'app-application-detail',
@@ -15,7 +16,8 @@ import { ApplicationDetail, ApplicationStatus  } from '../../../models/student.m
     MatIconModule,
     MatButtonModule,
     MatChipsModule,
-    MatDividerModule
+    MatDividerModule,
+	PageHeaderComponent
   ],
   templateUrl: './application-detail.component.html'
 })

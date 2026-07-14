@@ -9,6 +9,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { RegisterStudentRequest, RegisterCompanyRequest } from '../../models/auth.model'; 
+import { PageHeaderComponent } from '../../../../shared/components';
 
 @Component({
   selector: 'app-register',
@@ -22,7 +23,8 @@ import { RegisterStudentRequest, RegisterCompanyRequest } from '../../models/aut
     MatButtonModule,
     MatCheckboxModule,
     MatDatepickerModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+	PageHeaderComponent
   ],
   templateUrl: './register.component.html'
 })

@@ -1,50 +1,25 @@
 <main class="min-h-screen bg-talent-bg pb-24 transition-colors duration-200">
 
-    <div class="relative w-full h-28 sm:h-40 md:h-44 rounded-b-[3.5rem]
-    md:rounded-b-[5rem] bg-talent-primary pt-6 pb-36 px-4 md:px-8 shadow-sm">
-
-        <div class="max-w-6xl mx-auto flex flex-col gap-2">
-            <div class="flex items-center justify-center md:mb-4">
-                <div class="space-y-1 justify-center">
-                    <h1 class="text-2xl text-center font-extrabold text-white tracking-tight">Mis postulaciones</h1>
-                    <p class="text-base text-center font-medium text-white/70">
-                        Aquí verás las becas y vacantes a las que has aplicado.
-                    </p>
-                </div>
-            </div>
-            <div class="relative w-full flex items-center">
-                <input type="text" placeholder="Buscar notificaciones..."
-                    class="app-input-hero w-full rounded-xl py-3 px-4 text-sm font-medium text-white placeholder:text-white/50
-                    focus:outline-hidden focus:border-white/20 focus:bg-white/15 transition-all" />
-            </div>
+	<app-page-header>
+        <div class="space-y-1 text-center">
+            <h1 class="text-2xl font-extrabold text-white tracking-tight">Mis postulaciones</h1>
+            <p class="text-base font-medium text-white/70">
+                Aquí verás las becas y vacantes a las que has aplicado.
+            </p>
         </div>
-    </div>
+        <app-search-input
+            placeholder="Buscar postulaciones..."
+            (valueChange)="onSearchChanged($event)"
+        />
+    </app-page-header>
 
     <div class="max-w-6xl mx-auto px-4 mt-6 space-y-6">
 
-        <!-- Cards de contadores -->
-        <div class="grid grid-cols-3 gap-3 md:gap-6">
-            <div class="app-card rounded-xl p-4 text-center">
-                <span class="block text-xl md:text-xl font-black text-talent-primary">{{ postulacionesCount() }}</span>
-                <span
-                    class="block text-base md:text-base font-semibold text-talent-text-secondary/70 mt-0.5">Postulaciones</span>
-            </div>
-
-            <div class="app-card rounded-xl p-4 text-center">
-                <span class="block text-xl md:text-xl font-black text-talent-primary">{{ entrevistaCount() }}</span>
-                <span class="block text-base md:text-base font-semibold text-talent-text-secondary/70 mt-0.5">En
-                    entrevista</span>
-            </div>
-
-            <div class="app-card rounded-xl p-4 text-center">
-                <span class="block text-xl md:text-xl font-black text-talent-primary">{{ aceptadasCount() }}</span>
-                <span
-                    class="block text-base md:text-base font-semibold text-talent-text-secondary/70 mt-0.5">Aceptadas</span>
-            </div>
-        </div>
-
         <!-- Filtros por tipo -->
-        <app-filter-bar (filterChanged)="onFilterChanged($event)"></app-filter-bar>
+        <app-filter-bar (filterChanged)="onFilterChanged($event)" />
+        
+        <!-- Cards de contadores -->
+		<app-metric-cards [items]="metricItems()" />
 
         <!-- Listado -->
         <div class="space-y-4">

@@ -1,0 +1,7 @@
+<input
+	type="text"
+	[placeholder]="placeholder()"
+	[value]="value()"
+	(input)="onInput($any($event.target).value)"
+	class="app-input-hero w-full rounded-xl py-3 px-4 text-sm font-medium text-white placeholder:text-white/50 focus:outline-hidden focus:border-white/20 focus:bg-white/15 transition-all"
+/>

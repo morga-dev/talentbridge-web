@@ -1,0 +1,9 @@
+<div class="grid grid-cols-3 gap-3 md:gap-6 mb-4">
+    @for (item of items(); track item.label) {
+    <div class="app-card rounded-xl p-4 text-center">
+        <span class="block text-xl md:text-2xl font-black text-talent-primary">{{ item.value }}</span>
+        <span class="block text-sm md:text-md font-semibold text-talent-text-secondary/70 mt-0.5">{{ item.label
+            }}</span>
+    </div>
+    }
+</div>
