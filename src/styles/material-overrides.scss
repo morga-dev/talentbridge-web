@@ -19,6 +19,60 @@
   color: currentColor !important;
 }
 
+.mat-icon-sm {
+  width: var(--text-sm) !important; min-width: var(--text-sm) !important;
+  height: var(--text-sm) !important; min-height: var(--text-sm) !important;
+  font-size: var(--text-sm) !important;
+}
+
+.mat-icon-md {
+  width: var(--text-base) !important; min-width: var(--text-base) !important;
+  height: var(--text-base) !important; min-height: var(--text-base) !important;
+  font-size: var(--text-base) !important;
+}
+
+.mat-icon-base {
+  width: var(--text-base) !important; min-width: var(--text-base) !important;
+  height: var(--text-base) !important; min-height: var(--text-base) !important;
+  font-size: var(--text-base) !important;
+}
+
+.mat-icon-lg {
+  width: var(--text-lg) !important; min-width: var(--text-lg) !important;
+  height: var(--text-lg) !important; min-height: var(--text-lg) !important;
+  font-size: var(--text-lg) !important;
+}
+
+.mat-icon-xl {
+  width: var(--text-xl) !important; min-width: var(--text-xl) !important;
+  height: var(--text-xl) !important; min-height: var(--text-xl) !important;
+  font-size: var(--text-xl) !important;
+}
+
+.mat-icon-2xl {
+  width: var(--text-2xl) !important; min-width: var(--text-2xl) !important;
+  height: var(--text-2xl) !important; min-height: var(--text-2xl) !important;
+  font-size: var(--text-2xl) !important;
+}
+
+.mat-icon-3xl {
+  width: var(--text-3xl) !important; min-width: var(--text-3xl) !important;
+  height: var(--text-3xl) !important; min-height: var(--text-3xl) !important;
+  font-size: var(--text-3xl) !important;
+}
+
+.mat-icon-4xl {
+  width: var(--text-4xl) !important; min-width: var(--text-4xl) !important;
+  height: var(--text-4xl) !important; min-height: var(--text-4xl) !important;
+  font-size: var(--text-4xl) !important;
+}
+
+.mat-icon-5xl {
+  width: var(--text-5xl) !important; min-width: var(--text-5xl) !important;
+  height: var(--text-5xl) !important; min-height: var(--text-5xl) !important;
+  font-size: var(--text-5xl) !important;
+}
+
 .mat-mdc-button,
 .mat-mdc-icon-button,
 .mat-mdc-outlined-button {
