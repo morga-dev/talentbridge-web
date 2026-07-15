@@ -26,7 +26,7 @@ export class BottomNavComponent {
 	readonly isHidden = computed(() => this.navigationEnd()['hideBottomNav'] === true);
 
 	readonly navItems = [
-		{ icon: 'home', label: 'Inicio', route: '/home' },
+		{ icon: 'dashboard', label: 'Dashboard', route: '/dashboard-student' },
 		{ icon: 'work', label: 'Aplicaciones', route: '/applications' },
 		{ icon: 'notifications', label: 'Notificaciones', route: '/notifications' },
 		{ icon: 'person', label: 'Perfil', route: '/profile-student' },

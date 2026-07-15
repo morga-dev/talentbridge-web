@@ -51,3 +51,11 @@ export interface ApplicationDetail extends Application {
     companyWebsite: string;
     statusHistory: ApplicationStatusStep[];
 }
+
+export interface UpcomingInterview {
+    jobTitle: string;
+    company: string;
+    date: string;
+    time: string;
+}
+

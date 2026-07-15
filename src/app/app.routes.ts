@@ -14,9 +14,13 @@ export const routes: Routes = [
         loadComponent : () => import('./features/auth/pages/register/register.component').then(m => m.RegisterComponent)
     },
     {
-        path : 'home',
-        loadComponent : () => import('./features/home/pages/home/home.component').then(m => m.HomeComponent)
+        path : 'dashboard-student',
+        loadComponent : () => import('./features/student/pages/dashboard/dashboard.component').then(m => m.StudentDashboardComponent)
     },
+    // {
+    //     path : 'dashboard-company',
+    //     loadComponent : () => import('./features/company/pages/dashboard/dashboard.component').then(m => m.CompanyDashboardComponent)
+    // }
     {
         path : 'applications',
         loadComponent : () => import('./features/student/pages/applications/application-list/application-list.component').then(m => m.ApplicationListComponent)    
@@ -25,12 +29,10 @@ export const routes: Routes = [
         path : 'applications/:id',
         loadComponent : () => import('./features/student/pages/applications/application-detail/application-detail.component').then(m => m.ApplicationDetailComponent)
     },
-    // Student profile
     {
         path : 'profile-student',
         loadComponent : () => import('./features/student/pages/profile/profile.component').then(m => m.ProfileComponent)
     },
-    // Company profile
     {
         path : 'profile-company',
         loadComponent : () => import('./features/company/pages/profile/profile.component').then(m => m.ProfileComponent)

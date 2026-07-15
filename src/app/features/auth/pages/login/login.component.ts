@@ -58,7 +58,7 @@ export class LoginComponent {
     console.log('Iniciando sesión con LinkedIn...');
   }
 
-  navigateToHome(): void {
-    this.router.navigate(['/home']);
+  navigateToDashboard(): void {
+    this.router.navigate(['/dashboard-student']);
   }
 }
