@@ -1,0 +1,22 @@
+<div class="app-card rounded-2xl p-4 flex items-center gap-3 transition-all hover:shadow-md">
+    <div class="app-icon-badge h-11 w-11 rounded-full flex items-center justify-center font-bold text-base shrink-0">
+        {{ candidate.initials }}
+    </div>
+
+    <div class="min-w-0 flex-1">
+        <h3 class="text-base font-extrabold text-talent-text tracking-tight truncate">{{ candidate.fullName }}</h3>
+        <p class="text-md font-medium text-talent-text-secondary/80 truncate">{{ candidate.career }}</p>
+        <p class="text-md font-medium text-talent-text-secondary/60 mt-0.5">
+            Aplicó a {{ candidate.appliedFor }} · {{ candidate.appliedDate }}
+        </p>
+    </div>
+
+    <div class="flex flex-col items-end gap-2 shrink-0">
+        <mat-chip [color]="statusColor()" [highlighted]="!!statusColor()" disableRipple>
+            {{ statusLabel() }}
+        </mat-chip>
+        <button type="button" mat-button color="primary">
+            Ver perfil &rarr;
+        </button>
+    </div>
+</div>

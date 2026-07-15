@@ -17,10 +17,10 @@ export const routes: Routes = [
         path : 'dashboard-student',
         loadComponent : () => import('./features/student/pages/dashboard/dashboard.component').then(m => m.StudentDashboardComponent)
     },
-    // {
-    //     path : 'dashboard-company',
-    //     loadComponent : () => import('./features/company/pages/dashboard/dashboard.component').then(m => m.CompanyDashboardComponent)
-    // }
+    {
+        path : 'dashboard-company',
+        loadComponent : () => import('./features/company/pages/dashboard/dashboard.component').then(m => m.CompanyDashboardComponent)
+    },
     {
         path : 'applications',
         loadComponent : () => import('./features/student/pages/applications/application-list/application-list.component').then(m => m.ApplicationListComponent)    
