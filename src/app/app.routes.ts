@@ -22,6 +22,10 @@ export const routes: Routes = [
         loadComponent : () => import('./features/company/pages/dashboard/dashboard.component').then(m => m.CompanyDashboardComponent)
     },
     {
+        path : 'opportunities',
+        loadComponent : () => import('./features/student/pages/vacancies/opportunity-list/opportunity-list.component').then(m => m.OpportunityListComponent)
+    },
+    {
         path : 'applications',
         loadComponent : () => import('./features/student/pages/applications/application-list/application-list.component').then(m => m.ApplicationListComponent)    
     },

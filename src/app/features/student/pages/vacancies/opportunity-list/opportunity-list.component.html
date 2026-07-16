@@ -1,0 +1,29 @@
+<main class="min-h-screen bg-talent-bg pb-24 transition-colors duration-200">
+
+  <app-page-header>
+    <div class="space-y-1">
+      <h1 class="text-2xl font-extrabold text-white tracking-tight">Explorar oportunidades</h1>
+      <p class="text-base font-medium text-white/70">
+        Descubre vacantes y becas de empresas e instituciones aliadas.
+      </p>
+    </div>
+
+    <app-search-input placeholder="Buscar por título o empresa..." />
+  </app-page-header>
+
+  <div class="max-w-6xl mx-auto px-4 mt-6 space-y-6">
+
+    <app-filter-bar [selected]="typeFilter()" (filterChanged)="onFilterChanged($event)" />
+
+    <div class="grid gap-4 grid-cols-1 md:grid-cols-2">
+      @for (opportunity of filteredOpportunities(); track opportunity.title) {
+      <app-job-card [job]="opportunity" />
+      } @empty {
+      <div class="md:col-span-2">
+        <app-empty-state icon="search_off" message="No encontramos oportunidades que coincidan con tu búsqueda." />
+      </div>
+      }
+    </div>
+
+  </div>
+</main>

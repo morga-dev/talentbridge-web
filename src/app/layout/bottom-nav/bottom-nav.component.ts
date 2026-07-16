@@ -27,6 +27,7 @@ export class BottomNavComponent {
 
 	readonly navItems = [
 		{ icon: 'dashboard', label: 'Dashboard', route: '/dashboard-company' },
+		{ icon: 'school', label: 'Oportunidades', route: '/opportunities' },
 		{ icon: 'work', label: 'Aplicaciones', route: '/applications' },
 		{ icon: 'notifications', label: 'Notificaciones', route: '/notifications' },
 		{ icon: 'person', label: 'Perfil', route: '/profile-student' },
