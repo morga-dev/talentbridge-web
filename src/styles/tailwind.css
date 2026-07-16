@@ -9,6 +9,7 @@
   --color-talent-text-secondary: var(--app-text-secondary);
   --color-talent-primary: var(--tb-primary);
   --color-talent-secondary: var(--tb-accent);
+  --color-talent-border: var(--app-border);
 
   /* Fuse-compatible semantic colors for utilities like text-primary, bg-accent */
   --color-primary: var(--tb-primary);

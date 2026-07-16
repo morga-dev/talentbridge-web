@@ -17,38 +17,49 @@
     </app-page-header>
 
     <div class="max-w-6xl mx-auto px-4 mt-6 space-y-6">
+		
+		@if (isLoading()) {
+			<app-loading-skeleton variant="card" [count]="2" />
+		}
 
         <!-- Progreso del perfil de la empresa -->
-        @if (profileCompletion() < 100) { <section class="app-card rounded-2xl p-5 space-y-3">
-            <div class="flex items-center justify-between gap-3">
-                <div>
-                    <h2 class="text-lg font-extrabold text-talent-text tracking-tight">Tu perfil está {{
-                        profileCompletion() }}% completo</h2>
-                    <p class="text-md font-medium text-talent-text-secondary mt-0.5">
-                        Completa la información de tu empresa para atraer más candidatos.
-                    </p>
-                </div>
-                <mat-icon class="text-talent-primary shrink-0">domain</mat-icon>
-            </div>
+        @if (!isLoading() && profileCompletion() < 100) { 
+			<section class="app-card rounded-2xl p-5 space-y-3">
+				<div class="flex items-center justify-between gap-3">
+					<div>
+						<h2 class="text-lg font-extrabold text-talent-text tracking-tight">Tu perfil está {{
+							profileCompletion() }}% completo</h2>
+						<p class="text-md font-medium text-talent-text-secondary mt-0.5">
+							Completa la información de tu empresa para atraer más candidatos.
+						</p>
+					</div>
+					<mat-icon class="text-talent-primary shrink-0">domain</mat-icon>
+				</div>
 
-            <mat-progress-bar mode="determinate" [value]="profileCompletion()" />
+				<mat-progress-bar mode="determinate" [value]="profileCompletion()" />
 
-            <button type="button" mat-flat-button color="primary" (click)="onCompleteProfile()">
-                Completar perfil
-            </button>
+				<button type="button" mat-flat-button color="primary" (click)="onCompleteProfile()">
+					Completar perfil
+				</button>
             </section>
-            }
+        }
 
             <!-- Acción rápida -->
-            <button type="button" mat-flat-button color="primary" class="w-full" (click)="onPostNewJob()">
-                <mat-icon class="mr-1">add_circle</mat-icon>
-                Publicar nueva vacante
-            </button>
+			@if (!isLoading()) {
+				<button type="button" mat-flat-button color="primary" 
+				class="w-full" (click)="onPostNewJob()">
+					<mat-icon class="mr-1">add_circle</mat-icon>
+					Publicar nueva vacante
+				</button>
+			}
+            
 
-            <app-metric-cards [items]="metrics()" />
+			@if (!isLoading()) {
+				<app-metric-cards [items]="metrics()" />
+			}
 
             <!-- Próxima entrevista -->
-            @if (upcomingInterview(); as interview) {
+            @if (!isLoading(); as loaded) { @if (upcomingInterview(); as interview) {
             <section class="app-card rounded-2xl p-5 flex items-start gap-3">
                 <div class="app-icon-badge p-2.5 rounded-xl shrink-0">
                     <mat-icon class="flex items-center justify-center">event_available</mat-icon>
@@ -68,10 +79,10 @@
                     Ver detalles
                 </button>
             </section>
-            }
+            } }
 
             <!-- Notificaciones sin leer -->
-            @if (unreadNotificationsCount() > 0) {
+            @if (!isLoading() && unreadNotificationsCount() > 0) {
             <button type="button"
                 class="app-card rounded-2xl p-4 w-full flex items-center justify-between gap-3 text-left transition-all hover:shadow-md"
                 (click)="onViewNotifications()">
@@ -91,21 +102,24 @@
             <section class="space-y-4">
                 <div class="flex items-center justify-between">
                     <h2 class="text-lg font-extrabold text-talent-text tracking-tight">Candidatos recientes</h2>
-                    <button type="button" mat-flat-button color="primary" 
-                        (click)="onViewAllCandidates()">
-                        Ver todos
-                    </button>
+					@if (!isLoading()) {
+						<button type="button" mat-flat-button color="primary" (click)="onViewAllCandidates()">
+							Ver todos
+						</button>
+					}
                 </div>
 
-                <div class="grid gap-3 grid-cols-1">
-                    @for (candidate of recentCandidates(); track candidate.id) {
-                    <app-candidate-card [candidate]="candidate" />
-                    } @empty {
-                    <p class="app-empty-state rounded-2xl px-4 py-6 text-base text-center">
-                        Aún no tienes candidatos que hayan aplicado a tus vacantes.
-                    </p>
-                    }
-                </div>
+				@if (isLoading()) {
+					<app-loading-skeleton variant="list" [count]="3" />
+				} @else {
+					<div class="grid gap-3 grid-cols-1">
+						@for (candidate of recentCandidates(); track candidate.id) {
+							<app-candidate-card [candidate]="candidate" />
+						} @empty {
+							<app-empty-state message="Aún no tienes candidatos que hayan aplicado a tus vacantes." icon="person_search" />
+						}
+					</div>
+				}
             </section>
 
     </div>

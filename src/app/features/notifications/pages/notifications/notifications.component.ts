@@ -3,7 +3,9 @@ import { CommonModule } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { NotificationType, AppNotification, NotificationFilter } from '../../models/notifications.model';
-import { PageHeaderComponent, SearchInputComponent, MetricCardsComponent, type MetricCard, } from '../../../../shared/components';
+import { PageHeaderComponent, SearchInputComponent, MetricCardsComponent, type MetricCard, ConfirmDialogComponent, type ConfirmDialogData } from '../../../../shared/components';
+import { inject } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-notifications',
@@ -12,9 +14,9 @@ import { PageHeaderComponent, SearchInputComponent, MetricCardsComponent, type M
     CommonModule,
     MatIconModule,
     MatButtonModule,
-	PageHeaderComponent,
-	SearchInputComponent,
-	MetricCardsComponent
+    PageHeaderComponent,
+    SearchInputComponent,
+    MetricCardsComponent
   ],
   templateUrl: './notifications.component.html'
 })
@@ -54,6 +56,9 @@ export class NotificationsComponent {
       read: true
     }
   ]);
+
+  private dialog = inject(MatDialog);
+
 
   readonly activeFilter = signal<NotificationFilter>('todas');
 
@@ -97,8 +102,22 @@ export class NotificationsComponent {
   }
 
   deleteAll(): void {
-    this.allNotifications.set([]);
-  }
+  const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+    data: {
+      title: 'Eliminar todas las notificaciones',
+      message: 'Esta acción no se puede deshacer. ¿Deseas continuar?',
+      confirmText: 'Eliminar todas',
+      confirmColor: 'warn',
+      icon: 'delete_sweep'
+    } as ConfirmDialogData
+  });
+
+  dialogRef.afterClosed().subscribe((confirmed) => {
+    if (confirmed) {
+      this.allNotifications.set([]);
+    }
+  });
+}
 
   iconFor(type: NotificationType): string {
     switch (type) {

@@ -4,7 +4,14 @@ import { Router } from '@angular/router';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
-import { PageHeaderComponent, SearchInputComponent, MetricCardsComponent, MetricCard } from '../../../../shared/components';
+import {
+	PageHeaderComponent,
+	SearchInputComponent,
+	MetricCardsComponent,
+	type MetricCard,
+	LoadingSkeletonComponent,
+	EmptyStateComponent
+} from '../../../../shared/components';
 import { CandidateCardComponent } from '../../components/candidate-card/candidate-card.component';
 import { CandidateApplicant, UpcomingCompanyInterview } from '../../models/company.model';
 
@@ -19,12 +26,15 @@ import { CandidateApplicant, UpcomingCompanyInterview } from '../../models/compa
     MatIconModule,
     MatButtonModule,
     MatProgressBarModule,
-    CandidateCardComponent
+    CandidateCardComponent,
+    LoadingSkeletonComponent,
+    EmptyStateComponent
   ],
   templateUrl: './dashboard.component.html'
 })
 export class CompanyDashboardComponent {
   private router = inject(Router);
+  readonly isLoading = signal(true);
 
   companyName = 'UpTap';
   companyInitials = 'UPT';
@@ -76,6 +86,10 @@ export class CompanyDashboardComponent {
       status: 'aplicado'
     }
   ]);
+  
+  constructor() {
+    setTimeout(() => this.isLoading.set(false), 1800);
+}
 
   onSearch(query: string): void {
     this.router.navigate(['/'], { queryParams: { q: query } });
