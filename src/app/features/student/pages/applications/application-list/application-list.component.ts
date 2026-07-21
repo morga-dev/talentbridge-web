@@ -3,9 +3,10 @@ import { CommonModule } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatChipsModule } from '@angular/material/chips';
-import { Application, ApplicationStatus, TypeFilter } from '../../../models/student.model';
+import { Application } from '../../../models';
+import { ApplicationStatus, TypeFilter, type MetricCard } from '../../../../../shared/models';
 import { RouterLink } from '@angular/router';
-import { PageHeaderComponent, SearchInputComponent, MetricCardsComponent, FilterBarComponent, type MetricCard, } from '../../../../../shared/components';
+import { PageHeaderComponent, SearchInputComponent, MetricCardsComponent, FilterBarComponent } from '../../../../../shared/components';
 
 
 @Component({
@@ -18,7 +19,7 @@ import { PageHeaderComponent, SearchInputComponent, MetricCardsComponent, Filter
     MatChipsModule,
     FilterBarComponent,
     RouterLink,
-	PageHeaderComponent,
+    PageHeaderComponent,
     SearchInputComponent,
     MetricCardsComponent,
 	FilterBarComponent

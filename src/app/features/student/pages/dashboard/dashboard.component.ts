@@ -4,9 +4,9 @@ import { Router } from '@angular/router';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
-import { PageHeaderComponent, SearchInputComponent, MetricCardsComponent, MetricCard } from '../../../../shared/components';
+import { PageHeaderComponent, SearchInputComponent, MetricCardsComponent } from '../../../../shared/components';
+import { type MetricCard, OpportunitySummary } from '../../../../shared/models';
 import { JobCardComponent } from '../../../../shared/components/job-card/job-card.component';
-import { Job } from '../../../../shared/models/jobs.model'; 
 import { UpcomingInterview } from '../../models/student.model';
 
 @Component({
@@ -48,24 +48,30 @@ export class StudentDashboardComponent {
   readonly unreadNotificationsCount = signal(2);
 
   // Datos de prueba
-  readonly recommendedJobs = signal<Job[]>([
+  readonly recommendedJobs = signal<OpportunitySummary[]>([
     {
+      id: 1,
       title: 'Desarrollador Frontend Jr',
       company: 'UpTap',
       tags: ['Angular', 'Remoto'],
-      location: 'Tapachula, Chiapas, MX'
+      location: 'Tapachula, Chiapas, MX',
+      modality: 'Remoto'
     },
     {
+      id: 2,
       title: 'Practicante de QA',
       company: 'Politécnica',
       tags: ['Manual Testing', 'SQL'],
-      location: 'Híbrido · Tapachula, Chiapas, MX'
+      location: 'Híbrido · Tapachula, Chiapas, MX',
+      modality: 'Híbrido'
     },
     {
+      id: 3,
       title: 'Soporte Técnico Jr',
       company: 'Grupo Monkey',
       tags: ['Redes', 'Presencial'],
-      location: 'Tapachula, Chiapas, MX'
+      location: 'Tapachula, Chiapas, MX',
+      modality: 'Presencial'
     }
   ]);
 

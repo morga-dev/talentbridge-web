@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatButtonModule } from '@angular/material/button';
-import { Job } from '../../models/jobs.model';
+import { OpportunitySummary } from '../../models';
 
 @Component({
   selector: 'app-job-card',
@@ -18,5 +18,5 @@ import { Job } from '../../models/jobs.model';
 })
 
 export class JobCardComponent {
-  @Input({ required: true }) job!: Job;
+  @Input({ required: true }) job!: OpportunitySummary;
 }

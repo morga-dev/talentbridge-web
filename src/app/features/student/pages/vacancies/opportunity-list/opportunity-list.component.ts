@@ -7,10 +7,9 @@ import {
   SearchInputComponent,
   FilterBarComponent,
   EmptyStateComponent,
-  JobCardComponent,
-  Job
+  JobCardComponent
 } from '../../../../../shared/components';
-import type { TypeFilter } from '../../../models/student.model'; 
+import { OpportunitySummary, TypeFilter } from '../../../../../shared/models';
 
 @Component({
   selector: 'app-opportunity-list',
@@ -32,30 +31,38 @@ export class OpportunityListComponent {
   readonly searchQuery = signal('');
 
   // Datos de prueba
-  private readonly allOpportunities = signal<Job[]>([
+  private readonly allOpportunities = signal<OpportunitySummary[]>([
     {
+      id: 1,
       title: 'Desarrollador Frontend Jr',
       company: 'UpTap',
       tags: ['Angular', 'Remoto'],
-      location: 'Tapachula, Chiapas, MX'
+      location: 'Tapachula, Chiapas, MX',
+      modality: 'Remoto'
     },
     {
+      id: 2,
       title: 'Beca de Desarrollador de Software',
       company: 'Fundación TalentBridge',
       tags: ['Beca', 'Inglés B2'],
-      location: 'Tapachula, Chiapas, MX'
+      location: 'Tapachula, Chiapas, MX',
+      modality: 'Presencial'
     },
     {
+      id: 3,
       title: 'Practicante de QA',
       company: 'Politécnica de Tapachula',
       tags: ['Manual Testing', 'SQL', 'Automatización'],
-      location: 'Tapachula, Chiapas, MX'
+      location: 'Tapachula, Chiapas, MX',
+      modality: 'Híbrido'
     },
     {
+      id: 4,
       title: 'Soporte Técnico Jr',
       company: 'Grupo Monkey',
       tags: ['Redes', 'Presencial'],
-      location: 'Tapachula, Chiapas, MX'
+      location: 'Tapachula, Chiapas, MX',
+      modality: 'Presencial'
     },
   ]);
 

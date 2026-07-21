@@ -8,10 +8,10 @@ import {
 	PageHeaderComponent,
 	SearchInputComponent,
 	MetricCardsComponent,
-	type MetricCard,
 	LoadingSkeletonComponent,
 	EmptyStateComponent
 } from '../../../../shared/components';
+import { type MetricCard } from '../../../../shared/models';
 import { CandidateCardComponent } from '../../components/candidate-card/candidate-card.component';
 import { CandidateApplicant, UpcomingCompanyInterview } from '../../models/company.model';
 

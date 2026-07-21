@@ -5,7 +5,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatDividerModule } from '@angular/material/divider';
-import { ApplicationDetail, ApplicationStatus  } from '../../../models/student.model'; 
+import { ApplicationDetail } from '../../../models';
+import { ApplicationStatus } from '../../../../../shared/models';
 import { PageHeaderComponent } from '../../../../../shared/components';
 
 @Component({
@@ -17,7 +18,7 @@ import { PageHeaderComponent } from '../../../../../shared/components';
     MatButtonModule,
     MatChipsModule,
     MatDividerModule,
-	PageHeaderComponent
+    PageHeaderComponent
   ],
   templateUrl: './application-detail.component.html'
 })
