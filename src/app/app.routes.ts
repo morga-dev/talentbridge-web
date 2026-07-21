@@ -26,6 +26,10 @@ export const routes: Routes = [
         loadComponent : () => import('./features/student/pages/vacancies/opportunity-list/opportunity-list.component').then(m => m.OpportunityListComponent)
     },
     {
+        path : 'opportunity/:id',
+        loadComponent : () => import('./features/student/pages/vacancies/opportunity-detail/opportunity-detail.component').then(m => m.OpportunityDetailComponent)
+    },
+    {
         path : 'applications',
         loadComponent : () => import('./features/student/pages/applications/application-list/application-list.component').then(m => m.ApplicationListComponent)    
     },

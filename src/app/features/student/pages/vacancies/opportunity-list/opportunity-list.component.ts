@@ -1,6 +1,6 @@
 import { Component, computed, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { inject } from '@angular/core';
 import {
   PageHeaderComponent,
@@ -9,7 +9,7 @@ import {
   EmptyStateComponent,
   JobCardComponent
 } from '../../../../../shared/components';
-import { OpportunitySummary, TypeFilter } from '../../../../../shared/models';
+import type { OpportunitySummary, TypeFilter } from '../../../../../shared/models';
 
 @Component({
   selector: 'app-opportunity-list',
@@ -20,7 +20,8 @@ import { OpportunitySummary, TypeFilter } from '../../../../../shared/models';
     SearchInputComponent,
     FilterBarComponent,
     EmptyStateComponent,
-    JobCardComponent
+    JobCardComponent,
+    RouterLink
   ],
   templateUrl: './opportunity-list.component.html'
 })
@@ -72,9 +73,9 @@ export class OpportunityListComponent {
     let opportunities = this.allOpportunities();
 
     if (filter === 'Vacantes') {
-      opportunities = opportunities.filter((o) => !o.tags.includes('Beca'));
+      opportunities = opportunities.filter((o) => !o.tags?.includes('Beca'));
     } else if (filter === 'Becas') {
-      opportunities = opportunities.filter((o) => o.tags.includes('Beca'));
+      opportunities = opportunities.filter((o) => o.tags?.includes('Beca'));
     }
 
     if (query) {

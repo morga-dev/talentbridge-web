@@ -16,12 +16,14 @@
     <app-filter-bar [selected]="typeFilter()" (filterChanged)="onFilterChanged($event)" />
 
     <div class="grid gap-4 grid-cols-1 md:grid-cols-2">
-      @for (opportunity of filteredOpportunities(); track opportunity.title) {
-      <app-job-card [job]="opportunity" />
+      @for (opportunity of filteredOpportunities(); track opportunity.id) {
+        <a [routerLink]="['/opportunity', opportunity.id]" class="block transition-transform hover:-translate-y-0.5">
+          <app-job-card [job]="opportunity" />
+        </a>
       } @empty {
-      <div class="md:col-span-2">
-        <app-empty-state icon="search_off" message="No encontramos oportunidades que coincidan con tu búsqueda." />
-      </div>
+        <div class="md:col-span-2">
+          <app-empty-state icon="search_off" message="No encontramos oportunidades que coincidan con tu búsqueda." />
+        </div>
       }
     </div>
 

@@ -1,0 +1,155 @@
+<main class="min-h-screen bg-talent-bg pb-24 transition-colors duration-200">
+  <div class="max-w-6xl mx-auto px-4 pt-6">
+
+    @if (opportunity(); as job) {
+    <header class="app-card rounded-2xl p-5 md:p-6 flex flex-col md:flex-row md:items-start gap-4 md:gap-5">
+      <div class="h-16 w-16 rounded-2xl bg-talent-minim flex items-center justify-center shrink-0">
+        <mat-icon class="mat-icon-4xl text-talent-primary">business</mat-icon>
+      </div>
+
+      <div class="flex-1 min-w-0 space-y-2">
+        <div class="flex flex-wrap gap-2">
+          <span class="app-pill-soft rounded-full px-3! py-1! text-sm uppercase tracking-wide">{{ job.employmentType
+            }}</span>
+          <span class="app-pill-soft rounded-full px-3! py-1! text-sm uppercase tracking-wide">{{ job.modality }}</span>
+        </div>
+
+        <h1 class="text-3xl font-extrabold text-talent-text tracking-tight">{{ job.title }}</h1>
+
+        <div class="flex flex-wrap items-center gap-x-4 gap-y-1 text-md text-talent-text-secondary">
+          <span class="flex items-center gap-1">
+            <mat-icon class="mat-icon-xl">location_on</mat-icon>
+            {{ job.location }}
+          </span>
+          @if (job.salaryRange) {
+          <span class="flex items-center gap-1">
+            <mat-icon class="mat-icon-xl">payments</mat-icon>{{ job.salaryRange }}
+          </span>
+          }
+          <span class="flex items-center gap-1">
+            <mat-icon class="mat-icon-xl">schedule</mat-icon>{{ publishedLabel() }}
+          </span>
+        </div>
+      </div>
+
+      <div class="flex md:flex-col gap-2 shrink-0">
+        <button mat-icon-button (click)="onShare()" aria-label="Compartir oportunidad">
+          <mat-icon>share</mat-icon>
+        </button>
+        <button mat-icon-button (click)="toggleSave()" [attr.aria-pressed]="isSaved()" aria-label="Guardar oportunidad">
+          <mat-icon>{{ isSaved() ? 'bookmark' : 'bookmark_border' }}</mat-icon>
+        </button>
+      </div>
+    </header>
+
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mt-6">
+
+      <div class="lg:col-span-2 space-y-6">
+        <section class="app-card rounded-2xl p-5 md:p-6 space-y-3">
+          <h2 class="tb-title">Sobre el rol</h2>
+          <p class="text-base leading-relaxed text-talent-text whitespace-pre-line">{{ job.description }}</p>
+        </section>
+
+        @if (job.requirements && job.requirements.length) {
+        <section class="app-card rounded-2xl p-5 md:p-6 space-y-3">
+          <h2 class="tb-title">Requisitos</h2>
+          <ul class="space-y-3">
+            @for (req of job.requirements; track req) {
+            <li class="flex items-start gap-3 text-base text-talent-text">
+              <span class="app-icon-badge h-6 w-6 rounded-full flex items-center justify-center shrink-0">
+                <mat-icon class="mat-icon-md">check</mat-icon>
+              </span>
+              <span>{{ req }}</span>
+            </li>
+            }
+          </ul>
+        </section>
+        }
+
+        @if (job.technologies && job.technologies.length) {
+        <section class="app-card rounded-2xl p-5 md:p-6 space-y-3">
+          <h2 class="tb-title">Tecnologías</h2>
+          <mat-chip-set aria-label="Tecnologías requeridas">
+            @for (tech of job.technologies; track tech) {
+            <mat-chip class="mat-primary" disableRipple>{{ tech }}</mat-chip>
+            }
+          </mat-chip-set>
+        </section>
+        }
+      </div>
+
+      <aside class="space-y-6">
+        <div class="app-card rounded-2xl p-5 space-y-4 lg:sticky lg:top-6">
+          <button class="app-button-primary w-full rounded-xl py-2 text-lg font-semibold" (click)="onApply()">
+            Postularme
+          </button>
+
+          @if (job.estimatedApplyMinutes) {
+          <p class="text-sm text-center text-talent-text-secondary">
+            Tiempo estimado de postulación:
+            <span class="font-semibold text-talent-text">{{ job.estimatedApplyMinutes }} minutos</span>
+          </p>
+          }
+
+          <dl class="space-y-2 text-md border-t border-talent-border pt-4">
+            <div class="flex items-center justify-between">
+              <dt class="text-talent-text-secondary">Sector</dt>
+              <dd class="font-semibold text-talent-text">{{ job.company.sector }}</dd>
+            </div>
+            <div class="flex items-center justify-between">
+              <dt class="text-talent-text-secondary">Tamaño</dt>
+              <dd class="font-semibold text-talent-text">{{ job.company.sizeRange }}</dd>
+            </div>
+            <div class="flex items-center justify-between">
+              <dt class="text-talent-text-secondary">Fundada</dt>
+              <dd class="font-semibold text-talent-text">{{ job.company.foundedYear }}</dd>
+            </div>
+          </dl>
+
+          <div class="app-surface-soft rounded-xl p-4 space-y-1">
+            <p class="text-base font-semibold text-talent-text">Sobre {{ job.company.name }}</p>
+            <p class="text-md text-talent-text-secondary leading-relaxed">{{ job.company.about }}</p>
+
+            <a [routerLink]="['/company', job.company.id]"
+              class="inline-flex items-center gap-1 text-sm font-semibold text-talent-primary mt-1">
+              Ver perfil de empresa
+              <mat-icon class="mat-icon-md mt-0.5">arrow_forward</mat-icon>
+            </a>
+          </div>
+        </div>
+
+        @if (similarOpportunities().length) {
+        <div class="app-card rounded-2xl p-5 space-y-3">
+          <p class="text-sm font-bold uppercase tracking-wide text-talent-text-secondary">Puestos similares</p>
+          @for (item of similarOpportunities(); track item.id) {
+          <a [routerLink]="['/opportunity', item.id]" class="app-surface-soft block rounded-xl px-3 py-2">
+            <p class="text-md font-semibold text-talent-text">{{ item.title }}</p>
+            <p class="text-sm text-talent-text-secondary">
+              {{ item.modality }} @if (item.salaryRange) { • {{ item.salaryRange }} }
+            </p>
+          </a>
+          }
+        </div>
+        }
+      </aside>
+    </div>
+
+    } @else if (loading()) {
+    <!-- skeletons de carga -->
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+      <div class="lg:col-span-2 space-y-6">
+        <app-loading-skeleton variant="card" [count]="1" />
+        <app-loading-skeleton variant="list" [count]="4" />
+      </div>
+      <div class="space-y-6">
+        <app-loading-skeleton variant="card" [count]="2" />
+      </div>
+    </div>
+
+    } @else {
+    <!-- Estado vacío -->
+    <app-empty-state icon="error_outline" message="No encontramos esta oportunidad laboral. Puede que ya no esté disponible." />
+    }
+
+  </div>
+</main>

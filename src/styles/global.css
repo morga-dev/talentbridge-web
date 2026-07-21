@@ -113,10 +113,9 @@ body {
 
 /* TalentBridge / Fuse-compatible typography helpers */
 .tb-title {
-  font-size: 1.125rem;
+  font-size: 1.25rem;
   font-weight: 500;
   color: var(--tb-primary);
-  letter-spacing: 0.025em;
 }
 
 .tb-subtitle {
