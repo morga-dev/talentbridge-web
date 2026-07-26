@@ -76,7 +76,7 @@ export class ApplicationDetailComponent {
   }
 
   goBack(): void {
-    this.router.navigate(['/applications']);
+    this.router.navigate(['/student/applications']);
   }
 
   statusLabel(status: ApplicationStatus): string {

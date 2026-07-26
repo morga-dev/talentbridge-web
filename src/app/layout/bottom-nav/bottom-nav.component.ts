@@ -26,11 +26,11 @@ export class BottomNavComponent {
 	readonly isHidden = computed(() => this.navigationEnd()['hideBottomNav'] === true);
 
 	readonly navItems = [
-		{ icon: 'dashboard', label: 'Dashboard', route: '/dashboard-company' },
-		{ icon: 'school', label: 'Oportunidades', route: '/opportunities' },
-		{ icon: 'work', label: 'Aplicaciones', route: '/applications' },
+		{ icon: 'dashboard', label: 'Dashboard', route: '/student/dashboard' },
+		{ icon: 'school', label: 'Oportunidades', route: '/student/opportunities' },
+		{ icon: 'work', label: 'Aplicaciones', route: '/student/applications' },
 		{ icon: 'notifications', label: 'Notificaciones', route: '/notifications' },
-		{ icon: 'person', label: 'Perfil', route: '/profile-student' },
+		{ icon: 'person', label: 'Perfil', route: '/student/profile' },
 	];
 
 	private getDeepestRouteData() {

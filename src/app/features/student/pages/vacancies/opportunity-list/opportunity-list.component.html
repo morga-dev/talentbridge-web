@@ -17,7 +17,7 @@
 
     <div class="grid gap-4 grid-cols-1 md:grid-cols-2">
       @for (opportunity of filteredOpportunities(); track opportunity.id) {
-        <a [routerLink]="['/opportunity', opportunity.id]" class="block transition-transform hover:-translate-y-0.5">
+        <a [routerLink]="['/student/opportunities', opportunity.id]" class="block transition-transform hover:-translate-y-0.5">
           <app-job-card [job]="opportunity" />
         </a>
       } @empty {

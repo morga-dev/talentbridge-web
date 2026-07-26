@@ -1,52 +1,41 @@
 import { Routes } from '@angular/router';
 
 export const routes: Routes = [
+    // Landing
     {
-        path : '',
-        loadComponent : () => import('./pages/landing/landing.component').then(m => m.LandingComponent)
+        path: '',
+        loadComponent: () =>
+        import('./pages/landing/landing.component').then(m => m.LandingComponent),
     },
+
+    // Rutas de auth
     {
-        path : 'login',
-        loadComponent : () => import('./features/auth/pages/login/login.component').then(m => m.LoginComponent)
+        path: 'auth',
+        loadChildren: () => import('./features/auth/auth.routes'),
     },
+
+    // Rutas de estudiante
     {
-        path : 'register',
-        loadComponent : () => import('./features/auth/pages/register/register.component').then(m => m.RegisterComponent)
+        path: 'student',
+        loadChildren: () => import('./features/student/student.routes'),
     },
+
+    // Rutas de compañías
     {
-        path : 'dashboard-student',
-        loadComponent : () => import('./features/student/pages/dashboard/dashboard.component').then(m => m.StudentDashboardComponent)
+        path: 'company',
+        loadChildren: () => import('./features/company/company.routes'),
     },
+
+    // Notificaciones
     {
-        path : 'dashboard-company',
-        loadComponent : () => import('./features/company/pages/dashboard/dashboard.component').then(m => m.CompanyDashboardComponent)
+        path: 'notifications',
+        loadChildren: () => import('./features/notifications/notifications.routes'),
     },
+
+    // Rutas no disponibles
     {
-        path : 'opportunities',
-        loadComponent : () => import('./features/student/pages/vacancies/opportunity-list/opportunity-list.component').then(m => m.OpportunityListComponent)
+        path: '**',
+        redirectTo: '',
     },
-    {
-        path : 'opportunity/:id',
-        loadComponent : () => import('./features/student/pages/vacancies/opportunity-detail/opportunity-detail.component').then(m => m.OpportunityDetailComponent)
-    },
-    {
-        path : 'applications',
-        loadComponent : () => import('./features/student/pages/applications/application-list/application-list.component').then(m => m.ApplicationListComponent)    
-    },
-    {
-        path : 'applications/:id',
-        loadComponent : () => import('./features/student/pages/applications/application-detail/application-detail.component').then(m => m.ApplicationDetailComponent)
-    },
-    {
-        path : 'profile-student',
-        loadComponent : () => import('./features/student/pages/profile/profile.component').then(m => m.ProfileComponent)
-    },
-    {
-        path : 'profile-company',
-        loadComponent : () => import('./features/company/pages/profile/profile.component').then(m => m.ProfileComponent)
-    },
-    {
-        path : 'notifications',
-        loadComponent : () => import('./features/notifications/pages/notifications/notifications.component').then(m => m.NotificationsComponent)
-    }
+    
 ];

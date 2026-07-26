@@ -122,7 +122,7 @@
         <div class="app-card rounded-2xl p-5 space-y-3">
           <p class="text-sm font-bold uppercase tracking-wide text-talent-text-secondary">Puestos similares</p>
           @for (item of similarOpportunities(); track item.id) {
-          <a [routerLink]="['/opportunity', item.id]" class="app-surface-soft block rounded-xl px-3 py-2">
+          <a [routerLink]="['/student/opportunities', item.id]" class="app-surface-soft block rounded-xl px-3 py-2">
             <p class="text-md font-semibold text-talent-text">{{ item.title }}</p>
             <p class="text-sm text-talent-text-secondary">
               {{ item.modality }} @if (item.salaryRange) { • {{ item.salaryRange }} }

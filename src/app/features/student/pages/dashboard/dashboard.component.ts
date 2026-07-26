@@ -80,7 +80,7 @@ export class StudentDashboardComponent {
   }
 
   onCompleteProfile(): void {
-    this.router.navigate(['/profile-student']);
+    this.router.navigate(['/student/profile']);
   }
 
   onViewAllJobs(): void {
@@ -92,6 +92,6 @@ export class StudentDashboardComponent {
   }
 
   onViewInterviewDetails(): void {
-    this.router.navigate(['/applications']);
+    this.router.navigate(['/student/applications']);
   }
 }

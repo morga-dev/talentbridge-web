@@ -59,6 +59,6 @@ export class LoginComponent {
   }
 
   navigateToDashboard(): void {
-    this.router.navigate(['/dashboard-student']);
+    this.router.navigate(['/student/dashboard']);
   }
 }

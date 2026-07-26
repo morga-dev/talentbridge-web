@@ -96,7 +96,7 @@ export class CompanyDashboardComponent {
   }
 
   onCompleteProfile(): void {
-    this.router.navigate(['/profile-company']);
+    this.router.navigate(['/company/profile']);
   }
 
   onPostNewJob(): void {
