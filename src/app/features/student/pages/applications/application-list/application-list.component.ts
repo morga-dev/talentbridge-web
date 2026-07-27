@@ -38,7 +38,7 @@ export class ApplicationListComponent {
       requirements: ['Angular', 'Tailwind', 'Git'],
       modality: 'Remoto',
       date: '10 jul 2026',
-      status: 'entrevista'
+      status: 'interview'
     },
     {
       id: 2,
@@ -48,7 +48,7 @@ export class ApplicationListComponent {
       requirements: ['Inglés B2', 'Promedio 9.5+', 'Disponibilidad flexible'],
       modality: 'Tapachula, Chiapas, MX',
       date: '5 jul 2026',
-      status: 'aplicado'
+      status: 'pending'
     },
     {
       id: 3,
@@ -58,7 +58,7 @@ export class ApplicationListComponent {
       requirements: ['Manual Testing', 'SQL', 'Automatización'],
       modality: 'Híbrido · Tapachula, MX',
       date: '28 jun 2026',
-      status: 'aceptada'
+      status: 'accepted'
     },
     {
       id: 4,
@@ -68,7 +68,7 @@ export class ApplicationListComponent {
       requirements: ['Redes', 'Atención al cliente'],
       modality: 'Presencial · Tapachula, MX',
       date: '20 jun 2026',
-      status: 'rechazada'
+      status: 'rejected'
     }
   ]);
 
@@ -76,8 +76,8 @@ export class ApplicationListComponent {
 
   readonly metricItems = computed<MetricCard[]>(() => [
 	{ label: 'Postulaciones', value: this.allApplications().length },
-    { label: 'En entrevista', value: this.allApplications().filter((a) => a.status === 'entrevista').length },
-    { label: 'Aceptadas', value: this.allApplications().filter((a) => a.status === 'aceptada').length },
+    { label: 'En entrevista', value: this.allApplications().filter((a) => a.status === 'interview').length },
+    { label: 'Aceptadas', value: this.allApplications().filter((a) => a.status === 'accepted').length },
   ]);
 
   readonly filteredApplications = computed(() => {
@@ -100,26 +100,27 @@ export class ApplicationListComponent {
 
   statusLabel(status: ApplicationStatus): string {
     switch (status) {
-      case 'aplicado':
-        return 'Aplicado';
-      case 'entrevista':
+      case 'pending':
+        return 'Pendiente';
+      case 'reviewing':
+        return 'En revisión';
+      case 'interview':
         return 'En entrevista';
-      case 'aceptada':
+      case 'accepted':
         return 'Aceptada';
-      case 'rechazada':
+      case 'rejected':
         return 'Rechazada';
     }
   }
 
   statusColor(status: ApplicationStatus): 'primary' | 'accent' | 'warn' | undefined {
     switch (status) {
-      case 'aceptada':
+      case 'accepted':
         return 'primary';
-      case 'entrevista':
+      case 'interview':
         return 'accent';
-      case 'rechazada':
+      case 'rejected':
         return 'warn';
-      case 'aplicado':
       default:
         return undefined;
     }

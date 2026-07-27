@@ -1,3 +1,3 @@
-export type ApplicationStatus = 'aplicado' | 'entrevista' | 'aceptada' | 'rechazada';
+export type ApplicationStatus = 'pending' | 'reviewing' | 'interview' | 'accepted' | 'rejected';
 
 export type ApplicationType = 'Vacante' | 'Beca';

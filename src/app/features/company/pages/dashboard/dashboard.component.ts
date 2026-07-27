@@ -13,7 +13,7 @@ import {
 } from '../../../../shared/components';
 import { type MetricCard } from '../../../../shared/models';
 import { CandidateCardComponent } from '../../components/candidate-card/candidate-card.component';
-import { CandidateApplicant, UpcomingCompanyInterview } from '../../models/company.model';
+import { CandidateApplicant, UpcomingCompanyInterview } from '../../../../shared/models/company.model';
 
 @Component({
   selector: 'app-company-dashboard',
@@ -65,7 +65,7 @@ export class CompanyDashboardComponent {
       career: 'Ing. de Software',
       appliedFor: 'Desarrollador Frontend Jr',
       appliedDate: '10 jul 2026',
-      status: 'entrevista'
+      status: 'interview'
     },
     {
       id: 2,
@@ -74,7 +74,7 @@ export class CompanyDashboardComponent {
       career: 'Ing. de Software',
       appliedFor: 'Practicante de QA',
       appliedDate: '9 jul 2026',
-      status: 'aplicado'
+      status: 'pending'
     },
     {
       id: 3,
@@ -83,7 +83,7 @@ export class CompanyDashboardComponent {
       career: 'Ing. de Software',
       appliedFor: 'Soporte Técnico Jr',
       appliedDate: '8 jul 2026',
-      status: 'aplicado'
+      status: 'pending'
     }
   ]);
   

@@ -36,7 +36,7 @@ export class ApplicationDetailComponent {
       requirements: ['Angular', 'Tailwind', 'Git'],
       modality: 'Remoto',
       date: '10 jul 2026',
-      status: 'entrevista',
+      status: 'interview',
       description:
         'Buscamos un desarrollador frontend junior para unirse a nuestro equipo. Trabajarás directamente con diseñadores y backend developers construyendo la próxima generación de la plataforma UpTap.',
       responsibilities: [
@@ -53,9 +53,9 @@ export class ApplicationDetailComponent {
       companyDescription: 'Plataforma de conexión laboral para talento joven en el sur de México.',
       companyWebsite: 'https://uptap.com',
       statusHistory: [
-        { status: 'aplicado', label: 'Postulación enviada', date: '10 jul 2026' },
-        { status: 'entrevista', label: 'Entrevista agendada', date: '12 jul 2026' },
-        { status: 'aceptada', label: 'Resultado final', date: null }
+        { status: 'pending', label: 'Postulación enviada', date: '10 jul 2026' },
+        { status: 'interview', label: 'Entrevista agendada', date: '12 jul 2026' },
+        { status: 'accepted', label: 'Resultado final', date: null }
       ]
     }
   ]);
@@ -81,26 +81,27 @@ export class ApplicationDetailComponent {
 
   statusLabel(status: ApplicationStatus): string {
     switch (status) {
-      case 'aplicado':
-        return 'Aplicado';
-      case 'entrevista':
+      case 'pending':
+        return 'Pendiente';
+      case 'reviewing':
+        return 'En revisión';
+      case 'interview':
         return 'En entrevista';
-      case 'aceptada':
+      case 'accepted':
         return 'Aceptada';
-      case 'rechazada':
+      case 'rejected':
         return 'Rechazada';
     }
   }
 
   statusColor(status: ApplicationStatus): 'primary' | 'accent' | 'warn' | undefined {
     switch (status) {
-      case 'aceptada':
+      case 'accepted':
         return 'primary';
-      case 'entrevista':
+      case 'interview':
         return 'accent';
-      case 'rechazada':
+      case 'rejected':
         return 'warn';
-      case 'aplicado':
       default:
         return undefined;
     }

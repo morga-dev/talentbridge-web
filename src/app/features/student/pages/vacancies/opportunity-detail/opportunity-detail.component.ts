@@ -74,10 +74,12 @@ export class OpportunityDetailComponent implements OnInit {
         company: {
           id: 1,
           name: 'UpTap',
-          sector: 'Software',
+          industry: 'Software',
+          phone: 9629876543,
+          email: 'contacto@uptap.com',
+          about: 'Líderes en soluciones tecnológicas',
           sizeRange: '50 - 100 empleados',
-          foundedYear: 2018,
-          about: 'Líderes en soluciones tecnológicas'
+          foundedYear: 2018
         },
         title: 'Senior Frontend Engineer',
         description:

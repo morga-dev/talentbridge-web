@@ -4,7 +4,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatListModule } from '@angular/material/list';
 import { MatDividerModule } from '@angular/material/divider';
-import { CompanyProfile } from '../../models/company.model';
+import { CompanyProfile } from '../../../../shared/models/company.model';
 
 @Component({
   selector: 'app-company-profile',
@@ -21,15 +21,17 @@ import { CompanyProfile } from '../../models/company.model';
 export class ProfileComponent {
   // Datos de prueba
   profile: CompanyProfile = {
-    companyName: 'UpTap Technologies',
+    id: 1,
+    name: 'UpTap Technologies',
     initials: 'UPT',
     industry: 'Tecnología / Software',
-    description:
+    about:
       'Empresa dedicada al desarrollo de soluciones digitales para conectar talento joven con oportunidades laborales reales en Tapachula.',
+    sizeRange: '11-30 empleados',
+    foundedYear: 2020,
     email: 'contacto@uptap.com',
     phone: 9629876543,
-    website: 'https://uptap.com',
-    companySize: '11-30 empleados'
+    website: 'https://uptap.com'
   };
 
   onEditProfile(): void {

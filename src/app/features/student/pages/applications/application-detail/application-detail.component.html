@@ -158,7 +158,7 @@
             </div>
         </section>
 
-        @if (app.status === 'aplicado' || app.status === 'entrevista') {
+        @if (app.status === 'pending' || app.status === 'interview') {
         <div class="flex justify-center">
             <button type="button" mat-flat-button class="w-full" color="warn" (click)="onWithdraw()">
                 <mat-icon class="mr-1">cancel</mat-icon>

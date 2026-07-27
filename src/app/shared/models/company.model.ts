@@ -1,15 +1,23 @@
-import { ApplicationStatus } from '../../../shared/models';
+import type { ApplicationStatus } from "./application.model"; 
 
 export interface CompanyProfile {
-  companyName: string;
-  initials: string;
+  id: number;
+  name: string;
+  logoUrl?: string;
   industry: string;
-  description: string;
+  about: string;
+  sizeRange: string;
+  foundedYear: number;
+  website?: string;
   email: string;
   phone: number;
-  website: string;
-  companySize: string;
+  initials?: string;
 }
+
+export type CompanyPreview = Pick<
+  CompanyProfile,
+  'id' | 'name' | 'phone' | 'email' | 'logoUrl' | 'industry' | 'about' | 'sizeRange' | 'foundedYear' | 'website'
+>;
 
 export interface CandidateApplicant {
   id: number;

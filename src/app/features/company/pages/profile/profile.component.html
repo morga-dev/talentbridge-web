@@ -17,7 +17,7 @@
                 </button>
             </div>
 
-            <h1 class="text-2xl font-extrabold text-white tracking-tight mt-1">{{ profile.companyName }}</h1>
+            <h1 class="text-2xl font-extrabold text-white tracking-tight mt-1">{{ profile.name }}</h1>
             <p class="text-base font-medium text-white/70">{{ profile.industry }}</p>
         </div>
     </div>
@@ -28,7 +28,7 @@
         <section class="app-card rounded-2xl p-5 space-y-2">
             <h2 class="text-xl font-extrabold text-talent-text tracking-tight">Sobre la empresa</h2>
             <p class="text-base font-medium text-talent-text-secondary leading-relaxed">
-                {{ profile.description }}
+                {{ profile.about }}
             </p>
         </section>
 
@@ -97,7 +97,7 @@
                         </div>
                         <div class="min-w-0">
                             <p class="text-sm font-semibold text-talent-text-secondary/70">Tamaño</p>
-                            <p class="text-md font-medium text-talent-text">{{ profile.companySize }}</p>
+                            <p class="text-md font-medium text-talent-text">{{ profile.sizeRange }}</p>
                         </div>
                     </div>
                 </div>
