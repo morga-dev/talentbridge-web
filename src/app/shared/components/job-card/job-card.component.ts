@@ -4,6 +4,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatButtonModule } from '@angular/material/button';
 import { OpportunitySummary } from '../../models';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-job-card',
@@ -18,5 +19,14 @@ import { OpportunitySummary } from '../../models';
 })
 
 export class JobCardComponent {
+
+  constructor(
+    private router: Router,
+  ) {}
   @Input({ required: true }) job!: OpportunitySummary;
+
+  onViewAllOpportunities(): void {
+    this.router.navigate(['/student/opportunities']);
+  }
+
 }

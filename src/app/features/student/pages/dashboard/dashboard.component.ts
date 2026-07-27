@@ -84,8 +84,8 @@ export class StudentDashboardComponent {
     this.router.navigate(['/student/profile']);
   }
 
-  onViewAllJobs(): void {
-    this.router.navigate(['/']);
+  onViewAllOpportunities(): void {
+    this.router.navigate(['/student/opportunities']);
   }
 
   onViewNotifications(): void {

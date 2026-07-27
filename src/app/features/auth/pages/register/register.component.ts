@@ -8,7 +8,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
-import { RegisterStudentRequest, RegisterCompanyRequest } from '../../models/auth.model'; 
+import { RegisterStudentRequest, RegisterCompanyRequest } from '../../models/auth.model';
+import { RouterLink } from '@angular/router';
 import { PageHeaderComponent } from '../../../../shared/components';
 
 @Component({
@@ -24,7 +25,8 @@ import { PageHeaderComponent } from '../../../../shared/components';
     MatCheckboxModule,
     MatDatepickerModule,
     MatNativeDateModule,
-	PageHeaderComponent
+	PageHeaderComponent,
+	RouterLink
   ],
   templateUrl: './register.component.html'
 })

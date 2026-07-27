@@ -1,14 +1,18 @@
 import { Component, DestroyRef, OnInit, computed, inject, input, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatChipsModule } from '@angular/material/chips';
+import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatDialog } from '@angular/material/dialog';
+import { take } from 'rxjs';
 import {
+  ConfirmDialogComponent,
   EmptyStateComponent,
   LoadingSkeletonComponent,
 } from '../../../../../shared/components';
-import type { OpportunityDetail, OpportunitySummary } from '../../../../../shared/models';
+import type { OpportunityDetail, OpportunitySummary, ConfirmDialogData } from '../../../../../shared/models';
 
 @Component({
   selector: 'app-opportunity-detail',
@@ -19,6 +23,8 @@ import type { OpportunityDetail, OpportunitySummary } from '../../../../../share
     MatIconModule,
     MatButtonModule,
     MatChipsModule,
+    MatSnackBarModule,
+    ConfirmDialogComponent,
     EmptyStateComponent,
     LoadingSkeletonComponent
   ],
@@ -27,6 +33,9 @@ import type { OpportunityDetail, OpportunitySummary } from '../../../../../share
 })
 export class OpportunityDetailComponent implements OnInit {
   private readonly destroyRef = inject(DestroyRef);
+  private readonly router = inject(Router);
+  private readonly snackBar = inject(MatSnackBar);
+  private readonly dialog = inject(MatDialog);
 
   readonly id = input<string>();
 
@@ -50,7 +59,30 @@ export class OpportunityDetailComponent implements OnInit {
   }
 
   onApply(): void {
-    // Lógica de postulación
+    const job = this.opportunity();
+    if (!job) return;
+
+    const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+      data: {
+        title: 'Postularte a esta vacante',
+        message: `¿Deseas postularte a "${job.title}" en ${job.company.name}?`,
+        confirmText: 'Postularme',
+        cancelText: 'Cancelar',
+        icon: 'send'
+      } as ConfirmDialogData
+    });
+
+    dialogRef.afterClosed().pipe(take(1)).subscribe(confirmed => {
+      if (!confirmed) return;
+
+      this.snackBar.open('Postulación enviada correctamente', 'Cerrar', {
+        duration: 3000,
+        horizontalPosition: 'center',
+        verticalPosition: 'top'
+      });
+
+      this.router.navigate(['/student/applications']);
+    });
   }
 
   onShare(): void {

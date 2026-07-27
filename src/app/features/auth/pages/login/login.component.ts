@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormGroup, FormControl, Validators } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
 import { LoginRequest } from '../../models/auth.model';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { PageHeaderComponent } from '../../../../shared/components';
 
 @Component({
@@ -13,6 +13,7 @@ import { PageHeaderComponent } from '../../../../shared/components';
 	CommonModule,
 	ReactiveFormsModule,
 	MatIconModule,
+	RouterLink,
 	PageHeaderComponent
 ],
   templateUrl: './login.component.html'
