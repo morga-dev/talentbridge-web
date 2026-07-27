@@ -14,12 +14,12 @@
     </app-page-header>
 
     <div class="max-w-6xl mx-auto px-4 mt-6 space-y-6">
-
-        <!-- Filtros por tipo -->
-        <app-filter-bar [filterOptions]="filterOptions()" [selected]="typeFilter()" (filterChanged)="onFilterChanged($event)" />
         
         <!-- Cards de contadores -->
 		<app-metric-cards [items]="metricItems()" />
+
+        <!-- Filtros por tipo -->
+        <app-filter-bar [filterOptions]="filterOptions()" [selected]="typeFilter()" (filterChanged)="onFilterChanged($event)" />
 
         <!-- Listado -->
         <div class="space-y-4">

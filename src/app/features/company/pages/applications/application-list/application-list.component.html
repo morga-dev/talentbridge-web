@@ -1,0 +1,79 @@
+<main class="min-h-screen bg-talent-bg pb-24 transition-colors duration-200">
+
+  <app-page-header>
+    <div class="flex items-center text-center justify-center">
+      <div class="space-y-1">
+        <h1 class="text-2xl font-extrabold text-white tracking-tight">Postulaciones</h1>
+        <p class="text-base font-medium text-white/70">
+          Revisa los candidatos que han aplicado a tus oportunidades.
+        </p>
+      </div>
+    </div>
+    <app-search-input placeholder="Buscar por candidato, carrera o puesto..." (valueChange)="onSearch($event)" />
+  </app-page-header>
+
+  <div class="max-w-6xl mx-auto px-4 mt-6 space-y-6">
+
+    @if (loading()) {
+    <app-loading-skeleton variant="card" [count]="1" />
+    <app-loading-skeleton variant="list" [count]="5" />
+
+    } @else {
+
+    <!-- Métricas -->
+    <app-metric-cards [items]="metrics()" />
+
+    <!-- Selección de vacante -->
+    <div class="flex flex-col gap-2">
+
+      <!-- Select desplegable -->
+      <div class="block sm:hidden">
+        <mat-form-field appearance="outline" class="w-full text-sm">
+          <mat-label>Filtrar por oportunidad</mat-label>
+          <mat-select [value]="opportunityFilter()" (selectionChange)="setOpportunityFilter($event.value)">
+            @for (opt of opportunityOptions; track opt.value) {
+            <mat-option [value]="opt.value">{{ opt.label }}</mat-option>
+            }
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+      <!-- Chips y botones -->
+      <div class="hidden sm:flex items-center gap-2 overflow-x-auto pb-1 scrollbar-none">
+        <span class="text-sm font-semibold text-talent-text-secondary shrink-0">Vacante:</span>
+        <div class="flex items-center gap-2 flex-nowrap">
+          @for (opt of opportunityOptions; track opt.value) {
+          <button type="button" mat-stroked-button class="whitespace-nowrap"
+            [color]="opportunityFilter() === opt.value ? 'primary' : ''" (click)="setOpportunityFilter(opt.value)">
+            {{ opt.label }}
+          </button>
+          }
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Filtros de estado  -->
+    <div class="w-full overflow-x-auto pb-2 scrollbar-none -mx-4 px-4 sm:mx-0 sm:px-0">
+      <div class="min-w-max">
+        <app-filter-bar [filterOptions]="statusFilterOptions()" [selected]="statusFilter()"
+          (filterChanged)="onStatusFilterChanged($event)" />
+      </div>
+    </div>
+
+    <!-- Candidatos -->
+    <div class="space-y-3">
+      @for (candidate of filteredCandidates(); track candidate.id) {
+      <div class="cursor-pointer" [routerLink]="['/company/applications', candidate.id]">
+        <app-candidate-card [candidate]="candidate" />
+      </div>
+      } @empty {
+      <app-empty-state icon="person_search" [title]="searchQuery() ? 'Sin resultados' : 'Sin postulaciones'"
+        [description]="searchQuery() ? 'No encontramos candidatos que coincidan con tus criterios de búsqueda.' : 'Aún no has recibido postulaciones para esta vacante.'" />
+      }
+    </div>
+
+    }
+
+  </div>
+</main>
