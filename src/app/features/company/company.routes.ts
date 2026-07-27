@@ -12,6 +12,10 @@ export default [
     {
         path: 'create-opportunity',
         loadComponent: () => import('./pages/opportunities/create-opportunity/create-opportunity.component').then(m => m.CreateOpportunityComponent)
+    },
+    {
+        path: 'opportunities',
+        loadComponent: () => import('./pages/opportunities/opportunity-list/opportunity-list.component').then(m => m.OpportunityListComponent)
     }
 
 ] as Routes;

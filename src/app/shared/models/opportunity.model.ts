@@ -20,6 +20,9 @@ export interface OpportunitySummary {
   modality: Modality;
   salaryRange?: string;
   employmentType?: EmploymentType;
+  status?: OpportunityStatus;
+  createdAt?: string;
+  applicantsCount?: number;
 }
 
 export interface OpportunityDetail {

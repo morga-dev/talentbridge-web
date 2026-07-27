@@ -5,7 +5,7 @@
         [class.app-pill-soft]="selected() !== opt.value" class="whitespace-nowrap" (click)="selectFilter(opt.value)">
         {{ opt.label }}
         @if (opt.count !== undefined && opt.count >= 0) {
-          <span class="ml-1.5 text-xs opacity-70">({{ opt.count }})</span>
+          <span class="ml-1.5 text-md opacity-70">({{ opt.count }})</span>
         }
       </button>
     }

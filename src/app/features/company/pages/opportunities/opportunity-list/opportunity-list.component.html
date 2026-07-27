@@ -1,0 +1,123 @@
+<main class="min-h-screen bg-talent-bg pb-24 transition-colors duration-200">
+
+  <app-page-header>
+    <div class="space-y-1">
+      <h1 class="text-2xl font-extrabold text-white tracking-tight">Mis oportunidades</h1>
+      <p class="text-base font-medium text-white/70">
+        Administra las vacantes, becas y prácticas que has publicado.
+      </p>
+    </div>
+    <app-search-input placeholder="Buscar por título o tipo..." (valueChange)="onSearch($event)" />
+  </app-page-header>
+
+  <div class="max-w-6xl mx-auto px-4 mt-6 space-y-6">
+
+    @if (loading()) {
+    <app-loading-skeleton variant="card" [count]="1" />
+    <app-loading-skeleton variant="list" [count]="4" />
+
+    } @else {
+    <!-- Métricas -->
+    <app-metric-cards [items]="metrics()" />
+
+    <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+      <app-filter-bar [filterOptions]="filterOptions()" [selected]="statusFilter()"
+        (filterChanged)="onFilterChanged($event)" />
+      <button type="button" mat-fab extended color="primary" class="hidden sm:flex shrink-0" (click)="onCreate()">
+        <mat-icon>add</mat-icon>
+        Nueva oportunidad
+      </button>
+    </div>
+
+    <!-- Listado de oportunidades -->
+    @if (filteredOpportunities().length) {
+    <div class="space-y-4">
+      @for (opportunity of filteredOpportunities(); track opportunity.id) {
+      <div class="app-card rounded-2xl p-5 space-y-3 transition-all hover:shadow-md">
+
+        <!-- Cabecera de cards -->
+        <div class="flex items-start justify-between gap-3">
+          <div class="min-w-0 space-y-1">
+            <h3 class="text-lg font-extrabold text-talent-text tracking-tight">{{ opportunity.title }}</h3>
+
+            <div class="flex flex-wrap items-center gap-x-3 gap-y-1 text-base text-talent-text-secondary">
+              <span class="inline-flex items-center gap-1">
+                <mat-icon class="mat-icon-base">work</mat-icon>{{ opportunity.employmentType }}
+              </span>
+              <span class="inline-flex items-center gap-1">
+                <mat-icon class="mat-icon-xl">wifi</mat-icon>{{ opportunity.modality }}
+              </span>
+              <span class="inline-flex items-center gap-1">
+                <mat-icon class="mat-icon-xl">place</mat-icon>{{ opportunity.location }}
+              </span>
+              @if (opportunity.salaryRange) {
+              <span class="inline-flex items-center gap-1">
+                <mat-icon class="mat-icon-xl">payments</mat-icon>{{ opportunity.salaryRange }}
+              </span>
+              }
+            </div>
+          </div>
+
+          <mat-chip [color]="statusColor(opportunity.status)" [highlighted]="!!statusColor(opportunity.status)"
+            disableRipple class="shrink-0">
+            {{ statusLabel(opportunity.status) }}
+          </mat-chip>
+        </div>
+
+        <mat-divider></mat-divider>
+
+        <!-- Footer y acciones de cards -->
+        <div class="flex items-center justify-between gap-3">
+          <div class="flex items-center gap-4 text-sm text-talent-text-secondary">
+            <span class="inline-flex items-center gap-1">
+              <mat-icon class="mat-icon-base">calendar_today</mat-icon>{{ opportunity.createdAt }}
+            </span>
+            <span class="inline-flex items-center gap-1">
+              <mat-icon class="mat-icon-xl">people</mat-icon>{{ opportunity.applicantsCount }} candidatos
+            </span>
+          </div>
+
+          <!-- Botones de acción -->
+          <div class="flex items-center">
+            <button type="button" mat-icon-button (click)="onView(opportunity.id)" matTooltip="Ver detalle">
+              <mat-icon>visibility</mat-icon>
+            </button>
+            <button type="button" mat-icon-button (click)="onEdit(opportunity.id)" matTooltip="Editar">
+              <mat-icon>edit</mat-icon>
+            </button>
+
+            @if (opportunity.status === 'active' || opportunity.status === 'draft') {
+            <button type="button" mat-icon-button (click)="onToggleStatus(opportunity)"
+              [matTooltip]="opportunity.status === 'active' ? 'Pausar' : 'Publicar'">
+              <mat-icon>{{ opportunity.status === 'active' ? 'pause' : 'play_arrow' }}</mat-icon>
+            </button>
+            }
+
+            <!-- Eliminar -->
+            <button type="button" mat-icon-button color="warn" (click)="onDelete(opportunity)" matTooltip="Eliminar">
+              <mat-icon>delete_outline</mat-icon>
+            </button>
+          </div>
+        </div>
+
+      </div>
+      }
+    </div>
+
+    } @else {
+    <!-- Estado vacío  -->
+    <app-empty-state icon="work_off" [title]="searchQuery() ? 'Sin resultados' : 'Sin oportunidades'"
+      [description]="searchQuery() ? 'No encontramos oportunidades que coincidan con tu búsqueda.' : 'Aún no has creado ninguna oportunidad para tu empresa.'"
+      [actionLabel]="searchQuery() ? '' : 'Crear mi primera oportunidad'" (action)="onCreate()" />
+    }
+
+    <!-- FAB Móvil -->
+    <div class="fixed bottom-6 right-6 sm:hidden z-10">
+      <button type="button" mat-fab color="primary" (click)="onCreate()" aria-label="Crear oportunidad">
+        <mat-icon>add</mat-icon>
+      </button>
+    </div>
+    }
+
+  </div>
+</main>
