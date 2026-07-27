@@ -1,0 +1,164 @@
+@if (loading()) {
+  <main class="min-h-screen bg-talent-bg pb-24 transition-colors duration-200">
+    <div class="max-w-6xl mx-auto px-4 pt-8 space-y-6">
+      <app-loading-skeleton variant="card" [count]="1" />
+      <app-loading-skeleton variant="list" [count]="5" />
+    </div>
+  </main>
+} @else if (notFound()) {
+  <main class="min-h-screen bg-talent-bg flex items-center justify-center px-4">
+    <app-empty-state icon="work_off" title="Oportunidad no encontrada" description="No encontramos esta oportunidad." actionLabel="Volver a oportunidades" (action)="goBack()" />
+  </main>
+} @else {
+  @if (opportunity(); as opp) {
+    <main class="min-h-screen bg-talent-bg pb-24 transition-colors duration-200">
+
+      <app-page-header>
+        <button type="button" mat-icon-button (click)="goBack()" aria-label="Volver" class="self-start text-white">
+          <mat-icon>arrow_back</mat-icon>
+        </button>
+
+        <div class="flex items-start justify-between gap-4">
+          <div class="space-y-1 min-w-0">
+            <h1 class="text-xl font-extrabold text-white tracking-tight truncate">{{ opp.title }}</h1>
+            <p class="text-base font-medium text-white/70">{{ opp.employmentType }} · {{ opp.modality }} · {{ opp.location }}</p>
+          </div>
+          <mat-chip [color]="opportunityStatusColor(opp.status)" [highlighted]="!!opportunityStatusColor(opp.status)" disableRipple class="shrink-0">
+            {{ opportunityStatusLabel(opp.status) }}
+          </mat-chip>
+        </div>
+      </app-page-header>
+
+      <div class="max-w-6xl mx-auto px-4 mt-6 space-y-6">
+
+        <!-- Acciones rápidas -->
+        <div class="flex flex-wrap items-center gap-2">
+          <button type="button" mat-flat-button color="primary" (click)="onEdit()">
+            <mat-icon>edit</mat-icon>
+            Editar
+          </button>
+          @if (opp.status === 'active' || opp.status === 'draft') {
+            <button type="button" mat-stroked-button (click)="onToggleStatus()">
+              <mat-icon>{{ opp.status === 'active' ? 'pause' : 'play_arrow' }}</mat-icon>
+              {{ opp.status === 'active' ? 'Pausar' : 'Publicar' }}
+            </button>
+          }
+          <button type="button" mat-stroked-button color="warn" (click)="onDelete()">
+            <mat-icon>delete_outline</mat-icon>
+            Eliminar
+          </button>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+
+          <!-- Columna izquierda: Info de la oportunidad -->
+          <div class="lg:col-span-2 space-y-6">
+
+            <!-- Descripción -->
+            <section class="app-card rounded-2xl p-5 space-y-3">
+              <h2 class="text-lg font-extrabold text-talent-text tracking-tight">Descripción</h2>
+              <p class="text-base font-medium text-talent-text-secondary leading-relaxed">{{ opp.description }}</p>
+            </section>
+
+            <!-- Requisitos -->
+            <section class="app-card rounded-2xl p-5 space-y-3">
+              <h2 class="text-lg font-extrabold text-talent-text tracking-tight">Requisitos</h2>
+              <ul class="space-y-1.5">
+                @for (req of opp.requirements; track req) {
+                  <li class="flex items-start gap-2 text-base font-medium text-talent-text-secondary">
+                    <mat-icon class="mat-icon-xl text-talent-primary flex items-center justify-center mt-0.5">check</mat-icon>
+                    {{ req }}
+                  </li>
+                }
+              </ul>
+            </section>
+
+            <!-- Tecnologías -->
+            <section class="app-card rounded-2xl p-5 space-y-3">
+              <h2 class="text-lg font-extrabold text-talent-text tracking-tight">Tecnologías</h2>
+              <mat-chip-set>
+                @for (tech of opp.technologies; track tech) {
+                  <mat-chip disableRipple>{{ tech }}</mat-chip>
+                }
+              </mat-chip-set>
+            </section>
+
+          </div>
+
+          <!-- Columna derecha: Métricas y candidatos -->
+          <div class="space-y-6">
+
+            <!-- Detalles -->
+            <section class="app-card rounded-2xl p-5 space-y-3">
+              <h2 class="text-lg font-extrabold text-talent-text tracking-tight">Detalles</h2>
+              <div class="space-y-3">
+                <div>
+                  <p class="text-md font-semibold text-talent-text-secondary/70">Salario</p>
+                  <p class="text-base font-medium text-talent-text">{{ opp.salaryRange ?? 'No especificado' }}</p>
+                </div>
+                <mat-divider></mat-divider>
+                <div>
+                  <p class="text-md font-semibold text-talent-text-secondary/70">Tiempo estimado de aplicación</p>
+                  <p class="text-base font-medium text-talent-text">{{ opp.estimatedApplyMinutes ?? '-' }} min</p>
+                </div>
+                <mat-divider></mat-divider>
+                <div>
+                  <p class="text-md font-semibold text-talent-text-secondary/70">Publicada</p>
+                  <p class="text-base font-medium text-talent-text">{{ opp.createdAt }}</p>
+                </div>
+                <mat-divider></mat-divider>
+                <div>
+                  <p class="text-md font-semibold text-talent-text-secondary/70">Fecha de cierre</p>
+                  <p class="text-base font-medium text-talent-text">{{ opp.expirationDate }}</p>
+                </div>
+              </div>
+            </section>
+
+            <!-- Candidatos -->
+            @if (applicantsForThis().length) {
+              <section class="app-card rounded-2xl p-5 space-y-3">
+                <div class="flex items-center justify-between">
+                  <h2 class="text-lg font-extrabold text-talent-text tracking-tight">Candidatos</h2>
+                  <span class="text-md font-semibold text-talent-secondary">{{ applicantsForThis().length }} en total</span>
+                </div>
+
+                <div class="space-y-2">
+                  @for (candidate of applicantsForThis(); track candidate.id) {
+                    <div class="flex items-center gap-3 cursor-pointer" [routerLink]="['/company/applications', candidate.id]">
+                      <div class="app-icon-badge h-9 w-9 rounded-full flex items-center justify-center font-bold text-sm shrink-0">
+                        {{ candidate.initials }}
+                      </div>
+                      <div class="min-w-0 flex-1">
+                        <p class="text-base font-semibold text-talent-text truncate">{{ candidate.fullName }}</p>
+                        <p class="text-md font-medium text-talent-text-secondary/70 truncate">{{ candidate.career }}</p>
+                      </div>
+                      <mat-chip disableRipple class="text-xs" [color]="candidateStatusColor(candidate.status)" [highlighted]="!!candidateStatusColor(candidate.status)">
+                        {{ candidateStatusLabel(candidate.status) }}
+                      </mat-chip>
+                    </div>
+                    @if (!$last) {
+                      <mat-divider></mat-divider>
+                    }
+                  }
+                </div>
+
+                <button type="button" mat-stroked-button color="primary" class="w-full" routerLink="/company/applications">
+                  Ver todos los candidatos
+                </button>
+              </section>
+            } @else {
+              <section class="app-card rounded-2xl p-5 text-center space-y-2">
+                <mat-icon class="text-talent-text-secondary/40">person_search</mat-icon>
+                <p class="text-base font-medium text-talent-text-secondary/70">Aún no hay candidatos para esta oportunidad.</p>
+              </section>
+            }
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </main>
+  }
+}

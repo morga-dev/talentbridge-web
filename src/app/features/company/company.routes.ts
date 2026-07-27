@@ -22,7 +22,7 @@ export default [
             },
             {
                 path: ':id',
-                loadComponent: () => import('./pages/opportunities/opportunity-list/opportunity-list.component').then(m => m.OpportunityListComponent)
+                loadComponent: () => import('./pages/opportunities/opportunity-detail/opportunity-detail.component').then(m => m.OpportunityDetailComponent)
             }
         ]
     },
