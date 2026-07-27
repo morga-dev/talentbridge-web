@@ -34,6 +34,10 @@ export default [
     {
         path: 'profile',
         loadComponent: () => import('./pages/profile/profile.component').then(m => m.ProfileComponent)
+    },
+    {
+        path: 'company/:id',
+        loadComponent: () => import('./pages/company-profile/company-profile.component').then(m => m.CompanyProfileComponent)
     }
 
 ] as Routes;
