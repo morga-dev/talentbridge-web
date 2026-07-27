@@ -1,0 +1,66 @@
+<section class="space-y-6 pb-24" aria-labelledby="featured-jobs-title">
+    <!-- Encabezado con título, subtítulo y enlace a la derecha -->
+    <header class="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
+        <div>
+            <h2 id="featured-jobs-title" class="text-3xl md:text-4xl font-bold text-talent-secondary tracking-tight">
+                Oportunidades destacadas
+            </h2>
+            <p class="mt-1 text-lg text-secondary font-medium">
+                Nuevas vacantes publicadas hoy en Tapachula, Chiapas.
+            </p>
+        </div>
+
+        <button type="button" (click)="viewAllJobs()"
+            class="inline-flex items-center gap-1 text-lg font-bold text-talent-secondary hover:underline cursor-pointer group self-start sm:self-auto">
+            <span class="mb-1">Ver todas las ofertas</span>
+            <mat-icon class="mat-icon-2xl transition-transform duration-200 group-hover:translate-x-1">
+                arrow_forward
+            </mat-icon>
+        </button>
+    </header>
+
+    <!-- Cards oportunidades -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <article *ngFor="let job of featuredJobs"
+            class="app-card rounded-3xl p-6 shadow-sm border border-secondary/10 hover:border-primary/30 transition-all duration-300 flex flex-col justify-between">
+            <div>
+                <!-- Iniciales -->
+                <div class="flex items-center justify-between mb-4">
+                    <div
+                        class="flex h-12 w-12 items-center justify-center rounded-2xl bg-primary/10 text-primary font-bold text-2xl">
+                        {{ job.initials }}
+                    </div>
+
+                    <!-- Badge: RECIENTE o DESTACADO -->
+                    <span class="px-3 py-1 rounded-full text-[10px] font-bold tracking-wider uppercase" [ngClass]="{
+              'bg-primary/15 text-primary': job.badgeType === 'recent',
+              'bg-amber-500/15 text-amber-600': job.badgeType === 'featured',
+            }">
+                        {{ job.badgeText }}
+                    </span>
+                </div>
+
+                <!-- Título - empresa/ubicación -->
+                <h3 class="text-2xl font-bold text-talent-secondary mb-1 line-clamp-1">
+                    {{ job.title }}
+                </h3>
+                <p class="text-lg text-secondary font-medium mb-3">
+                    {{ job.company }} • {{ job.location }}
+                </p>
+
+                <!-- Descripción corta -->
+                <p class="text-base text-secondary/80 font-normal leading-relaxed line-clamp-3 mb-6">
+                    {{ job.description }}
+                </p>
+            </div>
+
+            <!-- Footer de la Card: Chips / Tags de habilidades -->
+            <div class="flex flex-wrap gap-2 pt-2">
+                <span *ngFor="let tag of job.tags"
+                    class="px-3 py-1 rounded-full bg-secondary/10 text-secondary text-md font-bold tracking-wider">
+                    {{ tag }}
+                </span>
+            </div>
+        </article>
+    </div>
+</section>

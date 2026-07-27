@@ -1,0 +1,36 @@
+<section class="space-y-6 pb-24">
+	<header class="text-center space-y-2">
+		<span class="inline-flex items-center rounded-full bg-talent-primary/10 px-4 py-1.5 text-base font-bold text-talent-primary tracking-wide">
+			<mat-icon class="mr-1.5">info</mat-icon>
+			Sobre nosotros
+		</span>
+		<h2 class="text-2xl sm:text-3xl font-extrabold text-talent-text tracking-tight">
+			Conectando talento joven con oportunidades reales
+		</h2>
+		<p class="text-lg font-medium text-talent-text-secondary/70 max-w-xl mx-auto">
+			TalentBridge nació en Tapachula para cerrar la brecha entre estudiantes y empresas en el sureste de México.
+		</p>
+	</header>
+
+	<div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+		@for (stat of stats; track stat.label) {
+			<div class="app-card rounded-2xl p-4 text-center space-y-1 transition-colors duration-200">
+				<mat-icon class="text-talent-secondary">{{ stat.icon }}</mat-icon>
+				<p class="text-xl font-black text-talent-text">{{ stat.value }}</p>
+				<p class="text-base font-semibold text-talent-text-secondary/70">{{ stat.label }}</p>
+			</div>
+		}
+	</div>
+
+	<div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+		@for (value of values; track value.title) {
+			<div class="app-card rounded-2xl p-4 space-y-2 transition-colors duration-200">
+				<div class="app-icon-badge h-9 w-9 rounded-xl flex items-center justify-center">
+					<mat-icon class="text-talent-primary">{{ value.icon }}</mat-icon>
+				</div>
+				<h3 class="text-lg font-extrabold text-talent-text">{{ value.title }}</h3>
+				<p class="text-base font-medium text-talent-text-secondary/70 leading-relaxed">{{ value.description }}</p>
+			</div>
+		}
+	</div>
+</section>

@@ -1,0 +1,92 @@
+<section class="space-y-6">
+	<header class="text-center space-y-2">
+		<span class="inline-flex items-center rounded-full bg-talent-primary/10 px-4 py-1.5 text-base font-bold text-talent-primary tracking-wide">
+			<mat-icon class="mr-1.5">mail</mat-icon>
+			Contacto
+		</span>
+		<h2 class="text-2xl sm:text-3xl font-extrabold text-talent-text tracking-tight">
+			¿Deseas contactarnos?
+		</h2>
+		<p class="text-lg font-medium text-talent-text-secondary/70 max-w-lg mx-auto">
+			Dudas, sugerencias o quieres asociar tu empresa. Escríbenos y te responderemos a la brevedad.
+		</p>
+	</header>
+
+	<div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+
+		<aside class="space-y-3">
+			@for (item of contactInfo; track item.label) {
+				<div class="app-card rounded-2xl p-4 flex items-center gap-3 transition-colors duration-200">
+					<div class="app-icon-badge h-10 w-10 rounded-xl flex items-center justify-center shrink-0">
+						<mat-icon class="text-talent-primary">{{ item.icon }}</mat-icon>
+					</div>
+					<div class="min-w-0">
+						<p class="text-md font-bold uppercase tracking-wider text-talent-text-secondary/60">{{ item.label }}</p>
+						<p class="text-md font-semibold text-talent-text truncate">{{ item.value }}</p>
+					</div>
+				</div>
+			}
+		</aside>
+
+		<section class="lg:col-span-2">
+			<form [formGroup]="contactForm" (ngSubmit)="onSubmit()" class="app-card rounded-3xl p-6 space-y-4 transition-colors duration-200">
+
+				<div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+					<div class="space-y-1.5">
+						<label for="name" class="block text-sm font-bold uppercase tracking-wider text-talent-text">Nombre completo</label>
+						<div class="relative flex items-center">
+							<div class="app-icon-badge absolute left-4 p-1.5 rounded-lg"><mat-icon aria-hidden="true">person</mat-icon></div>
+							<input id="name" type="text" formControlName="name" placeholder="Tu nombre"
+								class="app-input w-full rounded-2xl py-3 pl-14 pr-4 text-base font-medium text-talent-text placeholder:text-talent-text-secondary/40 focus:outline-hidden focus:border-talent-primary transition-colors" />
+						</div>
+						@if (contactForm.get('name')?.invalid && contactForm.get('name')?.touched) {
+							<p class="text-md font-semibold text-red-400 ml-1">Ingresa tu nombre</p>
+						}
+					</div>
+					<div class="space-y-1.5">
+						<label for="email" class="block text-sm font-bold uppercase tracking-wider text-talent-text">Correo electrónico</label>
+						<div class="relative flex items-center">
+							<div class="app-icon-badge absolute left-4 p-1.5 rounded-lg"><mat-icon aria-hidden="true">mail</mat-icon></div>
+							<input id="email" type="email" formControlName="email" placeholder="correo@ejemplo.com"
+								class="app-input w-full rounded-2xl py-3 pl-14 pr-4 text-base font-medium text-talent-text placeholder:text-talent-text-secondary/40 focus:outline-hidden focus:border-talent-primary transition-colors" />
+						</div>
+						@if (contactForm.get('email')?.invalid && contactForm.get('email')?.touched) {
+							<p class="text-md font-semibold text-red-400 ml-1">Correo inválido</p>
+						}
+					</div>
+				</div>
+
+				<div class="space-y-1.5">
+					<label for="subject" class="block text-sm font-bold uppercase tracking-wider text-talent-text">Asunto</label>
+					<div class="relative flex items-center">
+						<div class="app-icon-badge absolute left-4 p-1.5 rounded-lg"><mat-icon aria-hidden="true">topic</mat-icon></div>
+						<input id="subject" type="text" formControlName="subject" placeholder="¿Sobre qué trata tu mensaje?"
+							class="app-input w-full rounded-2xl py-3 pl-14 pr-4 text-base font-medium text-talent-text placeholder:text-talent-text-secondary/40 focus:outline-hidden focus:border-talent-primary transition-colors" />
+					</div>
+					@if (contactForm.get('subject')?.invalid && contactForm.get('subject')?.touched) {
+						<p class="text-md font-semibold text-red-400 ml-1">Indica el asunto</p>
+					}
+				</div>
+
+				<div class="space-y-1.5">
+					<label for="message" class="block text-sm font-bold uppercase tracking-wider text-talent-text">Mensaje</label>
+					<textarea id="message" formControlName="message" rows="4" placeholder="Escribe tu mensaje aquí..."
+						class="app-input w-full rounded-2xl py-3 px-4 text-base font-medium text-talent-text placeholder:text-talent-text-secondary/40 focus:outline-hidden focus:border-talent-primary transition-colors resize-y min-h-24"></textarea>
+					@if (contactForm.get('message')?.invalid && contactForm.get('message')?.touched) {
+						<p class="text-md font-semibold text-red-400 ml-1">El mensaje debe tener al menos 10 caracteres</p>
+					}
+				</div>
+
+				<div class="flex justify-end">
+					<button type="submit" [disabled]="contactForm.invalid"
+						class="app-button-primary rounded-2xl py-3 px-8 text-base font-bold hover:brightness-105 active:scale-[0.99] transition-all cursor-pointer inline-flex items-center gap-2 disabled:opacity-50 disabled:pointer-events-none">
+						<mat-icon>send</mat-icon>
+						Enviar mensaje
+					</button>
+				</div>
+
+			</form>
+		</section>
+
+	</div>
+</section>
