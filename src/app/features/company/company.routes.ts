@@ -8,6 +8,10 @@ export default [
     {
         path: 'profile',
         loadComponent: () => import('./pages/profile/profile.component').then(m => m.ProfileComponent)
+    },
+    {
+        path: 'create-opportunity',
+        loadComponent: () => import('./pages/opportunities/create-opportunity/create-opportunity.component').then(m => m.CreateOpportunityComponent)
     }
 
 ] as Routes;

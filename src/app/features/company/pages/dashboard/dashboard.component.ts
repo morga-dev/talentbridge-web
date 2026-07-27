@@ -100,7 +100,7 @@ export class CompanyDashboardComponent {
   }
 
   onPostNewJob(): void {
-    this.router.navigate(['/']);
+    this.router.navigate(['/company/create-opportunity']);
   }
 
   onViewAllCandidates(): void {

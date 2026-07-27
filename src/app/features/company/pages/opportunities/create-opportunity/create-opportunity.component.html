@@ -1,0 +1,161 @@
+<main class="min-h-screen bg-talent-bg pb-24 transition-colors duration-200">
+
+    <div class="max-w-4xl mx-auto px-4 pt-6 space-y-6">
+
+        <!-- Header -->
+        <div class="flex items-center gap-3">
+            <button type="button" mat-icon-button (click)="goBack()" aria-label="Volver">
+                <mat-icon class="text-text-primary">arrow_back</mat-icon>
+            </button>
+            <div>
+                <h1 class="text-2xl font-bold text-text-primary tracking-tight">Publicar nueva oportunidad</h1>
+                <p class="text-base font-medium text-text-secondary">Vacantes, becas, prácticas profesionales y más</p>
+            </div>
+        </div>
+
+        <form [formGroup]="opportunityForm" (ngSubmit)="onSubmit()" class="app-card rounded-2xl p-5 md:p-6 space-y-6">
+
+            <!-- Información General -->
+            <fieldset>
+                <legend class="tb-title mb-4">Información general</legend>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div class="md:col-span-2">
+                        <mat-form-field class="w-full" appearance="outline">
+                            <mat-label>Título de la oportunidad</mat-label>
+                            <input matInput formControlName="title" placeholder="Ej. Desarrollador Frontend Jr" />
+                            @if (f.title.hasError('required')) {
+                            <mat-error>El título es requerido</mat-error>
+                            }
+                            @if (f.title.hasError('minlength')) {
+                            <mat-error>Debe tener al menos 5 caracteres</mat-error>
+                            }
+                        </mat-form-field>
+                    </div>
+
+                    <mat-form-field appearance="outline">
+                        <mat-label>Tipo de empleo</mat-label>
+                        <mat-select formControlName="employmentType">
+                            @for (type of employmentTypes; track type) {
+                            <mat-option [value]="type">{{ type }}</mat-option>
+                            }
+                        </mat-select>
+                        @if (f.employmentType.hasError('required')) {
+                        <mat-error>Selecciona un tipo</mat-error>
+                        }
+                    </mat-form-field>
+
+                    <mat-form-field appearance="outline">
+                        <mat-label>Modalidad</mat-label>
+                        <mat-select formControlName="modality">
+                            @for (m of modalities; track m) {
+                            <mat-option [value]="m">{{ m }}</mat-option>
+                            }
+                        </mat-select>
+                        @if (f.modality.hasError('required')) {
+                        <mat-error>Selecciona una modalidad</mat-error>
+                        }
+                    </mat-form-field>
+
+                    <mat-form-field appearance="outline">
+                        <mat-label>Ubicación</mat-label>
+                        <mat-icon matPrefix>location_on</mat-icon>
+                        <input matInput formControlName="location" placeholder="Ej. Tapachula, Chiapas" />
+                        @if (f.location.hasError('required')) {
+                        <mat-error>La ubicación es requerida</mat-error>
+                        }
+                    </mat-form-field>
+
+                    <mat-form-field appearance="outline">
+                        <mat-label>Salario / Apoyo económico</mat-label>
+                        <mat-icon matPrefix>payments</mat-icon>
+                        <input matInput formControlName="salaryRange" placeholder="Ej. $8,000 - $12,000 MXN" />
+                    </mat-form-field>
+
+                    <mat-form-field appearance="outline">
+                        <mat-label>Fecha de cierre</mat-label>
+                        <mat-icon matPrefix>calendar_today</mat-icon>
+                        <input matInput type="date" formControlName="expirationDate" />
+                        @if (f.expirationDate.hasError('required')) {
+                        <mat-error>La fecha de cierre es requerida</mat-error>
+                        }
+                    </mat-form-field>
+
+                    <mat-form-field appearance="outline">
+                        <mat-label>Tiempo estimado de postulación (minutos)</mat-label>
+                        <mat-icon matPrefix>timer</mat-icon>
+                        <input matInput type="number" min="1" max="60" formControlName="estimatedApplyMinutes" />
+                    </mat-form-field>
+                </div>
+            </fieldset>
+
+            <mat-divider></mat-divider>
+
+            <!-- Descripción -->
+            <fieldset>
+                <legend class="tb-title mb-4">Descripción de la vacante</legend>
+
+                <mat-form-field class="w-full" appearance="outline">
+                    <mat-label>Descripción general</mat-label>
+                    <textarea matInput formControlName="description" rows="5"
+                        placeholder="Describe el objetivo del puesto, responsabilidades principales y lo que ofrecen como empresa..."></textarea>
+                    @if (f.description.hasError('required')) {
+                    <mat-error>La descripción es requerida</mat-error>
+                    }
+                    @if (f.description.hasError('minlength')) {
+                    <mat-error>Debe tener al menos 20 caracteres</mat-error>
+                    }
+                </mat-form-field>
+            </fieldset>
+
+            <mat-divider></mat-divider>
+
+            <!-- Un solo input dinámico para Requisitos, Tecnologías y Condiciones -->
+            <fieldset>
+                <legend class="tb-title mb-1">Requisitos y Tecnologías clave</legend>
+                <p class="text-xs text-text-secondary mb-4">Agrega tecnologías, habilidades, idiomas o condiciones de
+                    trabajo (presiona Enter tras cada elemento).</p>
+
+                <mat-form-field class="w-full" appearance="outline">
+                    <mat-chip-grid #chipGrid aria-label="Requisitos y Tecnologías">
+                        @for (req of requirementsList(); track req) {
+                        <mat-chip-row (removed)="removeRequirement(req)">
+                            {{ req }}
+                            <button matChipRemove [attr.aria-label]="'Eliminar ' + req">
+                                <mat-icon>cancel</mat-icon>
+                            </button>
+                        </mat-chip-row>
+                        }
+                    </mat-chip-grid>
+                    <input placeholder="Ej. Angular, Python, Inglés B2, Disponibilidad fin de semana..."
+                        [matChipInputFor]="chipGrid" (keydown.enter)="addRequirement(reqInput); $event.preventDefault()"
+                        #reqInput />
+                </mat-form-field>
+            </fieldset>
+
+            <mat-divider></mat-divider>
+
+            <!-- Botones de Acción -->
+            <div class="flex flex-col sm:flex-row justify-end items-stretch sm:items-center gap-3 pt-2">
+                <button type="button" mat-button (click)="goBack()">
+                    Cancelar
+                </button>
+                <button type="submit" mat-flat-button color="primary"
+                    [disabled]="opportunityForm.invalid || submitting()">
+                    @if (submitting()) {
+                    <div class="flex items-center gap-2">
+                        <mat-icon class="animate-spin">hourglass_top</mat-icon>
+                        <span>Publicando...</span>
+                    </div>
+                    } @else {
+                    <div class="flex items-center gap-2">
+                        <mat-icon>send</mat-icon>
+                        <span>Publicar oportunidad</span>
+                    </div>
+                    }
+                </button>
+            </div>
+
+        </form>
+    </div>
+</main>
