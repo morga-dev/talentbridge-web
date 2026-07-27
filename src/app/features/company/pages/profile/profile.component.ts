@@ -5,6 +5,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatListModule } from '@angular/material/list';
 import { MatDividerModule } from '@angular/material/divider';
 import { CompanyProfile } from '../../../../shared/models/company.model';
+import { PageHeaderComponent } from '../../../../shared/components';
 
 @Component({
   selector: 'app-company-profile',
@@ -14,7 +15,8 @@ import { CompanyProfile } from '../../../../shared/models/company.model';
     MatIconModule,
     MatButtonModule,
     MatListModule,
-    MatDividerModule
+    MatDividerModule,
+    PageHeaderComponent
   ],
   templateUrl: './profile.component.html'
 })

@@ -6,6 +6,7 @@ import { MatChipsModule } from '@angular/material/chips';
 import { MatListModule } from '@angular/material/list';
 import { MatDividerModule } from '@angular/material/divider';
 import { StudentProfile } from '../../models/student.model';
+import { PageHeaderComponent } from '../../../../shared/components';
 
 @Component({
   selector: 'app-profile',
@@ -16,7 +17,8 @@ import { StudentProfile } from '../../models/student.model';
     MatButtonModule,
     MatChipsModule,
     MatListModule,
-    MatDividerModule
+    MatDividerModule,
+    PageHeaderComponent
   ],
   templateUrl: './profile.component.html'
 })
