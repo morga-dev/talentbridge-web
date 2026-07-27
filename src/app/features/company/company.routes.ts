@@ -10,12 +10,30 @@ export default [
         loadComponent: () => import('./pages/profile/profile.component').then(m => m.ProfileComponent)
     },
     {
-        path: 'create-opportunity',
-        loadComponent: () => import('./pages/opportunities/create-opportunity/create-opportunity.component').then(m => m.CreateOpportunityComponent)
+        path: 'opportunities',
+        children: [
+            {
+                path: '',
+                loadComponent: () => import('./pages/opportunities/opportunity-list/opportunity-list.component').then(m => m.OpportunityListComponent)
+            },
+            {
+                path: 'create',
+                loadComponent: () => import('./pages/opportunities/create-opportunity/create-opportunity.component').then(m => m.CreateOpportunityComponent)
+            },
+            {
+                path: ':id',
+                loadComponent: () => import('./pages/opportunities/opportunity-list/opportunity-list.component').then(m => m.OpportunityListComponent)
+            }
+        ]
     },
     {
-        path: 'opportunities',
-        loadComponent: () => import('./pages/opportunities/opportunity-list/opportunity-list.component').then(m => m.OpportunityListComponent)
-    }
+        path: 'applications',
+        children: [
+            {
+                path: '',
+                loadComponent: () => import('./pages/applications/application-list/application-list.component').then(m => m.ApplicationListComponent)
+            }
+        ]
+    },
 
 ] as Routes;

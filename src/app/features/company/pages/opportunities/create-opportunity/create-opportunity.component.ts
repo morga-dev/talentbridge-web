@@ -161,7 +161,7 @@ export class CreateOpportunityComponent {
         horizontalPosition: 'center',
         verticalPosition: 'top'
       });
-      this.router.navigate(['/company/dashboard']);
+      this.router.navigate(['/company/opportunities']);
     }, 1000);
   }
 

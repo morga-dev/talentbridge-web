@@ -165,11 +165,11 @@ export class OpportunityListComponent {
   }
 
   onEdit(id: number): void {
-    this.router.navigate(['/company/create-opportunity'], { queryParams: { id } });
+    this.router.navigate(['/company/opportunities/create'], { queryParams: { id } });
   }
 
   onCreate(): void {
-    this.router.navigate(['/company/create-opportunity']);
+    this.router.navigate(['/company/opportunities/create']);
   }
 
   // Alternar Pausar / Publicar

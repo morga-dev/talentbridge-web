@@ -100,11 +100,11 @@ export class CompanyDashboardComponent {
   }
 
   onPostNewJob(): void {
-    this.router.navigate(['/company/create-opportunity']);
+    this.router.navigate(['/company/opportunities/create']);
   }
 
   onViewAllCandidates(): void {
-    this.router.navigate(['/']);
+    this.router.navigate(['/company/applications']);
   }
 
   onViewNotifications(): void {
@@ -112,6 +112,6 @@ export class CompanyDashboardComponent {
   }
 
   onViewInterviewDetails(): void {
-    this.router.navigate(['/']);
+    this.router.navigate(['/company/applications']);
   }
 }
