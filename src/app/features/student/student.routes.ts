@@ -10,11 +10,11 @@ export default [
         children: [
         {
             path: '',
-            loadComponent: () => import('./pages/vacancies/opportunity-list/opportunity-list.component').then(m => m.OpportunityListComponent)
+            loadComponent: () => import('./pages/opportunities/opportunity-list/opportunity-list.component').then(m => m.OpportunityListComponent)
         },
         {
             path: ':id',
-            loadComponent: () => import('./pages/vacancies/opportunity-detail/opportunity-detail.component').then(m => m.OpportunityDetailComponent)
+            loadComponent: () => import('./pages/opportunities/opportunity-detail/opportunity-detail.component').then(m => m.OpportunityDetailComponent)
         }
         ]
     },
