@@ -116,7 +116,7 @@
 						@for (candidate of recentCandidates(); track candidate.id) {
 							<app-candidate-card [candidate]="candidate" />
 						} @empty {
-							<app-empty-state message="Aún no tienes candidatos que hayan aplicado a tus vacantes." icon="person_search" />
+							<app-empty-state icon="person_search" title="Sin candidatos aún" description="Aún no tienes candidatos que hayan aplicado a tus vacantes." />
 						}
 					</div>
 				}

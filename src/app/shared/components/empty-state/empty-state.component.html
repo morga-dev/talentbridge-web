@@ -1,4 +1,27 @@
-<div class="app-empty-state rounded-2xl px-6 py-8 text-center flex flex-col items-center gap-2">
-    <mat-icon class="text-talent-text-secondary/30 flex justify-center">{{ icon() }}</mat-icon>
-    <p class="text-base font-medium text-talent-text-secondary/80">{{ message() }}</p>
+<div class="app-card rounded-2xl p-8 text-center flex flex-col items-center justify-center gap-3">
+    <!-- Ícono -->
+    <div class="w-12 h-12 rounded-full bg-talent-bg flex items-center justify-center">
+        <mat-icon class="text-talent-text-secondary/60">{{ icon() }}</mat-icon>
+    </div>
+
+    <!-- Contenido de Texto -->
+    <div class="max-w-md space-y-1">
+        @if (title()) {
+        <h3 class="text-lg font-bold text-talent-text tracking-tight">{{ title() }}</h3>
+        }
+
+        <!-- Soporta tanto `description` como el `message` legacy -->
+        @if (description() || message()) {
+        <p class="text-sm font-medium text-talent-text-secondary/80 leading-relaxed">
+            {{ description() ?? message() }}
+        </p>
+        }
+    </div>
+
+    <!-- Botón Opcional -->
+    @if (actionLabel()) {
+    <button type="button" mat-stroked-button color="primary" class="mt-2" (click)="onAction()">
+        {{ actionLabel() }}
+    </button>
+    }
 </div>

@@ -171,11 +171,6 @@
 </main>
 } @else {
 <main class="min-h-screen bg-talent-bg flex items-center justify-center px-4">
-    <div class="app-empty-state rounded-2xl px-6 py-8 text-center space-y-3 max-w-sm">
-        <p class="text-xl">No se encontró esta postulación.</p>
-        <button type="button" mat-stroked-button color="primary" (click)="goBack()">
-            Volver a mis postulaciones
-        </button>
-    </div>
+    <app-empty-state icon="search_off" title="Postulación no encontrada" description="No se encontró esta postulación." actionLabel="Volver a mis postulaciones" (action)="goBack()" />
 </main>
 }

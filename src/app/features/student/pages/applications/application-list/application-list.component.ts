@@ -4,9 +4,9 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatChipsModule } from '@angular/material/chips';
 import { Application } from '../../../models';
-import { ApplicationStatus, TypeFilter, type MetricCard } from '../../../../../shared/models';
+import { ApplicationStatus, type MetricCard, type FilterOption } from '../../../../../shared/models';
 import { RouterLink } from '@angular/router';
-import { PageHeaderComponent, SearchInputComponent, MetricCardsComponent, FilterBarComponent } from '../../../../../shared/components';
+import { PageHeaderComponent, SearchInputComponent, MetricCardsComponent, FilterBarComponent, EmptyStateComponent } from '../../../../../shared/components';
 
 
 @Component({
@@ -22,13 +22,13 @@ import { PageHeaderComponent, SearchInputComponent, MetricCardsComponent, Filter
     PageHeaderComponent,
     SearchInputComponent,
     MetricCardsComponent,
-	FilterBarComponent
+	  FilterBarComponent,
+	  EmptyStateComponent
   ],
   templateUrl: './application-list.component.html'
 })
 export class ApplicationListComponent {
 
-  // Datos de prueba
   private readonly allApplications = signal<Application[]>([
     {
       id: 1,
@@ -72,10 +72,21 @@ export class ApplicationListComponent {
     }
   ]);
 
-  readonly typeFilter = signal<TypeFilter>('Todas');
+  readonly typeFilter = signal<string>('Todas');
+
+  readonly filterOptions = computed<FilterOption[]>(() => {
+    const all = this.allApplications();
+    const vacantes = all.filter(a => a.type === 'Vacante').length;
+    const becas = all.filter(a => a.type === 'Beca').length;
+    return [
+      { value: 'Todas', label: 'Todas', count: all.length },
+      { value: 'Vacantes', label: 'Vacantes', count: vacantes },
+      { value: 'Becas', label: 'Becas', count: becas }
+    ];
+  });
 
   readonly metricItems = computed<MetricCard[]>(() => [
-	{ label: 'Postulaciones', value: this.allApplications().length },
+	  { label: 'Postulaciones', value: this.allApplications().length },
     { label: 'En entrevista', value: this.allApplications().filter((a) => a.status === 'interview').length },
     { label: 'Aceptadas', value: this.allApplications().filter((a) => a.status === 'accepted').length },
   ]);
@@ -90,12 +101,11 @@ export class ApplicationListComponent {
   });
 
   onFilterChanged(filter: string): void {
-    this.typeFilter.set(filter as TypeFilter);
+    this.typeFilter.set(filter);
   }
 
   onViewDetails(application: Application): void {
     console.log('Ver detalles de:', application.title);
-    // componente detail
   }
 
   statusLabel(status: ApplicationStatus): string {
@@ -127,6 +137,6 @@ export class ApplicationListComponent {
   }
 
   onSearchChanged(query: string): void {
-	console.log('Buscando:', query);
+	  console.log('Buscando:', query);
   }
 }

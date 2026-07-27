@@ -7,7 +7,7 @@
     </div>
   } @else if (notFound()) {
     <div class="max-w-6xl mx-auto px-4 pt-8">
-      <app-empty-state icon="business" message="No encontramos esta empresa." />
+      <app-empty-state icon="business" title="Empresa no encontrada" description="No encontramos esta empresa." />
     </div>
   } @else {
     @if (company(); as c) {
@@ -143,7 +143,7 @@
               }
             </div>
           } @else {
-            <app-empty-state icon="work_off" message="Esta empresa no tiene vacantes activas en este momento." />
+            <app-empty-state icon="work_off" description="Esta empresa no tiene vacantes activas en este momento." />
           }
         </section>
 

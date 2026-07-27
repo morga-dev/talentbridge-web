@@ -1,5 +1,6 @@
 import { Component, input, output } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
+import type { FilterOption } from '../../models/filter-bar.model';
 
 @Component({
   selector: 'app-filter-bar',
@@ -12,6 +13,7 @@ import { MatButtonModule } from '@angular/material/button';
 
 export class FilterBarComponent {
 	readonly filters = input<string[]>(['Todas', 'Vacantes', 'Becas']);
+  readonly filterOptions = input<FilterOption[]>();
 	readonly selected = input('Todas');
 	readonly filterChanged = output<string>();
 

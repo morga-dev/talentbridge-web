@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
-import { PageHeaderComponent, SearchInputComponent, MetricCardsComponent } from '../../../../shared/components';
+import { PageHeaderComponent, SearchInputComponent, MetricCardsComponent, EmptyStateComponent } from '../../../../shared/components';
 import { type MetricCard, OpportunitySummary } from '../../../../shared/models';
 import { JobCardComponent } from '../../../../shared/components/job-card/job-card.component';
 import { UpcomingInterview } from '../../models/student.model';
@@ -17,6 +17,7 @@ import { UpcomingInterview } from '../../models/student.model';
     PageHeaderComponent,
     SearchInputComponent,
     MetricCardsComponent,
+    EmptyStateComponent,
     MatIconModule,
     MatButtonModule,
     MatProgressBarModule,

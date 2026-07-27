@@ -9,7 +9,7 @@ import {
   EmptyStateComponent,
   JobCardComponent
 } from '../../../../../shared/components';
-import type { OpportunitySummary, TypeFilter } from '../../../../../shared/models';
+import type { OpportunitySummary, FilterOption } from '../../../../../shared/models';
 
 @Component({
   selector: 'app-opportunity-list',
@@ -28,10 +28,9 @@ import type { OpportunitySummary, TypeFilter } from '../../../../../shared/model
 export class OpportunityListComponent {
   private router = inject(Router);
 
-  readonly typeFilter = signal<TypeFilter>('Todas');
+  readonly typeFilter = signal<string>('Todas');
   readonly searchQuery = signal('');
 
-  // Datos de prueba
   private readonly allOpportunities = signal<OpportunitySummary[]>([
     {
       id: 1,
@@ -67,6 +66,17 @@ export class OpportunityListComponent {
     },
   ]);
 
+  readonly filterOptions = computed<FilterOption[]>(() => {
+    const all = this.allOpportunities();
+    const vacantes = all.filter(o => !o.tags?.includes('Beca')).length;
+    const becas = all.filter(o => o.tags?.includes('Beca')).length;
+    return [
+      { value: 'Todas', label: 'Todas', count: all.length },
+      { value: 'Vacantes', label: 'Vacantes', count: vacantes },
+      { value: 'Becas', label: 'Becas', count: becas }
+    ];
+  });
+
   readonly filteredOpportunities = computed(() => {
     const filter = this.typeFilter();
     const query = this.searchQuery().trim().toLowerCase();
@@ -90,7 +100,7 @@ export class OpportunityListComponent {
   });
 
   onFilterChanged(filter: string): void {
-    this.typeFilter.set(filter as TypeFilter);
+    this.typeFilter.set(filter);
   }
 
   onSearch(query: string): void {

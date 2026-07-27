@@ -8,12 +8,12 @@
       </p>
     </div>
 
-    <app-search-input placeholder="Buscar por título o empresa..." />
+    <app-search-input placeholder="Buscar por título o empresa..." (valueChange)="onSearch($event)" />
   </app-page-header>
 
   <div class="max-w-6xl mx-auto px-4 mt-6 space-y-6">
 
-    <app-filter-bar [selected]="typeFilter()" (filterChanged)="onFilterChanged($event)" />
+    <app-filter-bar [filterOptions]="filterOptions()" [selected]="typeFilter()" (filterChanged)="onFilterChanged($event)" />
 
     <div class="grid gap-4 grid-cols-1 md:grid-cols-2">
       @for (opportunity of filteredOpportunities(); track opportunity.id) {
@@ -22,7 +22,7 @@
         </a>
       } @empty {
         <div class="md:col-span-2">
-          <app-empty-state icon="search_off" message="No encontramos oportunidades que coincidan con tu búsqueda." />
+          <app-empty-state icon="search_off" description="No encontramos oportunidades que coincidan con tu búsqueda." />
         </div>
       }
     </div>

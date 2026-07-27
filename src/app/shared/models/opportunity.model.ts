@@ -11,8 +11,6 @@ export type EmploymentType =
 
 export type OpportunityStatus = 'active' | 'draft' | 'closed' | 'expired';
 
-export type TypeFilter = 'Todas' | 'Vacantes' | 'Becas';
-
 export interface OpportunitySummary {
   id: number;
   title: string;

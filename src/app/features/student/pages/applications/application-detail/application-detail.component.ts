@@ -7,7 +7,7 @@ import { MatChipsModule } from '@angular/material/chips';
 import { MatDividerModule } from '@angular/material/divider';
 import { ApplicationDetail } from '../../../models';
 import { ApplicationStatus } from '../../../../../shared/models';
-import { PageHeaderComponent } from '../../../../../shared/components';
+import { PageHeaderComponent, EmptyStateComponent } from '../../../../../shared/components';
 
 @Component({
   selector: 'app-application-detail',
@@ -18,7 +18,8 @@ import { PageHeaderComponent } from '../../../../../shared/components';
     MatButtonModule,
     MatChipsModule,
     MatDividerModule,
-    PageHeaderComponent
+    PageHeaderComponent,
+    EmptyStateComponent
   ],
   templateUrl: './application-detail.component.html'
 })

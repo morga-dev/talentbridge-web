@@ -94,9 +94,7 @@
                     @for (job of recommendedJobs(); track job.title) {
                     <app-job-card [job]="job" />
                     } @empty {
-                    <p class="app-empty-state rounded-2xl px-4 py-6 text-base text-center">
-                        No hay vacantes disponibles en este momento.
-                    </p>
+                    <app-empty-state icon="work_off" description="No hay vacantes disponibles en este momento." />
                     }
                 </div>
             </section>

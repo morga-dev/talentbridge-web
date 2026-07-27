@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { NotificationType, AppNotification, NotificationFilter } from '../../models/notifications.model';
-import { PageHeaderComponent, SearchInputComponent, MetricCardsComponent, ConfirmDialogComponent } from '../../../../shared/components';
+import { PageHeaderComponent, SearchInputComponent, MetricCardsComponent, ConfirmDialogComponent, EmptyStateComponent } from '../../../../shared/components';
 import { type MetricCard, type ConfirmDialogData } from '../../../../shared/models';
 import { inject } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
@@ -17,7 +17,8 @@ import { MatDialog } from '@angular/material/dialog';
     MatButtonModule,
     PageHeaderComponent,
     SearchInputComponent,
-    MetricCardsComponent
+    MetricCardsComponent,
+    EmptyStateComponent
   ],
   templateUrl: './notifications.component.html'
 })
