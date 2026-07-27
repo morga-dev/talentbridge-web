@@ -1,0 +1,44 @@
+<main class="min-h-screen bg-talent-bg flex items-center justify-center relative overflow-hidden transition-colors duration-200">
+
+	<!-- Floating background shapes -->
+	<div class="shape h-40 w-40 bg-talent-primary top-[10%] left-[8%] animate-float" style="border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%"></div>
+	<div class="shape h-28 w-28 bg-talent-secondary top-[20%] right-[12%] animate-float-delayed" style="border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%"></div>
+	<div class="shape h-36 w-36 bg-talent-primary bottom-[15%] right-[18%] animate-float" style="border-radius: 40% 60% 70% 30% / 40% 50% 50% 60%; animation-delay: 2s;"></div>
+	<div class="shape h-20 w-20 bg-talent-secondary bottom-[25%] left-[10%] animate-float-delayed" style="border-radius: 50% 50% 20% 80% / 25% 80% 20% 75%; animation-delay: .5s;"></div>
+
+	<div class="relative z-10 flex flex-col items-center text-center max-w-md">
+
+		<!-- 404 visual -->
+		<div class="relative mb-8 animate-fade-in-up">
+			<div class="text-[10rem] sm:text-[12rem] font-black leading-none tracking-tighter select-none">
+				<span class="text-talent-primary animate-shake inline-block" style="animation-delay: .8s;">4</span>
+				<span class="text-talent-secondary inline-block relative mx-2" style="top: -8px;">
+					<mat-icon class="!text-[20rem] sm:!text-[10rem] !h-64 !w-36 animate-float pt-30" style="animation-duration: 4s;">sentiment_dissatisfied</mat-icon>
+				</span>
+				<span class="text-talent-primary animate-shake inline-block" style="animation-delay: 1s;">4</span>
+			</div>
+			<div class="absolute -bottom-2 left-1/2 -translate-x-1/2 w-3/4 h-1 bg-gradient-to-r from-transparent via-talent-primary/30 to-transparent rounded-full blur-sm"></div>
+		</div>
+
+		<!-- Mensaje -->
+		<h1 class="text-2xl sm:text-3xl font-extrabold text-talent-text tracking-tight mb-2 animate-fade-in-up-delay-1">
+			¡Ups! Página no encontrada
+		</h1>
+		<p class="text-base font-medium text-talent-text-secondary/70 max-w-sm animate-fade-in-up-delay-2">
+			La página que buscas no existe, fue movida o está disfrutando unas vacaciones no programadas.
+		</p>
+
+		<!-- Acciones -->
+		<div class="flex flex-col sm:flex-row items-center gap-3 mt-8 animate-fade-in-up-delay-3">
+			<button type="button" mat-flat-button color="primary" class="!px-8 !py-6 !text-base !font-bold !rounded-xl animate-pulse-glow" (click)="goHome()">
+				<mat-icon class="mr-1.5">home</mat-icon>
+				Volver al inicio
+			</button>
+			<button type="button" mat-stroked-button color="primary" class="!px-8 !py-6 !text-base !font-bold !rounded-xl" (click)="goLogin()">
+				<mat-icon class="mr-1.5">person</mat-icon>
+				Iniciar sesión
+			</button>
+		</div>
+
+	</div>
+</main>
