@@ -43,7 +43,7 @@ export class ApplicationListComponent {
     {
       id: 2,
       type: 'Beca',
-      title: 'Desarrollador de Software',
+      title: 'Beca de Desarrollador de Software',
       company: 'Fundación TalentBridge',
       requirements: ['Inglés B2', 'Promedio 9.5+', 'Disponibilidad flexible'],
       modality: 'Tapachula, Chiapas, MX',

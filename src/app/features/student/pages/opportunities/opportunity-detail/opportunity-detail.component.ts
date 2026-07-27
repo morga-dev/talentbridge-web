@@ -74,26 +74,26 @@ export class OpportunityDetailComponent implements OnInit {
         company: {
           id: 1,
           name: 'UpTap',
-          industry: 'Software',
+          industry: 'Tecnología / Software',
           phone: 9629876543,
           email: 'contacto@uptap.com',
-          about: 'Líderes en soluciones tecnológicas',
-          sizeRange: '50 - 100 empleados',
-          foundedYear: 2018
+          about: 'Empresa dedicada al desarrollo de soluciones digitales para conectar talento joven con oportunidades laborales reales en Tapachula.',
+          sizeRange: '11-30 empleados',
+          foundedYear: 2020
         },
-        title: 'Senior Frontend Engineer',
+        title: 'Desarrollador Frontend Jr',
         description:
-          'Estamos buscando un Senior Frontend Engineer apasionado por crear interfaces excepcionales y arquitecturas escalables. En TalentBridge, creemos en empoderar a la próxima generación de talento tecnológico.\n Trabajarás estrechamente con diseñadores de producto y desarrolladores backend implementando nuevas funcionalidades con React, Tailwind CSS y Node.js.',
+          'Buscamos un desarrollador frontend junior apasionado por la tecnología para unirse a nuestro equipo. Trabajarás con tecnologías modernas y mentores experimentados en un ambiente colaborativo.',
         requirements: [
-          '+1 año de experiencia trabajando con React y ecosistemas modernos de JavaScript.',
-          'Sólidos conocimientos en CSS avanzado y frameworks como Tailwind o Styled Components.',
-          'Experiencia previa liderando técnicamente proyectos o mentorizando perfiles junior.',
-          'Mentalidad orientada a producto y atención al detalle en la UI/UX.'
+          'Conocimientos básicos de HTML, CSS y JavaScript',
+          'Familiaridad con framework moderno Angular',
+          'Manejo básico de Git',
+          'Disponibilidad para aprender y trabajar en equipo'
         ],
-        technologies: ['React', 'TypeScript', 'Tailwind CSS', 'Next.js', 'Git'],
+        technologies: ['Angular', 'TypeScript', 'Tailwind CSS', 'Node.js', 'Git'],
         location: 'Tapachula, Chiapas, MX',
         modality: 'Remoto',
-        salaryRange: '$100,000 MXN - $200,000 MXN / año',
+        salaryRange: '$12,000 - $16,000 MXN mensuales',
         employmentType: 'Tiempo completo',
         createdAt: new Date(Date.now() - 2 * 24 * 60 * 60 * 1000).toISOString(),
         expirationDate: new Date(Date.now() + 20 * 24 * 60 * 60 * 1000).toISOString(),
@@ -102,8 +102,8 @@ export class OpportunityDetailComponent implements OnInit {
       });
 
       this.similarOpportunities.set([
-        { id: 2, title: 'Fullstack Developer', company: 'TechCorp', tags: [], location: 'Remoto', modality: 'Híbrido', salaryRange: '€50k - €65k' },
-        { id: 3, title: 'Frontend Lead', company: 'TechCorp', tags: [], location: 'Remoto', modality: 'Remoto', salaryRange: '€70k - €90k' }
+        { id: 2, title: 'Practicante de QA', company: 'UpTap', tags: [], location: 'Tapachula, Chiapas, MX', modality: 'Híbrido', salaryRange: '$6,000 - $8,000 MXN' },
+        { id: 3, title: 'Beca de Desarrollo de Software', company: 'UpTap', tags: [], location: 'Tapachula, Chiapas, MX', modality: 'Presencial', salaryRange: '$4,000 MXN mensuales' }
       ]);
 
       this.loading.set(false);

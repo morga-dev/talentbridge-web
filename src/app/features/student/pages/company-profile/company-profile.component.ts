@@ -64,11 +64,11 @@ export class CompanyProfileComponent implements OnInit {
       if (id === '1') {
         this.company.set({
           id: 1,
-          name: 'UpTap Technologies',
+          name: 'UpTap',
           logoUrl: undefined,
           industry: 'Tecnología / Software',
           email: 'contacto@uptap.com',
-          phone: 9621234567,
+          phone: 9629876543,
           about: 'Empresa dedicada al desarrollo de soluciones digitales para conectar talento joven con oportunidades laborales reales en Tapachula.',
           sizeRange: '11-30 empleados',
           foundedYear: 2020,
@@ -77,13 +77,23 @@ export class CompanyProfileComponent implements OnInit {
         this.activeJobs.set([
           {
             id: 1,
-            title: 'Senior Frontend Engineer',
-            company: 'TechCorp',
-            tags: ['React', 'TypeScript', 'Remoto'],
-            location: 'Madrid, España',
+            title: 'Desarrollador Frontend Jr',
+            company: 'UpTap',
+            tags: ['Angular', 'TypeScript', 'Remoto'],
+            location: 'Tapachula, Chiapas, MX',
             modality: 'Remoto',
-            salaryRange: '€55k - €75k / año',
+            salaryRange: '$12,000 - $16,000 MXN',
             employmentType: 'Tiempo completo'
+          },
+          {
+            id: 2,
+            title: 'Practicante de QA',
+            company: 'UpTap',
+            tags: ['Manual Testing', 'SQL', 'Híbrido'],
+            location: 'Tapachula, Chiapas, MX',
+            modality: 'Híbrido',
+            salaryRange: '$6,000 - $8,000 MXN',
+            employmentType: 'Práctica profesional'
           }
         ]);
         this.notFound.set(false);

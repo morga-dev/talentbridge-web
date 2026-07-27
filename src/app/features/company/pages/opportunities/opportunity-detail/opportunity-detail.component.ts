@@ -45,8 +45,8 @@ export class OpportunityDetailComponent {
       id: 1,
       company: {
         id: 1,
-        name: 'UPTAP',
-        phone: 9611234567,
+        name: 'UpTap',
+        phone: 9629876543,
         email: 'contacto@uptap.com',
         industry: 'Tecnología / Software',
         about: 'Empresa dedicada al desarrollo de soluciones digitales para conectar talento joven con oportunidades laborales reales en Tapachula.',
@@ -76,8 +76,8 @@ export class OpportunityDetailComponent {
       id: 2,
       company: {
         id: 1,
-        name: 'UPTAP',
-        phone: 9611234567,
+        name: 'UpTap',
+        phone: 9629876543,
         email: 'contacto@uptap.com',
         industry: 'Tecnología / Software',
         about: 'Empresa dedicada al desarrollo de soluciones digitales para conectar talento joven con oportunidades laborales reales en Tapachula.',
@@ -107,8 +107,8 @@ export class OpportunityDetailComponent {
       id: 3,
       company: {
         id: 1,
-        name: 'UPTAP',
-        phone: 9611234567,
+        name: 'UpTap',
+        phone: 9629876543,
         email: 'contacto@uptap.com',
         industry: 'Tecnología / Software',
         about: 'Empresa dedicada al desarrollo de soluciones digitales para conectar talento joven con oportunidades laborales reales en Tapachula.',
@@ -160,9 +160,27 @@ export class OpportunityDetailComponent {
       fullName: 'Roberto Zacatenco',
       initials: 'RZ',
       career: 'Ing. de Software',
-      appliedFor: 'Desarrollador Frontend Jr',
+      appliedFor: 'Practicante de QA',
       appliedDate: '8 jul 2026',
       status: 'interview'
+    },
+    {
+      id: 4,
+      fullName: 'Rigoberto Escobar',
+      initials: 'RE',
+      career: 'Ing. de Software',
+      appliedFor: 'Beca de Desarrollo de Software',
+      appliedDate: '5 jul 2026',
+      status: 'accepted'
+    },
+    {
+      id: 5,
+      fullName: 'Andrus García',
+      initials: 'AG',
+      career: 'Ing. de Software',
+      appliedFor: 'Desarrollador Frontend Jr',
+      appliedDate: '1 jul 2026',
+      status: 'pending'
     }
   ]);
 

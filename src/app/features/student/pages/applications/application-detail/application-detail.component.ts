@@ -39,7 +39,7 @@ export class ApplicationDetailComponent {
       date: '10 jul 2026',
       status: 'interview',
       description:
-        'Buscamos un desarrollador frontend junior para unirse a nuestro equipo. Trabajarás directamente con diseñadores y backend developers construyendo la próxima generación de la plataforma UpTap.',
+        'Buscamos un desarrollador frontend junior apasionado por la tecnología para unirse a nuestro equipo. Trabajarás con tecnologías modernas y mentores experimentados en un ambiente colaborativo.',
       responsibilities: [
         'Implementar componentes de UI a partir de diseños en Figma',
         'Colaborar con el equipo de backend para consumir APIs REST',
@@ -50,8 +50,8 @@ export class ApplicationDetailComponent {
       publishedDate: '28 jun 2026',
       deadlineDate: '20 jul 2026',
       appliedDate: '10 jul 2026',
-      companyInitials: 'UP',
-      companyDescription: 'Plataforma de conexión laboral para talento joven en el sur de México.',
+      companyInitials: 'UPT',
+      companyDescription: 'Empresa dedicada al desarrollo de soluciones digitales para conectar talento joven con oportunidades laborales reales en Tapachula.',
       companyWebsite: 'https://uptap.com',
       statusHistory: [
         { status: 'pending', label: 'Postulación enviada', date: '10 jul 2026' },
@@ -73,7 +73,7 @@ export class ApplicationDetailComponent {
   }
 
   onViewCompany(): void {
-    console.log('Ver perfil de:', this.application()?.company);
+    this.router.navigate(['/student/company/1']);
   }
 
   goBack(): void {

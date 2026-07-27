@@ -28,7 +28,7 @@ import { UpcomingInterview } from '../../models/student.model';
 export class StudentDashboardComponent {
   private router = inject(Router);
 
-  userName = 'Morga';
+  userName = 'Diego Morga';
   userInitials = 'DM';
 
   readonly profileCompletion = signal(70);

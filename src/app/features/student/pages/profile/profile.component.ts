@@ -25,11 +25,11 @@ import { PageHeaderComponent } from '../../../../shared/components';
 export class ProfileComponent {
   // Datos de prueba
   profile: StudentProfile = {
-    fullName: 'Morga',
+    fullName: 'Diego Morga',
     initials: 'DM',
     career: 'Ingeniería de Software',
     university: 'Universidad Politécnica de Tapachula',
-    semester: '9no semestre',
+    semester: '9no cuatrimestre',
     graduationYear: '2026',
     email: 'ejemplo@uptapachula.edu.mx',
     phone: 9621234567,

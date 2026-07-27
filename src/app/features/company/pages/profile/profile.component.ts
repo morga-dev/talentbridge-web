@@ -24,11 +24,10 @@ export class ProfileComponent {
   // Datos de prueba
   profile: CompanyProfile = {
     id: 1,
-    name: 'UpTap Technologies',
+    name: 'UpTap',
     initials: 'UPT',
     industry: 'Tecnología / Software',
-    about:
-      'Empresa dedicada al desarrollo de soluciones digitales para conectar talento joven con oportunidades laborales reales en Tapachula.',
+    about: 'Empresa dedicada al desarrollo de soluciones digitales para conectar talento joven con oportunidades laborales reales en Tapachula.',
     sizeRange: '11-30 empleados',
     foundedYear: 2020,
     email: 'contacto@uptap.com',

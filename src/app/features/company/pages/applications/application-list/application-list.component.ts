@@ -88,15 +88,6 @@ export class ApplicationListComponent {
     },
     {
       id: 5,
-      fullName: 'Luis Díaz',
-      initials: 'LD',
-      career: 'Ing. en Informática',
-      appliedFor: 'Practicante de QA',
-      appliedDate: '3 jul 2026',
-      status: 'rejected'
-    },
-    {
-      id: 6,
       fullName: 'Andrus García',
       initials: 'AG',
       career: 'Ing. de Software',
