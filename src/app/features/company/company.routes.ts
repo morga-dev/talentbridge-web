@@ -32,6 +32,10 @@ export default [
             {
                 path: '',
                 loadComponent: () => import('./pages/applications/application-list/application-list.component').then(m => m.ApplicationListComponent)
+            },
+            {
+                path: ':id',
+                loadComponent: () => import('./pages/applications/application-detail/application-detail.component').then(m => m.ApplicationDetailComponent)
             }
         ]
     },

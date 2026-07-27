@@ -35,3 +35,30 @@ export interface UpcomingCompanyInterview {
   date: string;
   time: string;
 }
+
+export interface ApplicationStatusStep {
+  status: ApplicationStatus;
+  label: string;
+  date: string | null;
+}
+
+export interface CandidateApplicationDetail {
+  id: number;
+  initials: string;
+  fullName: string;
+  career: string;
+  university: string;
+  semester: string;
+  graduationYear: string;
+  email: string;
+  phone: number;
+  skills: string[];
+  about: string;
+  cvUrl: string;
+  githubUrl: string;
+  linkedinUrl: string;
+  opportunityTitle: string;
+  appliedDate: string;
+  status: ApplicationStatus;
+  statusHistory: ApplicationStatusStep[];
+}

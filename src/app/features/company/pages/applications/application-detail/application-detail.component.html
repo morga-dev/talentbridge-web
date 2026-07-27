@@ -1,0 +1,220 @@
+@if (loading()) {
+  <main class="min-h-screen bg-talent-bg pb-24 transition-colors duration-200">
+    <div class="max-w-6xl mx-auto px-4 pt-8 space-y-6">
+      <app-loading-skeleton variant="card" [count]="1" />
+      <app-loading-skeleton variant="list" [count]="6" />
+    </div>
+  </main>
+} @else if (notFound()) {
+  <main class="min-h-screen bg-talent-bg flex items-center justify-center px-4">
+    <app-empty-state icon="person_off" title="Postulación no encontrada" description="No encontramos esta postulación." actionLabel="Volver a postulaciones" (action)="goBack()" />
+  </main>
+} @else {
+  @if (application(); as app) {
+  <main class="min-h-screen bg-talent-bg pb-24 transition-colors duration-200">
+
+    <app-page-header>
+      <button type="button" mat-icon-button (click)="goBack()" aria-label="Volver" class="self-start text-white">
+        <mat-icon>arrow_back</mat-icon>
+      </button>
+
+      <div class="flex items-center gap-2">
+        <div class="app-surface-strong h-14 w-14 rounded-full flex items-center justify-center font-black text-xl text-talent-primary select-none shrink-0 border-2 border-white/10">
+          {{ app.initials }}
+        </div>
+        <div class="min-w-0 space-y-0.5">
+          <h1 class="text-xl font-extrabold text-white tracking-tight truncate">{{ app.fullName }}</h1>
+          <p class="text-base font-medium text-white/70 truncate">{{ app.career }} · {{ app.university }}</p>
+          <p class="text-md font-medium text-white/50">Aplicó a {{ app.opportunityTitle }} · {{ app.appliedDate }}</p>
+        </div>
+      </div>
+    </app-page-header>
+
+    <div class="max-w-6xl mx-auto px-4 mt-6 space-y-6">
+
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+
+        <!-- Columna izquierda: Perfil del candidato -->
+        <div class="lg:col-span-2 space-y-6">
+
+          <!-- Sobre el candidato -->
+          <section class="app-card rounded-2xl p-5 space-y-3">
+            <h2 class="text-lg font-extrabold text-talent-text tracking-tight">Sobre el candidato</h2>
+            <p class="text-base font-medium text-talent-text-secondary leading-relaxed">
+              {{ app.about }}
+            </p>
+
+            <div class="grid grid-cols-2 sm:grid-cols-3 gap-3 pt-2">
+              <div>
+                <p class="text-md font-semibold text-talent-text-secondary/70">Carrera</p>
+                <p class="text-base font-medium text-talent-text">{{ app.career }}</p>
+              </div>
+              <div>
+                <p class="text-md font-semibold text-talent-text-secondary/70">Universidad</p>
+                <p class="text-base font-medium text-talent-text">{{ app.university }}</p>
+              </div>
+              <div>
+                <p class="text-md font-semibold text-talent-text-secondary/70">Semestre</p>
+                <p class="text-base font-medium text-talent-text">{{ app.semester }}</p>
+              </div>
+            </div>
+          </section>
+
+          <!-- Habilidades -->
+          <section class="app-card rounded-2xl p-5 space-y-3">
+            <h2 class="text-lg font-extrabold text-talent-text tracking-tight">Habilidades</h2>
+            <mat-chip-set>
+              @for (skill of app.skills; track skill) {
+                <mat-chip disableRipple>{{ skill }}</mat-chip>
+              }
+            </mat-chip-set>
+          </section>
+
+          <!-- Timeline -->
+          <section class="app-card rounded-2xl p-5 space-y-4">
+            <h2 class="text-lg font-extrabold text-talent-text tracking-tight">Seguimiento</h2>
+
+            <div class="space-y-0">
+              @for (step of app.statusHistory; track step.status; let last = $last) {
+                <div class="flex gap-3">
+                  <div class="flex flex-col items-center">
+                    <div class="h-3 w-3 rounded-full shrink-0"
+                      [class.bg-talent-primary]="step.date"
+                      [class.bg-talent-text-secondary]="!step.date"
+                      [class.opacity-30]="!step.date">
+                    </div>
+                    @if (!last) {
+                      <div class="w-px flex-1 bg-talent-border my-1" [class.opacity-30]="!step.date"></div>
+                    }
+                  </div>
+
+                  <div class="pb-4 min-w-0">
+                    <p class="text-base font-semibold text-talent-text" [class.opacity-50]="!step.date">
+                      {{ step.label }}
+                    </p>
+                    <p class="text-md font-medium text-talent-text-secondary/70">
+                      {{ step.date ?? 'Pendiente' }}
+                    </p>
+                  </div>
+                </div>
+              }
+            </div>
+
+            @if (changingStatus()) {
+              <div class="flex items-center gap-2 text-sm text-talent-primary font-semibold">
+                <mat-icon class="mat-icon-sm">sync</mat-icon>
+                Actualizando estado...
+              </div>
+            }
+          </section>
+
+          <!-- CV -->
+          <section class="app-card rounded-2xl p-5 space-y-3">
+            <div class="flex items-center justify-between gap-3">
+              <div class="flex items-center gap-3">
+                <div class="app-icon-badge p-2.5 rounded-xl">
+                  <mat-icon class="flex items-center justify-center">description</mat-icon>
+                </div>
+                <div>
+                  <h2 class="text-lg font-extrabold text-talent-text tracking-tight">Currículum Vitae</h2>
+                  <p class="text-base font-medium text-talent-text-secondary/90">CV de {{ app.fullName }}</p>
+                </div>
+              </div>
+              <button type="button" mat-flat-button color="primary" (click)="onOpenCv()">
+                <mat-icon>visibility</mat-icon>
+                Ver CV
+              </button>
+            </div>
+          </section>
+
+        </div>
+
+        <!-- Columna derecha: Info y acciones -->
+        <div class="space-y-6">
+
+          <!-- Estado actual -->
+          <section class="app-card rounded-2xl p-5 space-y-3">
+            <h2 class="text-lg font-extrabold text-talent-text tracking-tight">Estado actual</h2>
+            <mat-chip [color]="statusColor(app.status)" [highlighted]="!!statusColor(app.status)" disableRipple>
+              {{ statusLabel(app.status) }}
+            </mat-chip>
+            <p class="text-md font-medium text-talent-text-secondary/70">Postulado el {{ app.appliedDate }}</p>
+          </section>
+
+          <!-- Acciones -->
+          <section class="app-card rounded-2xl p-5 space-y-3">
+            <h2 class="text-lg font-extrabold text-talent-text tracking-tight">Acciones</h2>
+
+            <div class="space-y-2">
+              @if (app.status === 'pending') {
+                <button type="button" mat-flat-button color="primary" class="w-full" (click)="onChangeStatus('reviewing')">
+                  <mat-icon>visibility</mat-icon>
+                  Pasar a revisión
+                </button>
+              }
+
+              @if (app.status === 'reviewing') {
+                <button type="button" mat-flat-button color="accent" class="w-full" (click)="onChangeStatus('interview')">
+                  <mat-icon>event</mat-icon>
+                  Agendar entrevista
+                </button>
+              }
+
+              @if (app.status === 'interview') {
+                <button type="button" mat-flat-button color="primary" class="w-full" (click)="onChangeStatus('accepted')">
+                  <mat-icon>check_circle</mat-icon>
+                  Aceptar candidato
+                </button>
+              }
+
+              @if (app.status !== 'rejected' && app.status !== 'accepted') {
+                <button type="button" mat-stroked-button color="warn" class="w-full" (click)="onChangeStatus('rejected')">
+                  <mat-icon>block</mat-icon>
+                  Rechazar candidato
+                </button>
+              }
+            </div>
+          </section>
+
+          <!-- Contacto -->
+          <section class="app-card rounded-2xl p-5 space-y-3">
+            <h2 class="text-lg font-extrabold text-talent-text tracking-tight">Contacto</h2>
+
+            <div class="space-y-3">
+              <div class="flex items-center gap-3">
+                <mat-icon class="text-talent-text-secondary/60 mat-icon-lg">mail</mat-icon>
+                <span class="text-base font-medium text-talent-text truncate">{{ app.email }}</span>
+              </div>
+              <div class="flex items-center gap-3">
+                <mat-icon class="text-talent-text-secondary/60 mat-icon-lg">phone</mat-icon>
+                <span class="text-base font-medium text-talent-text">{{ app.phone }}</span>
+              </div>
+              <mat-divider></mat-divider>
+              <div class="space-y-2">
+                @if (app.githubUrl) {
+                  <a [href]="app.githubUrl" target="_blank" rel="noopener noreferrer"
+                    class="flex items-center gap-3 text-base font-medium text-talent-secondary hover:underline">
+                    <mat-icon class="mat-icon-lg">code</mat-icon>
+                    GitHub
+                  </a>
+                }
+                @if (app.linkedinUrl) {
+                  <a [href]="app.linkedinUrl" target="_blank" rel="noopener noreferrer"
+                    class="flex items-center gap-3 text-base font-medium text-talent-secondary hover:underline">
+                    <mat-icon class="mat-icon-lg">badge</mat-icon>
+                    LinkedIn
+                  </a>
+                }
+              </div>
+            </div>
+          </section>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </main>
+  }
+}
