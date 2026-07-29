@@ -24,7 +24,6 @@ import type { OpportunityDetail, OpportunitySummary, ConfirmDialogData } from '.
     MatButtonModule,
     MatChipsModule,
     MatSnackBarModule,
-    ConfirmDialogComponent,
     EmptyStateComponent,
     LoadingSkeletonComponent
   ],
